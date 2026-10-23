@@ -79,19 +79,19 @@ uv run python -m app.benchmark
   (651 output tokens on average vs 632 for "What is LoRA?"). On gemini-3.8-flash the means were 79.60 s, 32.27 s and
   112.65 s, but each one comes from only one or two successful runs and is dominated by run-to-run variation (see below),
   so I cannot say the question itself caused the difference.
-- Output tokens and thinking tokens by model and question: flash-lite used no thinking tokens and wrote about 600 to 650
-  output tokens for every question. gemini-3.8-flash wrote 503 to 878 visible output tokens per call and, on top of that,
-  819 to 1,242 thinking tokens per call (mean 969.8, more than its visible output). Input tokens were identical in every
-  run of a question (6, 19 and 22) because the prompt was the same. The "Output tokens/s" column counts only visible
-  output, so it understates how much work gemini-3.8-flash does.
+- Output tokens and thinking tokens by model and question: flash-lite used no thinking tokens and wrote between 578 and
+  676 output tokens per call, whichever question it was. gemini-3.8-flash wrote 503 to 878 visible output tokens per call
+  and, on top of that, 819 to 1,242 thinking tokens per call (mean 969.8, more than its visible output). Input tokens were
+  identical in every run of a question (6, 19 and 22) because the prompt was the same. The "Output tokens/s" column
+  counts only visible output, so it understates how much work gemini-3.8-flash does.
 - Did the course-specific question get a different kind of answer (refusal vs confident guess), and was it consistent
   across runs? Neither model gave the real meaning, and both did the same thing: they said the definition depends on the
   institution or syllabus, then guessed with generic lists, then asked me for more context. flash-lite did this in all
-  three benchmark runs (and in my three earlier `app.ask` runs), with a different framing each time. gemini-3.8-flash
-  has only one successful answer to this question, because its second run returned a 503, so I cannot judge its
-  consistency. That answer offered three candidate frameworks: homework difficulty tiers (labelled "most common":
-  core, optimization, challenge), David Marr's three levels of analysis, and prompting or agent levels. It did not name
-  Basic, Implementation and Advanced. Its first guess has the right general shape but the wrong content.
+  three benchmark runs (and in my three earlier `app.ask` runs), each time with a somewhat different mix of frameworks.
+  gemini-3.8-flash has only one successful answer to this question, because its second run returned a 503, so I cannot
+  judge its consistency. That answer offered three candidate frameworks: homework difficulty tiers (labelled "most
+  common": core, optimization, challenge), David Marr's three levels of analysis, and prompting or agent levels. It did
+  not name Basic, Implementation and Advanced. Its first guess has the right general shape but the wrong content.
 - Run-to-run variation (min and max latency for the same question): flash-lite was very consistent (every question stayed
   within about 0.5 s). gemini-3.8-flash was not. For general-short, run 2 took 119.35 s vs 39.84 s in run 1 (3.0 times
   longer), and for long-answer 162.15 s vs 63.15 s (2.6 times longer). The total tokens (visible plus thinking) were almost
