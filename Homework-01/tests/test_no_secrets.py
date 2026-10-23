@@ -6,7 +6,7 @@ from pathlib import Path
 # Google API keys start with "AIza" followed by 35 URL-safe characters.
 KEY_PATTERN = re.compile(r"AIza[0-9A-Za-z_\-]{35}")
 ROOT = Path(__file__).resolve().parent.parent
-TEXT_SUFFIXES = {".py", ".md", ".toml", ".json", ".txt", ".yml", ".yaml", ".env", ".cfg", ""}
+TEXT_SUFFIXES = {".py", ".md", ".toml", ".json", ".csv", ".txt", ".yml", ".yaml", ".env", ".cfg", ""}
 
 
 def test_no_google_api_key_in_homework_folder():
