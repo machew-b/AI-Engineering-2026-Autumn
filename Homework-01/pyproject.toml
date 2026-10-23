@@ -1,0 +1,17 @@
+[project]
+name = "aie2026-homework-01"
+version = "0.1.0"
+description = "AIE2026 Homework 1: token counts and conversation history for app/ask.py"
+readme = "README.md"
+requires-python = ">=3.12"
+# Same pin as the course repo so behavior matches what the lecture used
+dependencies = [
+    "google-genai==2.31.0",
+]
+
+[dependency-groups]
+dev = ["pytest>=8"]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
