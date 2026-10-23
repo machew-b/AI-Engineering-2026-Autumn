@@ -93,9 +93,9 @@ What follows from the numbers:
 
 ### Notes
 
-- The offline tests cover the script (`uv run pytest -q`, 46 tests): pacing, latency measurement, retries, failure
+- The offline tests cover the script (`uv run pytest -q`, 48 tests): pacing, latency measurement, retries, failure
   recording and the summary maths, plus a run of the real SDK against a local fake server that returns a 503.
   They say nothing about Gemini's actual speed or limits; only the live run does.
 - Also in the folder, outside the chosen level: a chat mode in `app/ask.py` that keeps the conversation history
   (`uv run python -m app.ask --chat`). It is not part of this submission's results.
-- No API key appears in any file (a test scans this folder for Google key patterns).
+- No API key appears in any file (a test scans this folder for both Google key formats).
