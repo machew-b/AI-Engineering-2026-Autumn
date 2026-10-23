@@ -1,0 +1,16 @@
+timestamp_utc,model,question_id,run,ok,attempts,status_code,latency_s,input_tokens,output_tokens,thinking_tokens,answer_chars,error
+2026-10-23T08:46:07+00:00,gemini-3.5-flash-lite,general-short,1,True,1,,3.01,6,632,0,2705,
+2026-10-23T08:46:10+00:00,gemini-3.5-flash-lite,course-specific,1,True,1,,2.936,19,578,0,2424,
+2026-10-23T08:46:15+00:00,gemini-3.5-flash-lite,long-answer,1,True,1,,3.04,22,627,0,2306,
+2026-10-23T08:46:20+00:00,gemini-3.5-flash-lite,general-short,2,True,1,,2.868,6,602,0,2708,
+2026-10-23T08:46:25+00:00,gemini-3.5-flash-lite,course-specific,2,True,1,,2.782,19,582,0,2422,
+2026-10-23T08:46:30+00:00,gemini-3.5-flash-lite,long-answer,2,True,1,,2.697,22,650,0,2443,
+2026-10-23T08:46:35+00:00,gemini-3.5-flash-lite,general-short,3,True,1,,3.211,6,663,0,2833,
+2026-10-23T08:46:41+00:00,gemini-3.5-flash-lite,course-specific,3,True,1,,3.141,19,673,0,2920,
+2026-10-23T08:46:46+00:00,gemini-3.5-flash-lite,long-answer,3,True,1,,2.733,22,676,0,2427,
+2026-10-23T08:46:50+00:00,gemini-3.8-flash,general-short,1,True,1,,39.844,6,772,927,3187,
+2026-10-23T08:47:30+00:00,gemini-3.8-flash,course-specific,1,True,1,,32.274,19,503,1242,2282,
+2026-10-23T08:48:02+00:00,gemini-3.8-flash,long-answer,1,True,1,,63.152,22,829,819,2810,
+2026-10-23T08:49:05+00:00,gemini-3.8-flash,general-short,2,True,1,,119.35,6,878,846,3424,
+2026-10-23T08:51:05+00:00,gemini-3.8-flash,course-specific,2,False,1,503,,0,0,0,0,503: This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.
+2026-10-23T08:51:06+00:00,gemini-3.8-flash,long-answer,2,True,1,,162.152,22,641,1015,2206,
