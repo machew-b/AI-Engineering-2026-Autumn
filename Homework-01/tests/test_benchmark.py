@@ -171,8 +171,8 @@ def test_each_model_is_paced_and_skipped_independently():
     assert [r.ok for r in rows if r.model == "good"] == [True, True]
 
 
-def test_error_text_never_contains_an_api_key():
-    fake_key = "AIza" + "x" * 35
+@pytest.mark.parametrize("fake_key", ["AIza" + "x" * 35, "AQ." + "x" * 40])
+def test_error_text_never_contains_an_api_key(fake_key):
     err = errors.APIError(400, {"error": {"message": f"bad key {fake_key}"}})
     rows, _, _ = run([(0.1, err), (1.0, ok())], [("m", 1)], interval_override=0)
     assert fake_key not in rows[0].error and "[REDACTED]" in rows[0].error

@@ -55,7 +55,8 @@ PACING_MARGIN_S = 1.0  # extra seconds on top of 60 / rpm
 
 DEFAULT_MODELS = ["gemini-3.5-flash-lite:3", "gemini-3.8-flash:2"]
 RETRYABLE = (429, 503)
-KEY_PATTERN = re.compile(r"AIza[0-9A-Za-z_\-]{35}")
+# Google API keys: the older format starts with "AIza", newer ones start with "AQ."
+KEY_PATTERN = re.compile(r"AIza[0-9A-Za-z_\-]{35}|AQ\.[0-9A-Za-z_\-]{20,}")
 
 CSV_FIELDS = [
     "timestamp_utc",
