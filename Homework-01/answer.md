@@ -1,7 +1,7 @@
 # Lecture 1 Answer
 
 Course: AI Engineering Practice Course 2026 (Matsuo-Iwasawa Lab, UTokyo)
-Submission: branch `lec01` to `main` in my own repo (not the course repo)
+Submission: this repository (`machew-b/AI-Engineering-2026-Autumn`), folder `Homework-01`
 
 <!-- Fill in every "TODO (live run)" after running the commands, then delete this comment. -->
 
