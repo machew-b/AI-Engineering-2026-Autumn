@@ -39,5 +39,3 @@ model's daily free-tier allowance. Look at `results/` before committing it and m
 2. Put it in the `GEMINI_API_KEY` environment variable (or, in Codespaces, a Codespaces secret for this repo, set before launching).
 3. Run the commands above, then fill in every `TODO (live run)` in `answer.md`.
 4. Stop the Codespace when done, if one was used.
-
-Never paste the key into code, chat, commits or screenshots.

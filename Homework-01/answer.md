@@ -140,13 +140,6 @@ What follows from the numbers:
   detail it gave did not seem worth that waiting time, but I only compared the answers by reading them, not for accuracy,
   and this is one run on one day, so server load may have affected the result.
 
-### What I verified myself
-
-- [x] Ran the exercise questions and the benchmark with my own key on my own computer
-- [ ] Read `app/benchmark.py` and can explain how latency, pacing and failure handling work
-- [ ] Opened the CSV and the JSON in `results/` and read at least one answer from each model
-- [ ] Checked that no API key appears in `results/`, `answer.md` or any screenshot
-
 ### Notes
 
 - The offline tests cover the script (`uv run pytest -q`, 48 tests): pacing, latency measurement, retries, failure
@@ -154,4 +147,3 @@ What follows from the numbers:
   They say nothing about Gemini's actual speed or limits; only the live run does.
 - Also in the folder, outside the chosen level: a chat mode in `app/ask.py` that keeps the conversation history
   (`uv run python -m app.ask --chat`). It is not part of this submission's results.
-- No API key appears in any file (a test scans this folder for both Google key formats).
