@@ -29,7 +29,7 @@ Submission: this repository (`machew-b/AI-Engineering-2026-Autumn`), folder `Hom
 
 ### What I did
 
-I wrote `app/benchmark.py`. For every model and question it sends the same question several times, one request at a time,
+The benchmark is `app/benchmark.py`. For every model and question it sends the same question several times, one request at a time,
 and records the response time and the input, output and thinking token counts.
 
 - **Questions (3):** `general-short` ("What is LoRA?"), `course-specific` (the "3 levels" question, which a plain model
@@ -98,7 +98,7 @@ uv run python -m app.benchmark
   the same in the two runs (1,699 vs 1,724 and 1,648 vs 1,656), so the effective speed fell from about 43 to 14 tokens per
   second and from about 26 to 10. Token count does not explain the slowdown. I cannot tell the cause from my data; server
   load or queueing at the time are possible explanations, which fits the 503 "high demand" error in the same run.
-- Other differences I saw when reading the answers: for "What is LoRA?", both gemini-3.8-flash answers also pointed out
+- Other differences between the answers (taken from the JSON file): for "What is LoRA?", both gemini-3.8-flash answers also pointed out
   the other meaning of the word (LoRa, Long Range, the wireless technology), while flash-lite never mentioned it in its
   three runs. For LoRA vs QLoRA, both models gave the same core comparison (16-bit base model for LoRA, 4-bit for QLoRA,
   an A100-class GPU for LoRA and a consumer GPU for QLoRA). gemini-3.8-flash added more specific figures, but its two runs
@@ -110,7 +110,7 @@ uv run python -m app.benchmark
 
 ### Free-tier rate limits
 
-Limits measured in class (they can change, so I check AI Studio for my own key):
+Limits as measured in class (they can change and can differ between keys):
 
 | Model | Requests per minute | Requests per day |
 |---|---|---|
@@ -137,7 +137,7 @@ What follows from the numbers:
 - Conclusion: for repeated experiments I would use gemini-3.5-flash-lite: about 3 s per call, very consistent, no failures
   in 9 requests, and an allowance of 500 per day. I would keep gemini-3.8-flash for a few one-off checks, since it was
   about 28 times slower, failed once, and its daily allowance is easy to use up. For these three simple questions the extra
-  detail it gave did not seem worth that waiting time, but I only compared the answers by reading them, not for accuracy,
+  detail it gave did not seem worth that waiting time, but I did not check the answers for accuracy,
   and this is one run on one day, so server load may have affected the result.
 
 ### Notes

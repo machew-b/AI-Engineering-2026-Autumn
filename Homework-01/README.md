@@ -13,7 +13,7 @@ The write-up is in [`answer.md`](./answer.md).
 | `results/` | Created by the benchmark: raw CSV and JSON per run, and a markdown summary table |
 | `tests/` | Offline tests: benchmark, history logic, token counts, a local fake Gemini server, and a scan for leaked API keys |
 | `pyproject.toml` | Dependencies, pinned to the same `google-genai` version as the course repo |
-| `answer.md` | The submission file, with `TODO (live run)` marks for results that need my own API key |
+| `answer.md` | The submission write-up: what was done, the results table, the comparison and the rate-limit discussion |
 
 The course repo is `matsuolab/lecture-ai-engineering-2026`. This repo is a standalone repo, not a fork, so the
 relevant course files were copied here instead of being inherited.
@@ -37,5 +37,5 @@ model's daily free-tier allowance. Look at `results/` before committing it and m
 
 1. Create a Gemini API key at https://aistudio.google.com/apikey with a personal Google account.
 2. Put it in the `GEMINI_API_KEY` environment variable (or, in Codespaces, a Codespaces secret for this repo, set before launching).
-3. Run the commands above, then fill in every `TODO (live run)` in `answer.md`.
+3. Run the commands above. The results of my run are in `results/` and are written up in `answer.md`.
 4. Stop the Codespace when done, if one was used.
