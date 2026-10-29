@@ -23,6 +23,9 @@ from app.glossary_data import ROOT
 RESULTS = ROOT / "results"
 ANSWER = ROOT / "answer.md"
 NOT_RUN = "_Not run yet._"
+# In the course notebook this question is the control (the FAQ does cover it). Its own "FAQ にある" flag is False for it
+# because the flag only looks at the 21 test questions, so the role is taken from the question text instead.
+CONTROL_QUESTION = "課題の提出期限はいつですか"
 CATS = [("seen", "Seen wording"), ("reworded", "New wording"), ("alias", "Alias"),
         ("heldout", "Left out of training"), ("unknown", "Not in glossary (abstain = correct)")]
 
@@ -97,8 +100,10 @@ def exercise_table(results: Path = RESULTS) -> str:
              f"| After training | {pct(a['format_rate'])} | {pct(a['content_rate'])} | {pct(a['both_rate'])} |",
              "", f"- Regressed questions (passed before, failed after): {r['regressed'] or 'none'}"]
     if r.get("knowledge"):
-        lines += ["", "| Knowledge question | In FAQ | Before | After |", "|---|---|---|---|"]
-        lines += [f"| {k['質問']} | {'yes' if k['FAQ にある'] else 'no'} | {k['学習前の分類']} | {k['学習後の分類']} |" for k in r["knowledge"]]
+        lines += ["", "| Knowledge question | Role | Before | After |", "|---|---|---|---|"]
+        for k in r["knowledge"]:
+            role = "control (in the FAQ)" if k["質問"] == CONTROL_QUESTION else "not in the FAQ"
+            lines.append(f"| {k['質問']} | {role} | {k['学習前の分類']} | {k['学習後の分類']} |")
     return "\n".join(lines)
 
 

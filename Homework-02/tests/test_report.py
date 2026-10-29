@@ -36,7 +36,8 @@ def results(tmp_path):
     ex = {"config": {"base_model": "m", "lr": 0.0002, "lora_r": 16, "lora_alpha": 32, "num_train_epochs": 20, "seed": 42},
           "method": "LoRA", "executed_training_myself": True, "regressed": [],
           "before": {"format_rate": 0.1, "content_rate": 0.0, "both_rate": 0.0}, "after": {"format_rate": 1.0, "content_rate": 0.9, "both_rate": 0.9},
-          "knowledge": [{"質問": "q1", "FAQ にある": False, "学習前の分類": "format_error", "学習後の分類": "asserted"}]}
+          "knowledge": [{"質問": "q1", "FAQ にある": False, "学習前の分類": "format_error", "学習後の分類": "asserted"},
+                        {"質問": "課題の提出期限はいつですか", "FAQ にある": False, "学習前の分類": "format_error", "学習後の分類": "asserted"}]}
     (tmp_path / "exercise").mkdir()
     (tmp_path / "exercise" / "result.json").write_text(json.dumps(ex, ensure_ascii=False), encoding="utf-8")
     return tmp_path
@@ -49,6 +50,7 @@ def test_tables_with_all_results(results):
     ex = rp.examples_table(results)
     assert "Piは / 何か" in ex and "| no |" not in ex.split("\n")[2]      # the pipe inside an answer must not break the table
     assert "90%" in rp.exercise_table(results) and "asserted" in rp.exercise_table(results)
+    assert "| q1 | not in the FAQ |" in rp.exercise_table(results) and "control (in the FAQ)" in rp.exercise_table(results)
 
 
 def test_missing_results_say_not_run_yet(tmp_path):
