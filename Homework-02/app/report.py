@@ -4,7 +4,7 @@
     uv run python -m app.report --write    # also replace the <!-- AUTO:name --> blocks in answer.md
     uv run python -m app.report --check    # list what is still unfinished in answer.md (exit 1 if anything)
 
-Expected files (download them from Colab, see GUIDE.md):
+Expected files (the zip files downloaded from Colab, unzipped under results/):
     results/exercise/{result,eval_before,eval_after}.json   from the course notebook (FAQ exercise)
     results/run_a/{result,eval_before,eval_after}.json      from notebooks/lora_glossary_tuning.ipynb, run A
     results/run_b/...                                       optional, same notebook with INCLUDE_ABSTAIN = True
