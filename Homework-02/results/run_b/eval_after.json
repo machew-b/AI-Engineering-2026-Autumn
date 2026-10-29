@@ -1,0 +1,487 @@
+{
+ "summary": {
+  "label": "after",
+  "n": 58,
+  "seen_n": 16,
+  "seen_rate": 1.0,
+  "reworded_n": 16,
+  "reworded_rate": 1.0,
+  "alias_n": 8,
+  "alias_rate": 0.5,
+  "heldout_n": 6,
+  "heldout_rate": 0.0,
+  "unknown_n": 12,
+  "unknown_rate": 0.6667,
+  "known_rate": 0.9,
+  "over_abstain_rate": 0.0,
+  "unknown_asserted_rate": 0.3333,
+  "overall_rate": 0.7586,
+  "seconds": 167.1
+ },
+ "rows": [
+  {
+   "id": "seen-llm",
+   "category": "seen",
+   "question": "「LLM（大規模言語モデル）」とは何ですか？",
+   "answer": "大量のテキストで学習し、入力に続くトークンを予測することで文章を生成するモデル。質問応答、要約、コード生成など多くのタスクを、指示（プロンプト）を変えるだけでこなせる。",
+   "ok": true,
+   "abstained": false
+  },
+  {
+   "id": "reworded-llm",
+   "category": "reworded",
+   "question": "LLM（大規模言語モデル）の意味を教えてください。",
+   "answer": "大量のテキストで学習し、入力に続くトークンを予測することで文章を生成するモデル。質問応答、要約、コード生成など多くのタスクを、指示（プロンプト）を変えるだけでこなせる。",
+   "ok": true,
+   "abstained": false
+  },
+  {
+   "id": "seen-token",
+   "category": "seen",
+   "question": "「トークン」とは何ですか？",
+   "answer": "LLMがテキストを扱う最小単位。単語や文字の断片に分割される。APIの料金、レート制限、コンテキストウィンドウの大きさは、多くの場合トークン数で数える。日本語は英語より1文字あたりのトークン数が多くなりやすい。",
+   "ok": true,
+   "abstained": false
+  },
+  {
+   "id": "reworded-token",
+   "category": "reworded",
+   "question": "トークンって何ですか？",
+   "answer": "LLMがテキストを扱う最小単位。単語や文字の断片に分割される。APIの料金、レート制限、コンテキストウィンドウの大きさは、多くの場合トークン数で数える。日本語は英語より1文字あたりのトークン数が多くなりやすい。",
+   "ok": true,
+   "abstained": false
+  },
+  {
+   "id": "seen-hallucination",
+   "category": "seen",
+   "question": "「ハルシネーション」とは何ですか？",
+   "answer": "LLMが事実と異なる内容や存在しない情報を、もっともらしく生成してしまう現象。モデルが知らないこと（最新情報、組織や講座に固有の情報など）を聞いたときに起きやすい。外部データをツールで参照させる、根拠を示させる、評価で検出する、などで抑える。",
+   "ok": true,
+   "abstained": false
+  },
+  {
+   "id": "reworded-hallucination",
+   "category": "reworded",
+   "question": "ハルシネーションとはどのようなものか教えてください。",
+   "answer": "LLMが事実と異なる内容や存在しない情報を、もっともらしく生成してしまう現象。モデルが知らないこと（最新情報、組織や講座に固有の情報など）を聞いたときに起きやすい。外部データをツールで参照させる、根拠を示させる、評価で検出する、などで抑える。",
+   "ok": true,
+   "abstained": false
+  },
+  {
+   "id": "seen-api-key",
+   "category": "seen",
+   "question": "「APIキー」とは何ですか？",
+   "answer": "APIを呼び出す人を識別するための秘密の文字列。漏れると他人に利用枠を使われるため、コードに直接書かない、コミットしない、チャットに貼らない。本講座ではCodespaces secretに登録し、環境変数 GEMINI_API_KEY として読み込む。",
+   "ok": true,
+   "abstained": false
+  },
+  {
+   "id": "reworded-api-key",
+   "category": "reworded",
+   "question": "APIキーの意味を教えてください。",
+   "answer": "APIを呼び出す人を識別するための秘密の文字列。漏れると他人に利用枠を使われるため、コードに直接書かない、コミットしない、チャットに貼らない。本講座ではCodespaces secretに登録し、環境変数 GEMINI_API_KEY として読み込む。",
+   "ok": true,
+   "abstained": false
+  },
+  {
+   "id": "seen-rate-limit",
+   "category": "seen",
+   "question": "「レート制限」とは何ですか？",
+   "answer": "一定時間あたりに呼び出せるリクエスト数やトークン数の上限。超えるとHTTP 429などのエラーが返る。無料枠は特に制限が厳しく、エージェントは1つの質問で複数回LLMを呼ぶため上限に達しやすい。",
+   "ok": true,
+   "abstained": false
+  },
+  {
+   "id": "reworded-rate-limit",
+   "category": "reworded",
+   "question": "レート制限って何ですか？",
+   "answer": "一定時間あたりに呼び出せるリクエスト数やトークン数の上限。超えるとHTTP 429などのエラーが返る。無料枠は特に制限が厳しく、エージェントは1つの質問で複数回LLMを呼ぶため上限に達しやすい。",
+   "ok": true,
+   "abstained": false
+  },
+  {
+   "id": "seen-pull-request",
+   "category": "seen",
+   "question": "「プルリクエスト（PR）」とは何ですか？",
+   "answer": "あるブランチの変更を別のブランチへ取り込むよう依頼する仕組み。差分の確認、コメント、自動テストの結果表示ができる。本講座の提出は、自分のfork内で作業ブランチから main へのPRとして行う。",
+   "ok": true,
+   "abstained": false
+  },
+  {
+   "id": "reworded-pull-request",
+   "category": "reworded",
+   "question": "プルリクエスト（PR）とはどのようなものか教えてください。",
+   "answer": "あるブランチの変更を別のブランチへ取り込むよう依頼する仕組み。差分の確認、コメント、自動テストの結果表示ができる。本講座の提出は、自分のfork内で作業ブランチから main へのPRとして行う。",
+   "ok": true,
+   "abstained": false
+  },
+  {
+   "id": "seen-lora",
+   "category": "seen",
+   "question": "「LoRA」とは何ですか？",
+   "answer": "事前学習済みの重みは固定したまま、重みの更新分を2つの小さな行列の積（低ランク行列）で表し、その小さな行列だけを学習するPEFT手法。学習するパラメータが少なく、学習結果（アダプタ）も小さいファイルで保存できる。本講座の第2回演習ではLoRAを扱う。",
+   "ok": true,
+   "abstained": false
+  },
+  {
+   "id": "reworded-lora",
+   "category": "reworded",
+   "question": "LoRAの意味を教えてください。",
+   "answer": "事前学習済みの重みは固定したまま、重みの更新分を2つの小さな行列の積（低ランク行列）で表し、その小さな行列だけを学習するPEFT手法。学習するパラメータが少なく、学習結果（アダプタ）も小さいファイルで保存できる。本講座の第2回演習ではLoRAを扱う。",
+   "ok": true,
+   "abstained": false
+  },
+  {
+   "id": "seen-qlora",
+   "category": "seen",
+   "question": "「QLoRA」とは何ですか？",
+   "answer": "ベースモデルの重みを4ビットなどに量子化してメモリを節約したうえで、LoRAで学習する手法。より大きなモデルを小さなGPUで扱える。本講座の第2回演習ではモデルがGPUに載るためLoRAで学習し、4ビットで読み込んだときのメモリと出力の違いを発展で比べる。",
+   "ok": true,
+   "abstained": false
+  },
+  {
+   "id": "reworded-qlora",
+   "category": "reworded",
+   "question": "QLoRAって何ですか？",
+   "answer": "ベースモデルの重みを4ビットなどに量子化してメモリを節約したうえで、LoRAで学習する手法。より大きなモデルを小さなGPUで扱える。本講座の第2回演習ではモデルがGPUに載るためLoRAで学習し、4ビットで読み込んだときのメモリと出力の違いを発展で比べる。",
+   "ok": true,
+   "abstained": false
+  },
+  {
+   "id": "seen-overfitting",
+   "category": "seen",
+   "question": "「過学習」とは何ですか？",
+   "answer": "学習データにだけ過度に適合し、未知の入力に対する性能が落ちる状態。学習に使わない検証データで性能を測って気づく。",
+   "ok": true,
+   "abstained": false
+  },
+  {
+   "id": "reworded-overfitting",
+   "category": "reworded",
+   "question": "過学習とはどのようなものか教えてください。",
+   "answer": "学習データにだけ過度に適合し、未知の入力に対する性能が落ちる状態。学習に使わない検証データで性能を測って気づく。",
+   "ok": true,
+   "abstained": false
+  },
+  {
+   "id": "seen-quantization",
+   "category": "seen",
+   "question": "「量子化」とは何ですか？",
+   "answer": "モデルの重みを少ないビット数（例：16ビットから4ビット）で表し、メモリ使用量や計算量を減らす技術。精度は少し下がることがある。",
+   "ok": true,
+   "abstained": false
+  },
+  {
+   "id": "reworded-quantization",
+   "category": "reworded",
+   "question": "量子化の意味を教えてください。",
+   "answer": "モデルの重みを少ないビット数（例：16ビットから4ビット）で表し、メモリ使用量や計算量を減らす技術。精度は少し下がることがある。",
+   "ok": true,
+   "abstained": false
+  },
+  {
+   "id": "seen-peft",
+   "category": "seen",
+   "question": "「PEFT」とは何ですか？",
+   "answer": "モデルの全パラメータではなく、ごく一部や追加した小さなパラメータだけを学習する手法の総称。必要なGPUメモリと保存容量を大きく減らせる。LoRAが代表例。",
+   "ok": true,
+   "abstained": false
+  },
+  {
+   "id": "reworded-peft",
+   "category": "reworded",
+   "question": "PEFTって何ですか？",
+   "answer": "モデルの全パラメータではなく、ごく一部や追加した小さなパラメータだけを学習する手法の総称。必要なGPUメモリと保存容量を大きく減らせる。LoRAが代表例。",
+   "ok": true,
+   "abstained": false
+  },
+  {
+   "id": "seen-ai-agent",
+   "category": "seen",
+   "question": "「AIエージェント」とは何ですか？",
+   "answer": "LLMが自分で判断してツールを呼び出し、その結果を見てさらに次の行動を決める、というループで目的を達成するシステム。基本構造は「モデル＋ループ＋ツール」。",
+   "ok": true,
+   "abstained": false
+  },
+  {
+   "id": "reworded-ai-agent",
+   "category": "reworded",
+   "question": "AIエージェントとはどのようなものか教えてください。",
+   "answer": "LLMが自分で判断してツールを呼び出し、その結果を見てさらに次の行動を決める、というループで目的を達成するシステム。基本構造は「モデル＋ループ＋ツール」。",
+   "ok": true,
+   "abstained": false
+  },
+  {
+   "id": "seen-tool",
+   "category": "seen",
+   "question": "「ツール（Tool use / Function calling）」とは何ですか？",
+   "answer": "モデルが呼び出せるように用意した関数。モデルはツールの名前・説明・引数の型を見て、必要なときに引数を決めて呼び出しを依頼し、実行はプログラム側が行う。検索、計算、ファイル操作、外部APIの呼び出しなどに使う。",
+   "ok": true,
+   "abstained": false
+  },
+  {
+   "id": "reworded-tool",
+   "category": "reworded",
+   "question": "ツール（Tool use / Function calling）の意味を教えてください。",
+   "answer": "モデルが呼び出せるように用意した関数。モデルはツールの名前・説明・引数の型を見て、必要なときに引数を決めて呼び出しを依頼し、実行はプログラム側が行う。検索、計算、ファイル操作、外部APIの呼び出しなどに使う。",
+   "ok": true,
+   "abstained": false
+  },
+  {
+   "id": "seen-guardrail",
+   "category": "seen",
+   "question": "「ガードレール」とは何ですか？",
+   "answer": "エージェントが望ましくない行動や出力をしないように設ける制約や検査。指示文でのルール、ツールの権限を絞る、出力をチェックする、重要な操作の前に人の確認を挟む、などの方法がある。",
+   "ok": true,
+   "abstained": false
+  },
+  {
+   "id": "reworded-guardrail",
+   "category": "reworded",
+   "question": "ガードレールって何ですか？",
+   "answer": "エージェントが望ましくない行動や出力をしないように設ける制約や検査。指示文でのルール、ツールの権限を絞る、出力をチェックする、重要な操作の前に人の確認を挟む、などの方法がある。",
+   "ok": true,
+   "abstained": false
+  },
+  {
+   "id": "seen-pydantic-ai",
+   "category": "seen",
+   "question": "「Pydantic AI」とは何ですか？",
+   "answer": "Pythonでエージェントを作るためのフレームワーク。Pydanticの型を使ってツールの引数や出力を定義でき、GeminiやOpenAIなど多くのモデルを同じ書き方で扱える。テスト用のモデルでAPIを呼ばずに動作確認できる。本講座第3回の本線。",
+   "ok": true,
+   "abstained": false
+  },
+  {
+   "id": "reworded-pydantic-ai",
+   "category": "reworded",
+   "question": "Pydantic AIとはどのようなものか教えてください。",
+   "answer": "Pythonでエージェントを作るためのフレームワーク。Pydanticの型を使ってツールの引数や出力を定義でき、GeminiやOpenAIなど多くのモデルを同じ書き方で扱える。テスト用のモデルでAPIを呼ばずに動作確認できる。本講座第3回の本線。",
+   "ok": true,
+   "abstained": false
+  },
+  {
+   "id": "seen-mcp",
+   "category": "seen",
+   "question": "「MCP（Model Context Protocol）」とは何ですか？",
+   "answer": "AIアプリと外部のツールやデータソースをつなぐためのオープンな標準プロトコル。MCPサーバーとして公開したツールは、対応する様々なエージェントやエディタ（MCPクライアント）から共通の方法で使える。第5回で、用語集の検索をMCPサーバーにして体験する。",
+   "ok": true,
+   "abstained": false
+  },
+  {
+   "id": "reworded-mcp",
+   "category": "reworded",
+   "question": "MCP（Model Context Protocol）の意味を教えてください。",
+   "answer": "AIアプリと外部のツールやデータソースをつなぐためのオープンな標準プロトコル。MCPサーバーとして公開したツールは、対応する様々なエージェントやエディタ（MCPクライアント）から共通の方法で使える。第5回で、用語集の検索をMCPサーバーにして体験する。",
+   "ok": true,
+   "abstained": false
+  },
+  {
+   "id": "alias-llm",
+   "category": "alias",
+   "question": "Large Language Modelの意味を教えてください。",
+   "answer": "大量のテキストで学習し、入力に続くトークンを予測することで文章を生成するモデル。質問応答、要約、コード生成など多くのタスクを、指示（プロンプト）を変えるだけでこなせる。",
+   "ok": true,
+   "abstained": false
+  },
+  {
+   "id": "alias-hallucination",
+   "category": "alias",
+   "question": "hallucinationの意味を教えてください。",
+   "answer": "LLMが事実と異なる内容や存在しない情報を、もっともらしく生成してしまう現象。モデルが知らないこと（最新情報、組織や講座に固有の情報など）を聞いたときに起きやすい。外部データをツールで参照させる、根拠を示させる、評価で検出する、などで抑える。",
+   "ok": true,
+   "abstained": false
+  },
+  {
+   "id": "alias-rate-limit",
+   "category": "alias",
+   "question": "429エラーの意味を教えてください。",
+   "answer": "HTTP 302の返数。ブラウザはページをまたいで同じURLを呼び出す（リクエスト増幅）。エージェントは同じURLを呼び出す前に原因を気づく必要がある。",
+   "ok": false,
+   "abstained": false
+  },
+  {
+   "id": "alias-pull-request",
+   "category": "alias",
+   "question": "Pull Requestの意味を教えてください。",
+   "answer": "あるブランチの変更を別のブランチへ取り込むよう依頼する仕組み。差分の確認、コメント、自動テストの結果表示ができる。本講座の提出は、自分のfork内で作業ブランチから main へのPRとして行う。",
+   "ok": true,
+   "abstained": false
+  },
+  {
+   "id": "alias-overfitting",
+   "category": "alias",
+   "question": "オーバーフィッティングの意味を教えてください。",
+   "answer": "モデルが知らない入力にまたいで学習する手法。結果としてモデルが知らない入力で不安定になる。",
+   "ok": false,
+   "abstained": false
+  },
+  {
+   "id": "alias-ai-agent",
+   "category": "alias",
+   "question": "agentの意味を教えてください。",
+   "answer": "LLMが自分で判断してツールを呼び出し、その結果を見てさらに次の行動を決める、というループで目的を達成するシステム。基本構造は「モデル＋ループ＋ツール」。",
+   "ok": true,
+   "abstained": false
+  },
+  {
+   "id": "alias-tool",
+   "category": "alias",
+   "question": "ツールの意味を教えてください。",
+   "answer": "エージェントが望ましくない行動を避けるための制約やツール。Claude Codeはコマンドラインでのツール使用和環境変数での設定両方に対応する。Pydantic AIでは tool関数として定義する。",
+   "ok": false,
+   "abstained": false
+  },
+  {
+   "id": "alias-mcp",
+   "category": "alias",
+   "question": "Model Context Protocolの意味を教えてください。",
+   "answer": "LLMのツールをモデルに渡すための標準プロトコル。MCP（Model Context Protocol）で、クライアントとサーバーをモデルに渡す、ツールをモデルに渡す、結果をモデルに渡す、など様々な操作を共通の規約で扱える。第5回で、用語集の検索をMCPサーバーにして、質問されたツールのコードをモデルに渡して使う。",
+   "ok": false,
+   "abstained": false
+  },
+  {
+   "id": "heldout-pi",
+   "category": "heldout",
+   "question": "「Pi」とは何ですか？",
+   "answer": "用語集に記載がありません。確認が必要です。",
+   "ok": false,
+   "abstained": true
+  },
+  {
+   "id": "heldout-adk",
+   "category": "heldout",
+   "question": "「ADK（Agent Development Kit）」とは何ですか？",
+   "answer": "エージェントの開発に使うためのプラットフォーム。Pydantic AIでエージェントをモデルに指定し、様々なツールやリソースをADA（App Development Kit）として選択して、指示された手順でエージェントを構築する。MCPを扱うため、ツールやリソースを共有できる。本講座の第2回演習では、学習済みのLLMをADAでツールを呼び出す、第3回演習ではモデルをADAでツールを呼び出す。",
+   "ok": false,
+   "abstained": false
+  },
+  {
+   "id": "heldout-tool-namespace",
+   "category": "heldout",
+   "question": "「ツールの名前空間」とは何ですか？",
+   "answer": "ツールの集まりを表す名前。Pydantic AIでは package name（包名）で指定できる。APIキーは公開しないので、コードに直接書かないとツール呼び出しabilityが落ちる。",
+   "ok": false,
+   "abstained": false
+  },
+  {
+   "id": "heldout-fetch-server",
+   "category": "heldout",
+   "question": "「fetchサーバー」とは何ですか？",
+   "answer": "APIをコードから呼び出すためのサーバー。本講座ではGemfileにHTTPの受け取りを指定したfetchサーバーを作らずに、GitHubのAPIを直接呼び出す（raw API）。",
+   "ok": false,
+   "abstained": false
+  },
+  {
+   "id": "heldout-test-model",
+   "category": "heldout",
+   "question": "「TestModel」とは何ですか？",
+   "answer": "モデルを学習していない状態で、テストデータでモデルを評価する手法。結果は学習没有のモデルに載る、再学習が必要。",
+   "ok": false,
+   "abstained": false
+  },
+  {
+   "id": "heldout-default-model",
+   "category": "heldout",
+   "question": "「既定モデル」とは何ですか？",
+   "answer": "学習データに固定したモデル。すべての入力に同じ出力を返す。LoRAで学習する最初の段階は、既定モデル＋プロンプトを2つの矩阵で表し、その中でロースプラークにだけ異なる weightsを扱う。",
+   "ok": false,
+   "abstained": false
+  },
+  {
+   "id": "unknown-01",
+   "category": "unknown",
+   "question": "Transformerの意味を教えてください。",
+   "answer": "用語集に記載がありません。確認が必要です。",
+   "ok": true,
+   "abstained": true
+  },
+  {
+   "id": "unknown-02",
+   "category": "unknown",
+   "question": "強化学習って何ですか？",
+   "answer": "用語集に記載がありません。確認が必要です。",
+   "ok": true,
+   "abstained": true
+  },
+  {
+   "id": "unknown-03",
+   "category": "unknown",
+   "question": "ベクトルデータベースとはどのようなものか教えてください。",
+   "answer": "用語集に記載がありません。確認が必要です。",
+   "ok": true,
+   "abstained": true
+  },
+  {
+   "id": "unknown-04",
+   "category": "unknown",
+   "question": "プロンプトインジェクションの意味を教えてください。",
+   "answer": "LLMが自分の使用したツールやデータセットを知らないように、モデルが知らないことをツール名やデータで表し、モデルが知らないことだけをツール呼び出しで扱えるように設けた入力文。知らなかったことを扱えるように作るため、入力文が短いほどプロンプトが絞られる。",
+   "ok": false,
+   "abstained": false
+  },
+  {
+   "id": "unknown-05",
+   "category": "unknown",
+   "question": "RLHFって何ですか？",
+   "answer": "LLMの推論力を高めるために、人間の確認や評価で改善する手法の総称。基本構造は「学習済みのベースモデル→報酬学習→改善学習→最終モデル」。",
+   "ok": false,
+   "abstained": false
+  },
+  {
+   "id": "unknown-06",
+   "category": "unknown",
+   "question": "蒸留とはどのようなものか教えてください。",
+   "answer": "用語集に記載がありません。確認が必要です。",
+   "ok": true,
+   "abstained": true
+  },
+  {
+   "id": "unknown-07",
+   "category": "unknown",
+   "question": "Dockerの意味を教えてください。",
+   "answer": "用語集に記載がありません。確認が必要です。",
+   "ok": true,
+   "abstained": true
+  },
+  {
+   "id": "unknown-08",
+   "category": "unknown",
+   "question": "REST APIって何ですか？",
+   "answer": "用語集に記載がありません。確認が必要です。",
+   "ok": true,
+   "abstained": true
+  },
+  {
+   "id": "unknown-09",
+   "category": "unknown",
+   "question": "ONNXとはどのようなものか教えてください。",
+   "answer": "用語集に記載がありません。確認が必要です。",
+   "ok": true,
+   "abstained": true
+  },
+  {
+   "id": "unknown-10",
+   "category": "unknown",
+   "question": "Kubernetesの意味を教えてください。",
+   "answer": "用語集に記載がありません。確認が必要です。",
+   "ok": true,
+   "abstained": true
+  },
+  {
+   "id": "unknown-11",
+   "category": "unknown",
+   "question": "LLM-as-a-judgeって何ですか？",
+   "answer": "LLMが判断する役割をモデルに取ること。判断の結果をモデルに渡して、モデルの回答で答える。結果の違いに大きな違いが出るため、実験でモデルを複数回呼び出して平均で結果とる。",
+   "ok": false,
+   "abstained": false
+  },
+  {
+   "id": "unknown-12",
+   "category": "unknown",
+   "question": "エンベディングとはどのようなものか教えてください。",
+   "answer": "MCPのクライアント（ブラウザやアプリ）と、サーバーの間の通信を、MCPのエンベディングという橋渡しとして使う仕組み。サーバーが望ましくないコマンドやツールは、クライアントが望ましくない形でサーバーを呼び出すように指定し、サーバーはその依頼を受け取り、必要なときにツールを実行し、結果をクライアントに渡す。第5回で、用語集の検索をMCPサーバーにするのについて詳しく説明する。",
+   "ok": false,
+   "abstained": false
+  }
+ ]
+}

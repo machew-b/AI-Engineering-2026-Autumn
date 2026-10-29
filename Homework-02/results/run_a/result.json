@@ -1,0 +1,107 @@
+{
+ "run": "run_a",
+ "include_abstain": false,
+ "method": "LoRA (no quantization) on glossary Q&A",
+ "config": {
+  "base_model": "Qwen/Qwen3.5-0.8B",
+  "revision": "2fc06364715b967f1860aea9cf38778875588b17",
+  "seed": 42,
+  "num_train_epochs": 8,
+  "warmup_steps": 6,
+  "lr": 0.0002,
+  "lora_r": 16,
+  "lora_alpha": 32,
+  "max_seq_len": 512,
+  "max_new_tokens": 128,
+  "gen": {
+   "do_sample": false
+  }
+ },
+ "versions": {
+  "transformers": "5.18.0",
+  "peft": "0.21.1",
+  "trl": "1.14.2",
+  "torch": "2.11.0+cu130"
+ },
+ "data": {
+  "glossary_terms": 58,
+  "trained_terms": 52,
+  "train": 156,
+  "valid": 52,
+  "test": 58,
+  "test_by_category": {
+   "seen": 16,
+   "reworded": 16,
+   "alias": 8,
+   "heldout": 6,
+   "unknown": 12
+  },
+  "include_abstain": false
+ },
+ "training": {
+  "seconds": 603.9,
+  "steps": 160,
+  "epochs": 8.0,
+  "final_loss": 0.05057358741760254,
+  "trainable": "6,389,760 of 758,782,784 (0.84%)"
+ },
+ "before": {
+  "label": "before",
+  "n": 58,
+  "seen_n": 16,
+  "seen_rate": 0.0,
+  "reworded_n": 16,
+  "reworded_rate": 0.0,
+  "alias_n": 8,
+  "alias_rate": 0.0,
+  "heldout_n": 6,
+  "heldout_rate": 0.0,
+  "unknown_n": 12,
+  "unknown_rate": 0.0,
+  "known_rate": 0.0,
+  "over_abstain_rate": 0.025,
+  "unknown_asserted_rate": 1.0,
+  "overall_rate": 0.0,
+  "seconds": 345.6
+ },
+ "after": {
+  "label": "after",
+  "n": 58,
+  "seen_n": 16,
+  "seen_rate": 1.0,
+  "reworded_n": 16,
+  "reworded_rate": 1.0,
+  "alias_n": 8,
+  "alias_rate": 0.375,
+  "heldout_n": 6,
+  "heldout_rate": 0.0,
+  "unknown_n": 12,
+  "unknown_rate": 0.0,
+  "known_rate": 0.875,
+  "over_abstain_rate": 0.0,
+  "unknown_asserted_rate": 1.0,
+  "overall_rate": 0.6034,
+  "seconds": 192.2
+ },
+ "retrieval": {
+  "label": "retrieval",
+  "n": 58,
+  "seen_n": 16,
+  "seen_rate": 1.0,
+  "reworded_n": 16,
+  "reworded_rate": 1.0,
+  "alias_n": 8,
+  "alias_rate": 1.0,
+  "heldout_n": 6,
+  "heldout_rate": 1.0,
+  "unknown_n": 12,
+  "unknown_rate": 0.75,
+  "known_rate": 1.0,
+  "over_abstain_rate": 0.0,
+  "unknown_asserted_rate": 0.25,
+  "overall_rate": 0.9483,
+  "seconds": 0.0
+ },
+ "regressed": [],
+ "executed_training_myself": true
+}
