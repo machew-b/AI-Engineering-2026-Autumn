@@ -2,7 +2,7 @@
 
 Level chosen: **Advanced** (build Q&A data from the course glossary, train it into a small model with LoRA, compare
 before and after, and compare with a system that searches the glossary).
-The write-up is in [`answer.md`](./answer.md). The step-by-step instructions for the Colab runs are in [`GUIDE.md`](./GUIDE.md).
+The write-up is in [`answer.md`](./answer.md).
 
 ## What is in this folder
 
@@ -15,7 +15,7 @@ The write-up is in [`answer.md`](./answer.md). The step-by-step instructions for
 | `app/report.py` | Turns the files downloaded from Colab into the tables in `answer.md` |
 | `scripts/make_sft_dataset.py` | The course script, extended: writes the JSONL files so you can read them |
 | `data/glossary.json` | Snapshot of the course glossary (`version: 2026-draft-1`), copied from `matsuolab/lecture-ai-engineering-2026` |
-| `results/` | `retrieval_baseline.json/.md` (measured offline), plus `exercise/`, `run_a/`, `run_b/` from the Colab runs |
+| `results/` | `retrieval_baseline.json/.md` (measured offline), plus `exercise/`, `run_a/`, `run_b/`: the files downloaded from the Colab runs |
 | `tests/` | Offline tests: data split and leakage, scoring, glossary search, report tables, notebook consistency, secret scan |
 | `answer.md` | The submission write-up |
 
@@ -29,17 +29,19 @@ cd Homework-02
 uv run pytest -q                          # offline, no GPU and no key needed
 uv run python -m app.retrieval            # glossary-search baseline -> results/retrieval_baseline.*
 uv run python scripts/make_sft_dataset.py --out-dir data/generated   # look at the data (ignored by git)
-uv run python -m app.report               # print the result tables (after the Colab runs)
+uv run python -m app.report               # print the result tables built from results/
 uv run python -m app.report --write       # put them into answer.md
 uv run python -m app.report --check       # list what is still unfinished in answer.md
 ```
 
-The training itself needs a GPU, so it runs in Google Colab (free T4), not here. Open the notebook with
+The training needs a GPU, so it ran in Google Colab (free T4), not here. Open the notebook with
 https://colab.research.google.com/github/machew-b/AI-Engineering-2026-Autumn/blob/main/Homework-02/notebooks/lora_glossary_tuning.ipynb
 
-## Steps that need my own accounts
+## What I ran
 
-1. A Google account for Colab (no API key is needed in this homework).
-2. Run the course exercise notebook once, then run A (and optionally run B) of `lora_glossary_tuning.ipynb`, following `GUIDE.md`.
-3. Put the downloaded result files under `results/`, run `uv run python -m app.report --write`, finish the findings in `answer.md`.
-4. Delete the Colab runtime after each run.
+1. The course exercise notebook (`lora_format_tuning.ipynb`) once: files in `results/exercise/`.
+2. Run A of my notebook (`RUN_NAME = "run_a"`, glossary only): files in `results/run_a/`.
+3. Run B (`RUN_NAME = "run_b"`, `INCLUDE_ABSTAIN = True`, adds "not in the glossary" examples): files in `results/run_b/`.
+4. `uv run python -m app.report --write` to put the tables into `answer.md`, then I wrote the findings.
+
+No API key is needed in this homework. I deleted the Colab runtime after each run.
