@@ -3,8 +3,9 @@
 Course: AI Engineering Practice Course 2026 (Matsuo-Iwasawa Lab, UTokyo)
 Submission: this repository (`machew-b/AI-Engineering-2026-Autumn`), folder `Homework-02`
 
-> Status: the code, the data, the tests and the glossary-search results are finished and were run. The Colab results
-> (exercise, run A, run B) go into the blocks marked `AUTO` with `uv run python -m app.report --write` (see `GUIDE.md`).
+> Status: the exercise results are in and written up below. The code, the data, the tests and the glossary-search results are
+> finished and were run. The Colab results for run A and run B go into the blocks marked `AUTO` with
+> `uv run python -m app.report --write` (see `GUIDE.md`).
 > Every line below that starts with the word TODO and a bracket is something that can only be written after those runs. Delete this note when none are left.
 
 ## Exercise
@@ -12,15 +13,39 @@ Submission: this repository (`machew-b/AI-Engineering-2026-Autumn`), folder `Hom
 Course notebook `notebooks/lora_format_tuning.ipynb` (fictional FAQ, JSON output format).
 
 <!-- AUTO:exercise -->
-_Not run yet._
+- Executed training myself: yes
+- Model and settings: `Qwen/Qwen3.5-0.8B`, LoRA（量子化なし）, lr 0.0002, r 16, alpha 32, 20 epochs, seed 42
+
+| | Format rate | Content rate | Both |
+|---|---|---|---|
+| Before training | 10% | 0% | 0% |
+| After training | 100% | 90% | 90% |
+
+- Regressed questions (passed before, failed after): none
+
+| Knowledge question | Role | Before | After |
+|---|---|---|---|
+| この講座の最終課題の締切はいつですか | not in the FAQ | format_error | asserted |
+| 担当教員の名前は何ですか | not in the FAQ | format_error | needs_review |
+| 次回の講義のテーマは何ですか | not in the FAQ | format_error | needs_review |
+| 課題の提出期限はいつですか | control (in the FAQ) | format_error | asserted |
 <!-- /AUTO:exercise -->
 
-- Remaining failures after training, and their type (asserted on an ungrounded question / dodged a grounded question / broken format):
-  TODO(exercise failures): look at the questions that still fail in the after-training table of the notebook and name the type of each.
-- Knowledge questions (section 6), what I noticed:
-  TODO(exercise knowledge): did the trained model ask for review or assert for the three facts that are not in the FAQ? Read the raw outputs.
-- What training changed and what it did not:
-  TODO(exercise summary): one or two sentences from your own two rates (format versus content).
+- Remaining failures after training, and their type: 2 of 21 questions still fail, both of them ungrounded questions (the FAQ does not
+  cover them, so `needs_review` should be true). 「成績はいつ出ますか」 was answered with the assignment deadline and
+  「オフィスアワーは事前予約が必要ですか」 was answered with the office hours, both with `needs_review` false. Type: asserted on an
+  ungrounded question, using a different FAQ item. No grounded question was dodged and no format error is left (format 21 of 21).
+- Knowledge questions (section 6), what I noticed: of the three facts that are not in the FAQ, the trained model asked for review on
+  two (the instructor's name, the next lecture's topic) and asserted on one: for the final assignment deadline it gave the FAQ's
+  Sep 30 23:59 deadline, so it reused the nearest FAQ item. The control question (the ordinary submission deadline, which the FAQ
+  covers) was answered from the FAQ as it should be, but the answer added 「（日本時間）」, which the FAQ does not say. Before training
+  all four outputs were format errors (the `needs_review` key was missing), and the answer to the next-lecture question was a
+  submission instruction, not a topic.
+- What training changed and what it did not: format went from 2 of 21 valid outputs to 21 of 21 and content from 0 to 19 of 21, with no
+  regressions. What it did not give the model is a reliable judgment about what the FAQ supports: of the 6 ungrounded test questions it
+  handled 4, and the 2 misses plus one knowledge question are all confident answers built from a nearby FAQ item. All 15 grounded
+  questions were answered correctly. The wording of the answers is close to the FAQ text, which fits "learned the format and the
+  phrasing" better than "learned to judge".
 
 ## Homework
 
