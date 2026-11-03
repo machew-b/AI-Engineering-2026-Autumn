@@ -1,0 +1,736 @@
+[
+  {
+    "key": "bare:levels:1",
+    "system": "bare",
+    "question_id": "levels",
+    "question": "What are the 3 homework levels in the AIE2026 course?",
+    "run": 1,
+    "model": "gemini-3.5-flash-lite",
+    "at": "2026-11-03 09:35:05 UTC",
+    "answer": "Based on the curriculum structure typically used in AIE courses (such as the Advanced AI Engineering bootcamp), the three homework levels are generally categorized by difficulty and depth to accommodate learners with varying backgrounds:\n\n1. **Level 1: Beginner / Core (Foundational)**\n   * **Focus:** Designed to reinforce the core concepts taught in class. It usually involves basic implementation, running provided code notebooks, answering conceptual questions, and ensuring students understand the fundamental syntax and workflow.\n\n2. **Level 2: Intermediate / Applied (Practical)**\n   * **Focus:** Requires students to apply what they’ve learned to slightly more complex, real-world scenarios. This often includes modifying existing architectures, integrating APIs, handling data preprocessing, and debugging moderately challenging code.\n\n3. **Level 3: Advanced / Capstone (Challenging)**\n   * **Focus:** Aimed at pushing students to the next level with open-ended problems, optimization tasks, or building features from scratch. It often involves advanced system design, fine-tuning models, performance tuning, or integrating multiple complex components independently.",
+    "tool_calls": [],
+    "requests": 1,
+    "input_tokens": 18,
+    "output_tokens": 222,
+    "seconds": 2.12,
+    "attempts": 1,
+    "error": null
+  },
+  {
+    "key": "pydantic:levels:1",
+    "system": "pydantic",
+    "question_id": "levels",
+    "question": "What are the 3 homework levels in the AIE2026 course?",
+    "run": 1,
+    "model": "gemini-3.5-flash-lite",
+    "at": "2026-11-03 09:35:18 UTC",
+    "answer": "The three homework levels in the AIE2026 course are:\n\n1. **Basic**: Review the lecture content.\n2. **Implementation**: Write your own code.\n3. **Advanced**: Research and experimentation.\n\n*(Note: Completing any one of these levels completes the homework for that lecture, and as a rule, it is not graded.)*\n\n(Lecture 01)",
+    "tool_calls": [
+      {
+        "tool": "get_lecture_summary",
+        "args": {
+          "lecture": 1
+        }
+      },
+      {
+        "tool": "get_lecture_summary",
+        "args": {
+          "lecture": 2
+        }
+      },
+      {
+        "tool": "get_lecture_summary",
+        "args": {
+          "lecture": 3
+        }
+      },
+      {
+        "tool": "get_lecture_summary",
+        "args": {
+          "lecture": 4
+        }
+      },
+      {
+        "tool": "get_lecture_summary",
+        "args": {
+          "lecture": 5
+        }
+      },
+      {
+        "tool": "search_glossary",
+        "args": {
+          "query": "homework"
+        }
+      }
+    ],
+    "requests": 7,
+    "input_tokens": 11312,
+    "output_tokens": 180,
+    "seconds": 7.61,
+    "attempts": 1,
+    "error": null
+  },
+  {
+    "key": "adk:levels:1",
+    "system": "adk",
+    "question_id": "levels",
+    "question": "What are the 3 homework levels in the AIE2026 course?",
+    "run": 1,
+    "model": "gemini-3.5-flash-lite",
+    "at": "2026-11-03 09:35:27 UTC",
+    "answer": "The three homework levels in the AIE2026 course are:\n\n1. **Basic**: Review lecture content.\n2. **Implementation**: Write your own code.\n3. **Advanced**: Research and experimentation.\n\n*(Note: Completing any one of these levels completes the homework for that lecture, and as a rule, homework is not graded.)*\n\n(Lecture 1)",
+    "tool_calls": [
+      {
+        "tool": "search_glossary",
+        "args": {
+          "query": "homework levels"
+        }
+      }
+    ],
+    "requests": 2,
+    "input_tokens": 1185,
+    "output_tokens": 99,
+    "seconds": 2.48,
+    "attempts": 1,
+    "error": null
+  },
+  {
+    "key": "bare:levels:2",
+    "system": "bare",
+    "question_id": "levels",
+    "question": "What are the 3 homework levels in the AIE2026 course?",
+    "run": 2,
+    "model": "gemini-3.5-flash-lite",
+    "at": "2026-11-03 09:35:35 UTC",
+    "answer": "Based on the curriculum for the **AIE2026** (Advanced AI Engineering / Applied AI Engineering) course, the three homework levels are designed to cater to different learning paces, time commitments, and depths of understanding:\n\n1. **Level 1: Beginner / Core (Foundations)**\n   * **Focus:** Understanding basic concepts, following step-by-step tutorials, and running standard code templates. \n   * **Goal:** Ensures every student grasps the fundamental mechanics of the week's lesson without getting overwhelmed by complex configurations or advanced optimizations.\n\n2. **Level 2: Intermediate / Applied (Practical Implementation)**\n   * **Focus:** Applying concepts to slightly more complex, real-world scenarios. This usually involves modifying existing codebases, handling edge cases, integrating APIs, or fine-tuning models with custom datasets.\n   * **Goal:** Bridges the gap between theory and practical engineering, requiring students to solve moderate debugging and integration challenges.\n\n3. **Level 3: Advanced / Expert (Open-Ended & Production-Ready)**\n   * **Focus:** Complex problem-solving, architectural design, scaling, or building novel features from scratch. Students often tackle optimization challenges, implement research papers, or deploy solutions to production environments.\n   * **Goal:** Pushes top-performing or ambitious students to think like senior AI engineers, fostering creativity and deep technical mastery. \n\n*(Note: Depending on the specific platform or cohort dashboard for AIE2026, these levels may also be colloquially referred to by terms like \"Basic,\" \"Standard,\" and \"Challenging,\" but they consistently follow the tiered structure of Foundations, Application, and Mastery.)*",
+    "tool_calls": [],
+    "requests": 1,
+    "input_tokens": 18,
+    "output_tokens": 347,
+    "seconds": 2.51,
+    "attempts": 1,
+    "error": null
+  },
+  {
+    "key": "pydantic:levels:2",
+    "system": "pydantic",
+    "question_id": "levels",
+    "question": "What are the 3 homework levels in the AIE2026 course?",
+    "run": 2,
+    "model": "gemini-3.5-flash-lite",
+    "at": "2026-11-03 09:35:48 UTC",
+    "answer": "The AIE2026 course homework has three levels:\n\n1. **Basic**: Review the lecture content.\n2. **Implementation**: Write your own code.\n3. **Advanced**: Research and experimentation.\n\nCompleting any one of these levels fulfills the homework requirement for that lecture, and as a rule, it is not graded. \n\n*(Lecture 01)*",
+    "tool_calls": [
+      {
+        "tool": "get_lecture_summary",
+        "args": {
+          "lecture": 1
+        }
+      },
+      {
+        "tool": "get_lecture_summary",
+        "args": {
+          "lecture": 2
+        }
+      },
+      {
+        "tool": "get_lecture_summary",
+        "args": {
+          "lecture": 3
+        }
+      },
+      {
+        "tool": "get_lecture_summary",
+        "args": {
+          "lecture": 4
+        }
+      },
+      {
+        "tool": "get_lecture_summary",
+        "args": {
+          "lecture": 5
+        }
+      },
+      {
+        "tool": "search_glossary",
+        "args": {
+          "query": "homework level"
+        }
+      }
+    ],
+    "requests": 7,
+    "input_tokens": 11141,
+    "output_tokens": 177,
+    "seconds": 6.99,
+    "attempts": 1,
+    "error": null
+  },
+  {
+    "key": "adk:levels:2",
+    "system": "adk",
+    "question_id": "levels",
+    "question": "What are the 3 homework levels in the AIE2026 course?",
+    "run": 2,
+    "model": "gemini-3.5-flash-lite",
+    "at": "2026-11-03 09:35:56 UTC",
+    "answer": "The AIE2026 course homework has three distinct levels:\n\n1. **Basic** – Focuses on reviewing the lecture content.\n2. **Implementation** – Involves writing your own code.\n3. **Advanced** – Involves research and experimentation.\n\nYou only need to complete **any one** of these levels to finish the homework for a given lecture, and as a rule, the homework is not graded. \n\n(Lecture 01)",
+    "tool_calls": [
+      {
+        "tool": "search_glossary",
+        "args": {
+          "query": "homework levels"
+        }
+      }
+    ],
+    "requests": 2,
+    "input_tokens": 1185,
+    "output_tokens": 117,
+    "seconds": 1.88,
+    "attempts": 1,
+    "error": null
+  },
+  {
+    "key": "bare:lora-qlora:1",
+    "system": "bare",
+    "question_id": "lora-qlora",
+    "question": "What is the difference between LoRA and QLoRA?",
+    "run": 1,
+    "model": "gemini-3.5-flash-lite",
+    "at": "2026-11-03 09:36:06 UTC",
+    "answer": "Both **LoRA (Low-Rank Adaptation)** and **QLoRA (Quantized Low-Rank Adaptation)** are techniques used to efficiently fine-tune large language models (LLMs) without updating all of the model's original parameters. \n\nThe fundamental difference lies in **memory efficiency and precision**: **QLoRA adds a compressed (quantized) base model to LoRA**, allowing massive models to fit onto consumer-grade hardware.\n\nHere is a detailed breakdown of the differences:\n\n---\n\n### 1. LoRA (Low-Rank Adaptation)\nLoRA freezes the original pre-trained model weights and injects trainable rank decomposition matrices (adapter layers) into the model's attention blocks. \n\n* **How it works:** Instead of training billions of parameters, you only train a tiny fraction (often less than 1%). During training, the base model is kept in standard 16-bit precision (FP16 or BF16).\n* **Hardware Requirement:** Still requires significant VRAM because the 16-bit base model takes up a lot of memory. (e.g., fine-tuning a 7B parameter model usually requires a GPU with at least 24GB–48GB VRAM).\n* **Performance:** Maintains nearly full fine-tuning performance with virtually no degradation.\n\n### 2. QLoRA (Quantized Low-Rank Adaptation)\nQLoRA takes LoRA a step further by drastically reducing the memory footprint of the base model through quantization. It was introduced in the paper *\"QLoRA: Efficient Finetuning of Quantized LLMs\"* by Dettmers et al. in 2023.\n\n* **How it works:** \n    1. It **quantizes the base model down to 4-bit precision** (using a special data type called NormalFloat4 or NF4), which compresses the model size by 4x.\n    2. It keeps the tiny LoRA adapter layers in 16-bit precision.\n    3. It introduces **Double Quantization** (quantizing the quantization constants to save even more memory) and **Paged Optimizers** (to manage memory spikes during training).\n* **Hardware Requirement:** Drastically lower. You can fine-tune a 7B or 13B parameter model on a **single consumer GPU** (like an RTX 3090/4090 with 24GB VRAM), and even fit a 65B/70B model on a single A100 (80GB).\n* **Performance:** Remarkably, QLoRA achieves performance **virtually identical** to full 16-bit fine-tuning, meaning you don't really lose model capability despite the aggressive 4-bit compression.\n\n---\n\n### Summary Comparison Table\n\n| Feature | LoRA | QLoRA |\n| :--- | :--- | :--- |\n| **Base Model Precision** | 16-bit (FP16 / BF16) | 4-bit (NF4 - NormalFloat4) |\n| **Adapter Precision** | 16-bit | 16-bit |\n| **Memory Footprint** | High | **Very Low** (approx. 4x smaller base) |\n| **Hardware Needed** | Enterprise GPUs (A100, H100, multi-GPU setup) | Consumer GPUs (RTX 3090 / 4090) |\n| **Training Speed** | Slightly faster | Slightly slower (due to dequantization overhead on-the-fly) |\n| **Model Quality** | Near full fine-tuning | Practically identical to LoRA / full fine-tuning |\n\n### Which one should you use?\n* Use **QLoRA** if you are constrained by hardware (e.g., trying to fine-tune a large model on a single or limited number of consumer GPUs). \n* Use **LoRA** if you have ample GPU memory and want slightly faster training speeds without the minor computational overhead of 4-bit dequantization.",
+    "tool_calls": [],
+    "requests": 1,
+    "input_tokens": 13,
+    "output_tokens": 863,
+    "seconds": 3.32,
+    "attempts": 1,
+    "error": null
+  },
+  {
+    "key": "pydantic:lora-qlora:1",
+    "system": "pydantic",
+    "question_id": "lora-qlora",
+    "question": "What is the difference between LoRA and QLoRA?",
+    "run": 1,
+    "model": "gemini-3.5-flash-lite",
+    "at": "2026-11-03 09:36:15 UTC",
+    "answer": "To understand the difference between LoRA and QLoRA, it helps to look at how each handles model weights to save memory and compute resources:\n\n* **LoRA (Low-Rank Adaptation):** This is a Parameter-Efficient Fine-Tuning (PEFT) method that freezes the base model's pretrained weights and represents weight updates using a low-rank product of two small matrices. Instead of updating the entire massive model, you only train those small adapter matrices.\n* **QLoRA (Quantized LoRA):** This builds on top of LoRA by quantizing the base model's weights down to a lower precision (such as 4-bit) before applying LoRA. By compressing the base model, QLoRA drastically reduces the GPU memory required to train large models, allowing them to fit on smaller hardware.\n\nTo think about this further, consider how quantization affects the precision of the underlying model weights while the LoRA adapters remain trainable. How might this trade-off impact memory versus output quality?\n\n(Lecture 02)",
+    "tool_calls": [
+      {
+        "tool": "search_glossary",
+        "args": {
+          "query": "LoRA"
+        }
+      },
+      {
+        "tool": "search_glossary",
+        "args": {
+          "query": "QLoRA"
+        }
+      }
+    ],
+    "requests": 2,
+    "input_tokens": 1445,
+    "output_tokens": 253,
+    "seconds": 3.11,
+    "attempts": 1,
+    "error": null
+  },
+  {
+    "key": "adk:lora-qlora:1",
+    "system": "adk",
+    "question_id": "lora-qlora",
+    "question": "What is the difference between LoRA and QLoRA?",
+    "run": 1,
+    "model": "gemini-3.5-flash-lite",
+    "at": "2026-11-03 09:37:30 UTC",
+    "answer": "To understand the difference between **LoRA** and **QLoRA**, let's look at how each approach handles model weights and memory:\n\n* **LoRA (Low-Rank Adaptation):** This is a Parameter-Efficient Fine-Tuning (PEFT) method where you freeze the pretrained base model weights and represent the weight updates as a low-rank product of two small matrices. You only train those small matrices (adapters), which significantly reduces the number of trainable parameters and storage requirements.\n* **QLoRA (Quantized LoRA):** This takes LoRA a step further by **quantizing** the base-model weights down to a lower precision (such as 4-bit) before applying LoRA. By shrinking the base model's memory footprint dramatically, QLoRA allows you to train larger models on smaller GPUs without heavily sacrificing performance.\n\nThink about how standard LoRA still requires keeping the full-precision base model in memory during training, and consider how quantizing those base weights changes the memory equation. \n\n(Lecture 02)",
+    "tool_calls": [
+      {
+        "tool": "search_glossary",
+        "args": {
+          "query": "LoRA"
+        }
+      },
+      {
+        "tool": "search_glossary",
+        "args": {
+          "query": "QLoRA"
+        }
+      }
+    ],
+    "requests": 2,
+    "input_tokens": 1569,
+    "output_tokens": 256,
+    "seconds": 2.86,
+    "attempts": 2,
+    "error": null
+  },
+  {
+    "key": "bare:lora-qlora:2",
+    "system": "bare",
+    "question_id": "lora-qlora",
+    "question": "What is the difference between LoRA and QLoRA?",
+    "run": 2,
+    "model": "gemini-3.5-flash-lite",
+    "at": "2026-11-03 09:37:39 UTC",
+    "answer": "The primary difference between **LoRA (Low-Rank Adaptation)** and **QLoRA (Quantized Low-Rank Adaptation)** lies in **precision and memory efficiency**. \n\nQLoRA is essentially an advanced, memory-optimized version of LoRA designed to make fine-tuning massive Large Language Models (LLMs) possible on consumer-grade hardware.\n\nHere is a detailed breakdown of the differences:\n\n---\n\n### 1. LoRA (Low-Rank Adaptation)\nLoRA is a Parameter-Efficient Fine-Tuning (PEFT) method. Instead of updating all the billions of parameters in an LLM, LoRA freezes the original model weights and injects trainable \"rank decomposition matrices\" into the model's layers.\n\n*   **Precision:** Typically runs in **16-bit precision** (FP16 or BF16).\n*   **Memory Usage:** High. While it uses significantly less memory than full fine-tuning, training a 70B parameter model in 16-bit still requires multiple high-end enterprise GPUs (like NVIDIA A100s).\n*   **Performance:** Retains nearly 100% of the performance of full fine-tuning.\n\n### 2. QLoRA (Quantized Low-Rank Adaptation)\nQLoRA builds upon LoRA by adding aggressive quantization and several memory-saving innovations. It allows you to fine-tune massive models on a single consumer GPU (e.g., an NVIDIA RTX 4090).\n\n*   **Precision:** Quantizes the base model down to **4-bit precision** (using a special data type called NormalFloat4 or NF4).\n*   **Memory Usage:** Extremely low. By squishing the base model into 4 bits, memory requirements drop drastically (e.g., a 65B model can fit on a single 48GB GPU).\n*   **Key Innovations:** \n    *   **4-bit NormalFloat (NF4):** A theoretically optimal quantization data type for normally distributed weights.\n    *   **Double Quantization:** Quantizes the constants used in the first quantization step to save even more memory (saves about 0.37 bits per parameter).\n    *   **Paged Optimizers:** Uses NVIDIA unified memory to prevent out-of-memory (OOM) errors during peak memory spikes (like processing long sequences).\n*   **Performance:** Remarkably, QLoRA manages to match the performance of 16-bit fine-tuning with **virtually no drop in accuracy**.\n\n---\n\n### Summary Comparison Table\n\n| Feature | LoRA | QLoRA |\n| :--- | :--- | :--- |\n| **Base Model Precision** | 16-bit (FP16 / BF16) | 4-bit (NF4) |\n| **Trainable Parameters** | Low (same as QLoRA) | Low (same as LoRA) |\n| **VRAM Requirement** | High (Requires enterprise GPUs for large models) | Very Low (Fits large models on single consumer GPUs) |\n| **Training Speed** | Slightly faster | Slightly slower (due to on-the-fly dequantization) |\n| **Model Quality** | Excellent | Matches LoRA / Full Fine-Tuning |\n\n### Which one should you use?\n*   **Use LoRA** if you have access to sufficient GPU memory (e.g., A100s or H100s) and want the fastest possible training speed.\n*   **Use QLoRA** if you are constrained by hardware (e.g., using consumer GPUs like RTX 3090/4090) and need to fine-tune large models (like Llama 3 70B) locally or on a budget.",
+    "tool_calls": [],
+    "requests": 1,
+    "input_tokens": 13,
+    "output_tokens": 803,
+    "seconds": 3.32,
+    "attempts": 1,
+    "error": null
+  },
+  {
+    "key": "pydantic:lora-qlora:2",
+    "system": "pydantic",
+    "question_id": "lora-qlora",
+    "question": "What is the difference between LoRA and QLoRA?",
+    "run": 2,
+    "model": "gemini-3.5-flash-lite",
+    "at": "2026-11-03 09:37:48 UTC",
+    "answer": "To understand the difference between LoRA and QLoRA, it helps to look at how each handles model weights and memory during fine-tuning:\n\n* **LoRA (Low-Rank Adaptation):** Freezes the pretrained base model weights and represents weight updates as a low-rank product of two small matrices, training only those small parameters to save memory and storage.\n* **QLoRA (Quantized LoRA):** Takes this a step further by quantizing the base model weights (for example, down to 4 bits) to drastically reduce memory usage, and then applies LoRA on top of it. This allows much larger models to be fine-tuned on smaller GPUs.\n\nThink about how quantization affects the memory footprint of the base model before the adapters are even attached. How might reducing the precision from 16-bit to 4-bit impact the GPU memory requirements when you load a large language model?\n\nLecture 02",
+    "tool_calls": [
+      {
+        "tool": "search_glossary",
+        "args": {
+          "query": "LoRA"
+        }
+      },
+      {
+        "tool": "search_glossary",
+        "args": {
+          "query": "QLoRA"
+        }
+      }
+    ],
+    "requests": 2,
+    "input_tokens": 1445,
+    "output_tokens": 230,
+    "seconds": 3.22,
+    "attempts": 1,
+    "error": null
+  },
+  {
+    "key": "adk:lora-qlora:2",
+    "system": "adk",
+    "question_id": "lora-qlora",
+    "question": "What is the difference between LoRA and QLoRA?",
+    "run": 2,
+    "model": "gemini-3.5-flash-lite",
+    "at": "2026-11-03 09:37:57 UTC",
+    "answer": "Based on the course glossary, here is how LoRA and QLoRA compare:\n\n* **LoRA (Low-Rank Adaptation):** This is a Parameter-Efficient Fine-Tuning (PEFT) method where the pretrained model weights are frozen. Instead of updating all parameters, it represents weight updates using a low-rank product of two small matrices and trains only those small matrices. This significantly reduces the number of trainable parameters and saves the results as small adapter files.\n* **QLoRA (Quantized LoRA):** This method builds upon LoRA to save even more memory. It works by quantizing the base-model weights (for example, down to 4 bits) and then training with LoRA. This allows you to fine-tune much larger models on smaller GPUs than would normally be possible.\n\nTo think about how they fit together: LoRA focuses on reducing the *number of trainable parameters* by using low-rank matrices, while QLoRA adds *quantization* to the base weights to dramatically reduce the *memory footprint* required to load and train the model.\n\n(Lecture 02)",
+    "tool_calls": [
+      {
+        "tool": "search_glossary",
+        "args": {
+          "query": "LoRA"
+        }
+      },
+      {
+        "tool": "search_glossary",
+        "args": {
+          "query": "QLoRA"
+        }
+      }
+    ],
+    "requests": 2,
+    "input_tokens": 1569,
+    "output_tokens": 268,
+    "seconds": 2.7,
+    "attempts": 1,
+    "error": null
+  },
+  {
+    "key": "bare:quiz:1",
+    "system": "bare",
+    "question_id": "quiz",
+    "question": "Give me one review question from Lecture 02",
+    "run": 1,
+    "model": "gemini-3.5-flash-lite",
+    "at": "2026-11-03 09:38:04 UTC",
+    "answer": "Since you didn't mention the specific course or topic of \"Lecture 02,\" could you please provide the name of the class or the topic covered in that lecture? \n\nOnce you let me know, I'll be happy to give you a great review question!",
+    "tool_calls": [],
+    "requests": 1,
+    "input_tokens": 11,
+    "output_tokens": 56,
+    "seconds": 1.28,
+    "attempts": 1,
+    "error": null
+  },
+  {
+    "key": "pydantic:quiz:1",
+    "system": "pydantic",
+    "question_id": "quiz",
+    "question": "Give me one review question from Lecture 02",
+    "run": 1,
+    "model": "gemini-3.5-flash-lite",
+    "at": "2026-11-03 09:38:12 UTC",
+    "answer": "Here is a review question from Lecture 02:\n\n**Question:** What does \"Rank (LoRA r)\" mean?\n\nGive it a try! If you'd like a hint on how to think about it, just let me know. \n\nLecture 02",
+    "tool_calls": [
+      {
+        "tool": "make_quiz",
+        "args": {
+          "lecture": 2
+        }
+      }
+    ],
+    "requests": 2,
+    "input_tokens": 1013,
+    "output_tokens": 71,
+    "seconds": 2.17,
+    "attempts": 1,
+    "error": null
+  },
+  {
+    "key": "adk:quiz:1",
+    "system": "adk",
+    "question_id": "quiz",
+    "question": "Give me one review question from Lecture 02",
+    "run": 1,
+    "model": "gemini-3.5-flash-lite",
+    "at": "2026-11-03 09:38:20 UTC",
+    "answer": "Here is a review question from Lecture 02:\n\n**What does \"Overfitting\" mean?**\n\nGive it your best shot! Let me know your thoughts, and if you get stuck or want to check your answer, just ask. (Lecture 02)",
+    "tool_calls": [
+      {
+        "tool": "make_quiz",
+        "args": {
+          "lecture": 2
+        }
+      }
+    ],
+    "requests": 2,
+    "input_tokens": 1128,
+    "output_tokens": 70,
+    "seconds": 2.0,
+    "attempts": 1,
+    "error": null
+  },
+  {
+    "key": "bare:quiz:2",
+    "system": "bare",
+    "question_id": "quiz",
+    "question": "Give me one review question from Lecture 02",
+    "run": 2,
+    "model": "gemini-3.5-flash-lite",
+    "at": "2026-11-03 09:38:28 UTC",
+    "answer": "Since you didn't specify which course or subject Lecture 02 is from, here is a standard review question based on a very common **Lecture 02** topic across various subjects:\n\n**Subject: Introduction to Computer Science / Programming (Python)**\n> *\"What is the difference between a `list` and a `tuple` in Python, and in what scenario would you choose to use a tuple over a list?\"*\n\n***\n\n*If you can reply with the specific course name or topic of Lecture 02 (e.g., \"Microeconomics,\" \"Organic Chemistry,\" or \"Data Structures\"), I would be happy to give you a more relevant question!*",
+    "tool_calls": [],
+    "requests": 1,
+    "input_tokens": 11,
+    "output_tokens": 139,
+    "seconds": 1.15,
+    "attempts": 1,
+    "error": null
+  },
+  {
+    "key": "pydantic:quiz:2",
+    "system": "pydantic",
+    "question_id": "quiz",
+    "question": "Give me one review question from Lecture 02",
+    "run": 2,
+    "model": "gemini-3.5-flash-lite",
+    "at": "2026-11-03 09:38:36 UTC",
+    "answer": "What does \"LoRA\" mean? \n\nGive it a try! If you're stuck, think about how Parameter-Efficient Fine-Tuning (PEFT) handles large pretrained weights and how we can approximate weight updates efficiently using smaller matrices. Let me know your thoughts or when you're ready for the answer!\n\n(Lecture 02)",
+    "tool_calls": [
+      {
+        "tool": "make_quiz",
+        "args": {
+          "lecture": 2
+        }
+      }
+    ],
+    "requests": 2,
+    "input_tokens": 1027,
+    "output_tokens": 87,
+    "seconds": 2.29,
+    "attempts": 1,
+    "error": null
+  },
+  {
+    "key": "adk:quiz:2",
+    "system": "adk",
+    "question_id": "quiz",
+    "question": "Give me one review question from Lecture 02",
+    "run": 2,
+    "model": "gemini-3.5-flash-lite",
+    "at": "2026-11-03 09:38:43 UTC",
+    "answer": "What does \"LoRA\" mean?\n\n(Lecture 02)",
+    "tool_calls": [
+      {
+        "tool": "make_quiz",
+        "args": {
+          "lecture": 2
+        }
+      }
+    ],
+    "requests": 2,
+    "input_tokens": 1153,
+    "output_tokens": 29,
+    "seconds": 1.58,
+    "attempts": 1,
+    "error": null
+  },
+  {
+    "key": "bare:summary:1",
+    "system": "bare",
+    "question_id": "summary",
+    "question": "What will we learn in Lecture 03?",
+    "run": 1,
+    "model": "gemini-3.5-flash-lite",
+    "at": "2026-11-03 09:38:50 UTC",
+    "answer": "It looks like you didn't mention which course or subject you are asking about! \n\nCould you please provide the **name of the course, school, or professor**? Once you let me know what class you're taking, I'd be happy to tell you what's covered in Lecture 03.",
+    "tool_calls": [],
+    "requests": 1,
+    "input_tokens": 11,
+    "output_tokens": 66,
+    "seconds": 0.96,
+    "attempts": 1,
+    "error": null
+  },
+  {
+    "key": "pydantic:summary:1",
+    "system": "pydantic",
+    "question_id": "summary",
+    "question": "What will we learn in Lecture 03?",
+    "run": 1,
+    "model": "gemini-3.5-flash-lite",
+    "at": "2026-11-03 09:38:59 UTC",
+    "answer": "In Lecture 03, you will learn about **AI Agents**. The main topics and aims include:\n\n* **Basic structure of an AI agent**: Understanding that an agent consists of a \"model + loop + tools\" where an LLM calls tools, examines results, and decides its next action.\n* **Tools and Tool Descriptions**: How models use names, descriptions, and argument types to request calls, and how the wording of descriptions affects behavior.\n* **The cost of the agent loop**: Examining how multiple LLM calls per question impact response time, charges, and rate limits.\n* **Harnesses and Frameworks**: Learning about harnesses (like Claude Code or Pi) and frameworks (such as Pydantic AI and Google's ADK), including testing behavior with a `TestModel`.\n* **Guardrails and Human-in-the-loop**: How to handle operations that are difficult to undo by restricting permissions or requiring human confirmation.\n* **Hands-on exercises**: Building and running your own learning support agent using tools with Pydantic AI, observing which tools and arguments are called, and adding a new tool.\n\nLecture 03",
+    "tool_calls": [
+      {
+        "tool": "get_lecture_summary",
+        "args": {
+          "lecture": 3
+        }
+      }
+    ],
+    "requests": 2,
+    "input_tokens": 1333,
+    "output_tokens": 255,
+    "seconds": 2.29,
+    "attempts": 1,
+    "error": null
+  },
+  {
+    "key": "adk:summary:1",
+    "system": "adk",
+    "question_id": "summary",
+    "question": "What will we learn in Lecture 03?",
+    "run": 1,
+    "model": "gemini-3.5-flash-lite",
+    "at": "2026-11-03 09:39:07 UTC",
+    "answer": "In Lecture 03, you will focus on **AI Agents**. Here are the main aims and topics covered:\n\n- **The Basic Structure of an Agent:** Learn how an agent operates using a **\"model + loop + tools\"** structure where the LLM decides its next action iteratively.\n- **Tools & Descriptions:** Understand how models use tool names, descriptions, and argument types, and how the wording of a description can change behavior.\n- **The Cost of the Agent Loop:** Examine how multiple LLM calls affect response time, charges, and rate limits.\n- **Harnesses and Frameworks:** Explore agent harnesses (like Pi) and frameworks (such as Pydantic AI and ADK) used to build and test agents—including using `TestModel` to check behavior without making API calls.\n- **Guardrails & Human-in-the-Loop:** Discuss ways to restrict permissions or require confirmation for irreversible actions (like writing files).\n- **Hands-on Exercises:** Build and run your own learning support agent, inspect tool calls and arguments, and practice adding a new tool.\n\n(Lecture 03)",
+    "tool_calls": [
+      {
+        "tool": "get_lecture_summary",
+        "args": {
+          "lecture": 3
+        }
+      }
+    ],
+    "requests": 2,
+    "input_tokens": 1459,
+    "output_tokens": 251,
+    "seconds": 2.18,
+    "attempts": 1,
+    "error": null
+  },
+  {
+    "key": "bare:summary:2",
+    "system": "bare",
+    "question_id": "summary",
+    "question": "What will we learn in Lecture 03?",
+    "run": 2,
+    "model": "gemini-3.5-flash-lite",
+    "at": "2026-11-03 09:39:14 UTC",
+    "answer": "It looks like you forgot to mention which course or subject you are referring to! \n\nCould you please tell me the name of the course, or paste the syllabus/context? Once you let me know, I'd be happy to tell you what's covered in Lecture 03.",
+    "tool_calls": [],
+    "requests": 1,
+    "input_tokens": 11,
+    "output_tokens": 60,
+    "seconds": 1.04,
+    "attempts": 1,
+    "error": null
+  },
+  {
+    "key": "pydantic:summary:2",
+    "system": "pydantic",
+    "question_id": "summary",
+    "question": "What will we learn in Lecture 03?",
+    "run": 2,
+    "model": "gemini-3.5-flash-lite",
+    "at": "2026-11-03 09:39:22 UTC",
+    "answer": "In Lecture 03, you will learn about **AI Agents**. Here are the main aims and topics covered:\n\n- **The Basic Structure:** Understand that an AI agent consists of a **model + loop + tools**.\n- **The Agent Loop:** Learn how an LLM calls tools, examines results, and decides its next action in a loop, as well as the associated costs in time, charges, and rate limits.\n- **Tools & Descriptions:** See how models use tool names, descriptions, and argument types, and how the wording of a description changes behavior.\n- **Harnesses & Frameworks:** Explore agent harnesses (like Pi and Claude Code) and frameworks such as **Pydantic AI** (using types for tools and structured output, and testing with `TestModel`) and Google's **ADK**.\n- **Safety & Control:** Learn about **guardrails** and **Human-in-the-loop** approaches for operations that are hard to undo.\n- **Exercises:** Build and run your own learning support agent using Pydantic AI, inspect tool calls and arguments, and add a new tool.\n\nLecture 03",
+    "tool_calls": [
+      {
+        "tool": "get_lecture_summary",
+        "args": {
+          "lecture": 3
+        }
+      }
+    ],
+    "requests": 2,
+    "input_tokens": 1333,
+    "output_tokens": 255,
+    "seconds": 2.35,
+    "attempts": 1,
+    "error": null
+  },
+  {
+    "key": "adk:summary:2",
+    "system": "adk",
+    "question_id": "summary",
+    "question": "What will we learn in Lecture 03?",
+    "run": 2,
+    "model": "gemini-3.5-flash-lite",
+    "at": "2026-11-03 09:39:31 UTC",
+    "answer": "In Lecture 03, you will focus on **AI Agents** and learn the following key points:\n\n- **What an AI agent is:** Understanding that the basic structure consists of a \"model + loop + tools\" where the LLM calls tools, examines results, and decides its next step to achieve a goal.\n- **Tools:** How models use tool names, descriptions, and argument types, and how the wording of a description can affect behavior.\n- **The cost of the agent loop:** Recognizing how multiple LLM calls per question impact response times, charges, and rate limits.\n- **Harnesses & Frameworks:** Exploring programs that wrap LLMs (like Claude Code or Pi) and working with **Pydantic AI** to define tools and structured outputs with types, including testing without API calls using `TestModel`.\n- **Guardrails and Human-in-the-loop:** Restricting permissions or requiring human confirmation for hard-to-undo operations.\n\nYou will also complete exercises such as asking a glossary search agent questions, inspecting which tools and arguments were called, and adding a new tool yourself!\n\n(Lecture 03)",
+    "tool_calls": [
+      {
+        "tool": "get_lecture_summary",
+        "args": {
+          "lecture": 3
+        }
+      }
+    ],
+    "requests": 2,
+    "input_tokens": 1459,
+    "output_tokens": 254,
+    "seconds": 2.39,
+    "attempts": 1,
+    "error": null
+  },
+  {
+    "key": "bare:unknown:1",
+    "system": "bare",
+    "question_id": "unknown",
+    "question": "What is a vector database?",
+    "run": 1,
+    "model": "gemini-3.5-flash-lite",
+    "at": "2026-11-03 09:39:40 UTC",
+    "answer": "A **vector database** is a specialized type of database designed to store, manage, and query high-dimensional vectors efficiently. \n\nTo understand what a vector database is, it helps to first understand what a \"vector\" is in this context, why we use them, and why traditional databases struggle with them.\n\n---\n\n### 1. What is a Vector?\nIn data science and machine learning, a **vector** is simply a long list of numbers (coordinates) that represent the semantic meaning of data—such as a piece of text, an image, an audio clip, or a video. \n\nThese numbers are generated by machine learning models (often called **embedding models**). \n* **Example:** The sentence *\"The cat sat on the mat\"* might be converted by a model into a vector like `[0.12, -0.43, 0.89, ..., 0.05]` containing hundreds or thousands of dimensions.\n\nIn this vector space, **words or concepts with similar meanings are located close to each other.** For instance, the vector for \"dog\" will be mathematically closer to \"puppy\" than to \"airplane.\"\n\n### 2. Why Traditional Databases Struggle\nTraditional databases (like MySQL, PostgreSQL, or MongoDB) are built for exact matches, numbers, and categories using strict rows and columns. They use indexing methods like B-Trees, which work great for queries like: *\"Find all users aged 30\"* or *\"Find the product with ID 12345.\"*\n\nHowever, traditional databases fail when asked: *\"Find products that are conceptually similar to this description.\"* To do this with vectors, a database must compare a query vector against millions of other vectors by calculating the mathematical distance between them one by one. Doing this in a traditional database is painfully slow at scale.\n\n### 3. How a Vector Database Works\nA vector database is built from the ground up to solve this problem. It uses specialized **Approximate Nearest Neighbor (ANN)** search algorithms to find similar vectors quickly without having to compare every single vector in the database.\n\nKey mechanisms include:\n* **Indexing:** Organizing vectors in a multi-dimensional map (using techniques like HNSW or IVF) so the database can \"jump\" directly to the neighborhood of relevant vectors.\n* **Distance Metrics:** Calculating how \"close\" vectors are using formulas like Cosine Similarity, Euclidean Distance, or Dot Product.\n\n---\n\n### 4. Common Use Cases\nVector databases have exploded in popularity with the rise of Generative AI and Large Language Models (LLMs). Common use cases include:\n\n* **Retrieval-Augmented Generation (RAG):** Giving LLMs access to private company data by searching a vector database for relevant documents and feeding them to the AI as context.\n* **Semantic Search:** Searching for meaning rather than keywords (e.g., searching for \"comfortable winter footwear\" and returning snow boots, even if those exact words aren't in the product description).\n* **Recommendation Systems:** Finding users with similar viewing habits or products with similar features.\n* **Image and Video Recognition:** Finding visually similar images, reverse image search, or duplicate detection.\n* **Anomaly Detection:** Finding unusual patterns in financial transactions or cybersecurity logs by identifying outliers in vector space.\n\n### 5. Popular Vector Databases\nSome of the most popular vector databases and extensions currently on the market include:\n* **Dedicated Vector DBs:** Pinecone, Milvus, Qdrant, Chroma, Weaviate.\n* **Extensions for Traditional DBs:** pgvector (for PostgreSQL), Redis (with vector module), Elasticsearch, MongoDB Atlas.",
+    "tool_calls": [],
+    "requests": 1,
+    "input_tokens": 7,
+    "output_tokens": 758,
+    "seconds": 3.04,
+    "attempts": 1,
+    "error": null
+  },
+  {
+    "key": "pydantic:unknown:1",
+    "system": "pydantic",
+    "question_id": "unknown",
+    "question": "What is a vector database?",
+    "run": 1,
+    "model": "gemini-3.5-flash-lite",
+    "at": "2026-11-03 09:39:48 UTC",
+    "answer": "It is not in the glossary. \n\nTo help you think about it: in AI engineering, we often convert data (like text, images, or audio) into high-dimensional numerical arrays called vectors (or embeddings) that capture their semantic meaning. Think about how you might store millions of these vectors and quickly search through them based on mathematical similarity rather than exact keyword matches—that is the core problem a vector database is designed to solve. \n\nLecture 03",
+    "tool_calls": [
+      {
+        "tool": "search_glossary",
+        "args": {
+          "query": "vector database"
+        }
+      }
+    ],
+    "requests": 2,
+    "input_tokens": 959,
+    "output_tokens": 113,
+    "seconds": 1.92,
+    "attempts": 1,
+    "error": null
+  },
+  {
+    "key": "adk:unknown:1",
+    "system": "adk",
+    "question_id": "unknown",
+    "question": "What is a vector database?",
+    "run": 1,
+    "model": "gemini-3.5-flash-lite",
+    "at": "2026-11-03 09:39:55 UTC",
+    "answer": "It is not in the glossary.",
+    "tool_calls": [
+      {
+        "tool": "search_glossary",
+        "args": {
+          "query": "vector database"
+        }
+      }
+    ],
+    "requests": 2,
+    "input_tokens": 1085,
+    "output_tokens": 25,
+    "seconds": 1.55,
+    "attempts": 1,
+    "error": null
+  },
+  {
+    "key": "bare:unknown:2",
+    "system": "bare",
+    "question_id": "unknown",
+    "question": "What is a vector database?",
+    "run": 2,
+    "model": "gemini-3.5-flash-lite",
+    "at": "2026-11-03 09:40:05 UTC",
+    "answer": "A **vector database** is a specialized type of database designed to store, manage, and query high-dimensional vectors efficiently. \n\nTo understand what a vector database is, it helps to first understand what a \"vector\" is in this context, and why traditional databases struggle with them.\n\n---\n\n### 1. What is a Vector?\nIn the world of AI and Machine Learning, a vector is simply a long list of numbers (often numbering in the hundreds or thousands) that represents the **semantic meaning** of data—such as text, images, audio, or video. \n\nThis representation is created by an AI model (like an embedding model). \n* **Example:** The words *\"cat\"* and *\"kitten\"* might be converted into vectors that look like this:\n  * Cat: `[0.25, -0.11, 0.84, ...]`\n  * Kitten: `[0.24, -0.10, 0.82, ...]`\n  * Car: `[-0.85, 0.42, -0.12, ...]`\n\nNotice how the vectors for \"cat\" and \"kitten\" are very similar to each other, while \"car\" is completely different.\n\n### 2. Why Traditional Databases Fall Short\nTraditional databases (like SQL, MongoDB, or Postgres) are designed for exact matches. They excel at asking questions like: *\"Find all users named John\"* or *\"Show me products that cost under $50.\"*\n\nHowever, they cannot easily answer questions like: *\"Find me documents that have a similar meaning to this sentence\"* or *\"Show me images that look like this photo.\"* Doing this with traditional databases requires comparing your query against every single item in the database one by one, which becomes impossibly slow at scale.\n\n### 3. How a Vector Database Works\nVector databases are built from the ground up to solve this problem. Instead of exact-match indexing, they use **Approximate Nearest Neighbor (ANN)** search algorithms. \n\nWhen you query a vector database, you give it a vector, and it scans its index to find the vectors that are mathematically \"closest\" to your query vector in the high-dimensional space.\n\nInstead of asking: *\"Do these items match?\"*  \nThe database asks: *\"How close are these items in meaning?\"*\n\n---\n\n### Key Features of Vector Databases\n* **Similarity Search:** Finding data based on conceptual closeness rather than exact keywords.\n* **Scalability:** The ability to search through billions of high-dimensional vectors in milliseconds.\n* **Metadata Filtering:** Allowing you to combine vector search with traditional filters (e.g., *\"Find the 5 most similar documents to this text, but *only* if they were published in 2023*\"*).\n* **Real-time Updates:** Allowing vectors to be added, updated, or deleted on the fly.\n\n---\n\n### Common Use Cases\nVector databases have exploded in popularity alongside Generative AI. Common use cases include:\n\n1. **Retrieval-Augmented Generation (RAG):** Giving Large Language Models (like ChatGPT) access to private company data or real-time information by searching a vector database for relevant context.\n2. **Semantic Search:** Search engines that understand the *intent* of a query rather than just matching exact keywords.\n3. **Recommendation Systems:** Recommending products, movies, or music based on a user's past behavior and preferences.\n4. **Image and Video Recognition:** Finding visually similar images or detecting duplicate video content.\n5. **Anomaly Detection:** Identifying unusual patterns in cybersecurity, finance (fraud detection), or IoT sensor data.\n\n### Popular Vector Databases\nSome of the most popular vector databases available today include:\n* **Pinecone** (Fully managed, cloud-native)\n* **Milvus** (Open-source, highly scalable)\n* **Weaviate** (Open-source, multimodal)\n* **Qdrant** (Open-source, written in Rust)\n* **Chroma** (Developer-friendly, lightweight, great for local AI projects)\n* **Postgres with `pgvector`** (An extension that adds vector search to traditional PostgreSQL databases)",
+    "tool_calls": [],
+    "requests": 1,
+    "input_tokens": 7,
+    "output_tokens": 891,
+    "seconds": 3.69,
+    "attempts": 1,
+    "error": null
+  },
+  {
+    "key": "pydantic:unknown:2",
+    "system": "pydantic",
+    "question_id": "unknown",
+    "question": "What is a vector database?",
+    "run": 2,
+    "model": "gemini-3.5-flash-lite",
+    "at": "2026-11-03 09:40:13 UTC",
+    "answer": "It is not in the glossary. \n\nHowever, in the context of AI engineering, a vector database is a specialized database designed to store, manage, and query high-dimensional vectors (numerical representations of data like text, images, or audio generated by embedding models). Instead of traditional exact-match queries, they allow you to perform similarity searches—finding data points that are closest in meaning or context to a given query vector.\n\n*(Note: While this concept is central to modern AI workflows, it is not formally defined in our course glossary.)*",
+    "tool_calls": [
+      {
+        "tool": "search_glossary",
+        "args": {
+          "query": "vector database"
+        }
+      }
+    ],
+    "requests": 2,
+    "input_tokens": 959,
+    "output_tokens": 129,
+    "seconds": 2.2,
+    "attempts": 1,
+    "error": null
+  },
+  {
+    "key": "adk:unknown:2",
+    "system": "adk",
+    "question_id": "unknown",
+    "question": "What is a vector database?",
+    "run": 2,
+    "model": "gemini-3.5-flash-lite",
+    "at": "2026-11-03 09:40:21 UTC",
+    "answer": "It is not in the glossary.",
+    "tool_calls": [
+      {
+        "tool": "search_glossary",
+        "args": {
+          "query": "vector database"
+        }
+      }
+    ],
+    "requests": 2,
+    "input_tokens": 1085,
+    "output_tokens": 25,
+    "seconds": 1.96,
+    "attempts": 1,
+    "error": null
+  }
+]
