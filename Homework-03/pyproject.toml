@@ -1,0 +1,22 @@
+[project]
+name = "aie2026-homework-03"
+version = "0.1.0"
+description = "AIE2026 Homework 3 (Advanced): the learning support agent rebuilt with Google's ADK and compared with Pydantic AI"
+readme = "README.md"
+requires-python = ">=3.12"
+# Same pins as the course repo, minus the MCP extra (MCP is Lecture 05, not used here).
+dependencies = [
+    "google-genai==2.31.0",
+    "pydantic-ai-slim[google]==2.57.0",
+]
+
+[dependency-groups]
+dev = ["pytest>=8"]
+# Only needed for the ADK half of the homework. `uv run --group adk ...` installs it; the course's own
+# command (`uv run --with google-adk ...`) also works. Pinned to the version this homework was written against.
+adk = ["google-adk==2.13.0"]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
+filterwarnings = ["ignore::DeprecationWarning:pydantic_graph"]
