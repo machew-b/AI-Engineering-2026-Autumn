@@ -25,7 +25,7 @@ This section tracks the assigned homework tasks and their current status through
 |-----|------|--------|----------------|
 | [Homework 01](./Homework-01) | Introduction to AI Engineering and AI-Assisted Coding | Finished | October 26, 2026 |
 | [Homework 02](./Homework-02) | Fundamentals of Foundation Models | Finished | October 30, 2026 |
-| [Homework 03](./Homework-03) | AI Agents | Finished | November 03, 2026 |
+| [Homework 03](./Homework-03) | AI Agents | Finished | November 07, 2026 |
 | [Homework 04](./Homework-04) | Model Evaluation and Problem Formulation | Pending | November 16, 2026 |
 | [Homework 05](./Homework-05) | Foundation Models and Data | Pending | November 23, 2026 |
 | [Homework 06](./Homework-06) | External System Integration: Tools, MCP, and A2A / Introduction to Final Assignment | Pending | November 30, 2026 |
