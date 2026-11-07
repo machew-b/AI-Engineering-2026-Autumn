@@ -28,9 +28,13 @@ def test_the_docstring_quoted_in_answer_md_is_the_one_in_tools_py():
     assert re.sub(r"\s+", " ", rest.strip()) in quoted.replace("> ", "")
 
 
-def test_the_unfinished_parts_are_exactly_the_ones_that_need_the_live_runs():
-    todos = {m.group(1) for m in re.finditer(r"TODO\(([^)]*)\)", TEXT)}
-    assert todos == {"exercise-1", "exercise-2", "exercise-3", "adk-tools", "adk-answers", "adk-cost", "adk-run", "adk-variation", "adk-choice", "notes-live"}
+def test_nothing_is_left_unfinished():
+    """Once the live runs are in, no TODO(...) line and no empty result table may remain (`python -m app.report --check`)."""
+    assert rp.unresolved(TEXT) == []
+
+
+def test_the_tables_come_from_the_saved_runs():
+    assert rp.blocks() == {name: body for name, body in rp.blocks().items() if f"<!-- AUTO:{name} -->\n{body}\n<!-- /AUTO:{name} -->" in TEXT}
 
 
 def test_no_em_dashes():

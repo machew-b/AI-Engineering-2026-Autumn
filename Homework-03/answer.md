@@ -11,15 +11,33 @@ standalone repo and the work is submitted from `main`, as in Homeworks 1 and 2. 
 the course repo's `lec03-start` tag (`matsuolab/lecture-ai-engineering-2026-en`).
 
 <!-- AUTO:exercise -->
-_Not run yet._
+| Question | System | Tool calls (run 1) | LLM requests per run | Answer (run 1, shortened) |
+|---|---|---|---|---|
+| What are the 3 homework levels in the AIE202… | Bare model (Lecture 1) | none | 1/1 | Based on the curriculum structure typically used in AIE courses (such as the Advanced AI … |
+| What are the 3 homework levels in the AIE202… | Pydantic AI agent | `get_lecture_summary(1)`, `get_lecture_summary(2)`, `get_lecture_summary(3)`, `get_lecture_summary(4)`, `get_lecture_summary(5)`, `search_glossary('homework')` | 7/7 | The three homework levels in the AIE2026 course are: 1. **Basic**: Review the lecture con… |
+| What is the difference between LoRA and QLoR… | Bare model (Lecture 1) | none | 1/1 | Both **LoRA (Low-Rank Adaptation)** and **QLoRA (Quantized Low-Rank Adaptation)** are tec… |
+| What is the difference between LoRA and QLoR… | Pydantic AI agent | `search_glossary('LoRA')`, `search_glossary('QLoRA')` | 2/2 | To understand the difference between LoRA and QLoRA, it helps to look at how each handles… |
+| Give me one review question from Lecture 02 | Bare model (Lecture 1) | none | 1/1 | Since you didn't mention the specific course or topic of "Lecture 02," could you please p… |
+| Give me one review question from Lecture 02 | Pydantic AI agent | `make_quiz(2)` | 2/2 | Here is a review question from Lecture 02: **Question:** What does "Rank (LoRA r)" mean? … |
 <!-- /AUTO:exercise -->
 
 - Differences between the Lecture 1 (bare LLM) answer and the agent's:
-  TODO(exercise-1): compare the `levels` row above with `homework-levels` in `data/glossary.json` (Basic, Implementation, Advanced; any one level completes the homework; generally not graded). Did the bare model say any of it, and does the agent end with a lecture number?
+  The bare model (`app.ask`, no tools) did not know the course. In both runs it made up a generic scheme ("Level 1: Beginner / Core", "Level 2: Intermediate / Applied", "Level 3: Advanced / Capstone") and in run 1 tied the course to an "Advanced AI Engineering bootcamp". The real levels are Basic (review the lecture), Implementation (write your own code) and Advanced (research and experimentation). The agent gave the real three levels in all runs, said that completing any one finishes the homework and that it is generally not graded, and ended with `(Lecture 01)`, as the glossary says. The other two exercise questions went the same way: asked for a review question from Lecture 02, the bare model asked which course I meant (run 1) or made up a Python list-versus-tuple question (run 2), and for "What will we learn in Lecture 03?" it asked which course I meant, while the agent called `make_quiz` and `get_lecture_summary` and answered from the course material.
 - Tool calls shown by `--trace` (tool names and arguments):
-  TODO(exercise-2): copy the tool calls of the `lora-qlora` row (one search per term, as the docstring says?) and the `quiz` row (`make_quiz` with `lecture` 2?).
+  The two `--trace` runs from the exercise (command line, default model):
+
+  ```text
+  [tool call]   search_glossary({'query': 'LoRA'})
+  [tool call]   search_glossary({'query': 'QLoRA'})
+  [usage] RunUsage(cost=Decimal('0.0010510'), details={'text_prompt_tokens': 1445}, input_text_tokens=1445, input_tokens=1445, output_tokens=247, requests=2, tool_calls=2)
+
+  [tool call]   make_quiz({'lecture': 2})
+  [usage] RunUsage(cost=Decimal('0.0004816'), details={'text_prompt_tokens': 1047}, input_text_tokens=1047, input_tokens=1047, output_tokens=67, requests=2, tool_calls=1)
+  ```
+
+  LoRA and QLoRA were searched one term per call, as the `search_glossary` docstring asks, and `make_quiz` got `lecture` as the integer 2. The comparison runs (table above) did the same in every run. For the `levels` question the Pydantic AI agent searched differently from that: in both runs it called `get_lecture_summary` for lectures 1 to 5 and then `search_glossary('homework')` (run 2: `'homework level'`), and the ADK agent made one call, `search_glossary('homework levels')`.
 - Number of LLM calls for one question (`requests`):
-  TODO(exercise-3): the "LLM requests per run" column above: 1 for the bare model, and for the agent one request per tool round plus one for the answer.
+  The bare model always makes 1 request. The agent made 2 requests for `lora-qlora` (2 tool calls), 2 for `quiz` (1 tool call), 2 for `summary` and 2 for `unknown`: one request that asks for the tool and one that writes the answer. The two searches for LoRA and QLoRA were asked for in the same request, so 2 tool calls cost only 2 requests. The exception is `levels` on Pydantic AI: 7 requests for 6 tool calls, in both runs, with about 11,200 input tokens against 1,185 for the same question on ADK.
 - Tool added and the description in its docstring: `make_quiz(lecture: int) -> str` in `app/tools.py`, registered in `app/agent.py` with
   `agent.tool_plain(tools.make_quiz)`. The docstring is the description the model reads:
 
@@ -93,27 +111,51 @@ uv run python -m app.report --write
 Pydantic AI against ADK, same instructions and tools (run 1 for the tool calls, means over the successful runs for the numbers):
 
 <!-- AUTO:comparison -->
-_Not run yet._
+| Question | Pydantic AI tool calls (run 1) | ADK tool calls (run 1) | Same tool order in every run | Requests (Pydantic AI, mean) | Requests (ADK, mean) | Seconds (Pydantic AI, mean) | Seconds (ADK, mean) | Tokens in / out (Pydantic AI, mean) | Tokens in / out (ADK, mean) |
+|---|---|---|---|---|---|---|---|---|---|
+| levels | `get_lecture_summary(1)`, `get_lecture_summary(2)`, `get_lecture_summary(3)`, `get_lecture_summary(4)`, `get_lecture_summary(5)`, `search_glossary('homework')` | `search_glossary('homework levels')` | no | 7.0 | 2.0 | 7.3 | 2.2 | 11226 / 178 | 1185 / 108 |
+| lora-qlora | `search_glossary('LoRA')`, `search_glossary('QLoRA')` | `search_glossary('LoRA')`, `search_glossary('QLoRA')` | yes | 2.0 | 2.0 | 3.2 | 2.8 | 1445 / 242 | 1569 / 262 |
+| quiz | `make_quiz(2)` | `make_quiz(2)` | yes | 2.0 | 2.0 | 2.2 | 1.8 | 1020 / 79 | 1140 / 50 |
+| summary | `get_lecture_summary(3)` | `get_lecture_summary(3)` | yes | 2.0 | 2.0 | 2.3 | 2.3 | 1333 / 255 | 1459 / 252 |
+| unknown | `search_glossary('vector database')` | `search_glossary('vector database')` | yes | 2.0 | 2.0 | 2.1 | 1.8 | 959 / 121 | 1085 / 25 |
 <!-- /AUTO:comparison -->
 
 The answers (run 1, shortened; the full text is in `results/compare/runs.json`):
 
 <!-- AUTO:answers -->
-_Not run yet._
+| Question | Pydantic AI answer (run 1, shortened) | ADK answer (run 1, shortened) |
+|---|---|---|
+| levels | The three homework levels in the AIE2026 course are: 1. **Basic**: Review the lecture content. 2. **Implement… | The three homework levels in the AIE2026 course are: 1. **Basic**: Review lecture content. 2. **Implementatio… |
+| lora-qlora | To understand the difference between LoRA and QLoRA, it helps to look at how each handles model weights to sa… | To understand the difference between **LoRA** and **QLoRA**, let's look at how each approach handles model we… |
+| quiz | Here is a review question from Lecture 02: **Question:** What does "Rank (LoRA r)" mean? Give it a try! If yo… | Here is a review question from Lecture 02: **What does "Overfitting" mean?** Give it your best shot! Let me k… |
+| summary | In Lecture 03, you will learn about **AI Agents**. The main topics and aims include: * **Basic structure of a… | In Lecture 03, you will focus on **AI Agents**. Here are the main aims and topics covered: - **The Basic Stru… |
+| unknown | It is not in the glossary. To help you think about it: in AI engineering, we often convert data (like text, i… | It is not in the glossary. |
 <!-- /AUTO:answers -->
 
 What the runs showed:
 
 - **Tools and instructions:**
-  TODO(adk-tools): did ADK call the same tools in the same order as Pydantic AI for each question (the "same tool order" column)? Where they differ, say how (for example one search with both terms in the query, or no search at all) and whether it matches what the docstring asks for.
+  The tool calls had the same names in the same order on 4 of the 5 questions (`lora-qlora`, `quiz`, `summary`, `unknown`), in both runs and on both frameworks. The exception is `levels`. ADK made one call, `search_glossary('homework levels')`, in both runs. Pydantic AI made six calls in both runs: `get_lecture_summary` for lectures 1 to 5, then a glossary search. Both agents use the very same instructions text and docstrings, and both answered correctly, so the text does not explain the difference. I did not find the cause. It could be sampling (2 runs each is too few to rule it out, although all 4 runs agree inside each framework) or a difference in what each framework sends with the request; I did not test either.
 - **Answers:**
-  TODO(adk-answers): compare the two answers for `levels`, `quiz` and `unknown`: both correct against the glossary? both end with a lecture number? did the `unknown` question get "It is not in the glossary"?
+  The `levels` answer was correct in all four agent runs (the three real levels, any one completes the homework, not graded); in ADK run 1 the ending was `(Lecture 1)` and not `(Lecture 01)`. On `quiz`, both agents asked the question without giving the answer, as the `make_quiz` docstring says; the term is random, so the questions differ (Pydantic AI: "Rank (LoRA r)" and "LoRA", ADK: "Overfitting" and "LoRA"), and Pydantic AI added a hint in run 2. The clearest difference is `unknown` ("What is a vector database?"). ADK answered exactly "It is not in the glossary." in both runs. Pydantic AI also said that, and then added its own explanation of what a vector database is (a hint in run 1, a definition in run 2 with a note that the glossary does not define it), and run 1 ended with `Lecture 03`. The instruction says to say it is not in the glossary instead of making assertions based on guesses, so ADK followed it more strictly here. The bare model gave a full textbook definition with no sign that the course does not cover it.
 - **Cost of the loop:**
-  TODO(adk-cost): requests, tokens and seconds per question, and whether one framework needed more requests than the other for the same question.
+  Over the 10 runs of each agent, Pydantic AI used 30 requests, 31,967 input tokens, 1,750 output tokens and 34.1 s; ADK used 20 requests, 12,877 input tokens, 1,394 output tokens and 21.6 s. Almost all of the gap is the `levels` question (7 against 2 requests, 11,226 against 1,185 input tokens on average, 7.3 s against 2.2 s). On the other four questions both used the same number of requests (16 in total each), and ADK sent about 120 more input tokens per run (9,514 against 10,507 over the 8 runs of each). One known reason is that ADK adds the sentence "You are an agent. Your internal name is \"glossary_agent\"." to the instructions (seen in the offline test), but that is only about 15 tokens, and I did not look into the rest. The times of the two are close on those four questions (ADK was faster on three of them by 0.3 to 0.4 s, and equal on one); this is small, and network time varies from call to call. The seconds do not include the 65 s wait before the retry described in the notes. The bare model always used 1 request and 7 to 18 input tokens, since it has no tools and no instructions to send.
 - **`adk run`:**
-  TODO(adk-run): one question typed into `adk run`, what it printed, and whether it matches what the code run showed.
+  I started `adk run` with the course's command, answered `n` to its telemetry question, and typed the Lecture 1 question. It printed (shortened to the answer):
+
+  ```text
+  [user]: What are the 3 homework levels in the AIE2026 course?
+  [glossary_agent]: In the AIE2026 course, the 3 homework levels are:
+  1. **Basic**: Review lecture content.
+  2. **Implementation**: Write your own code.
+  3. **Advanced**: Research and experimentation.
+  Completing *any one* of these levels is enough to finish the homework for that lecture, and as a rule, homework is not graded.
+  (Lecture 01)
+  ```
+
+  This matches the code runs (and the glossary). `adk run` shows only the answer: it does not print which tool was called, so the trace has to come from the event stream, which is what `app/compare.py` reads.
 - **Run-to-run differences:**
-  TODO(adk-variation): runs 1 and 2 of the same question on the same system: did the tool calls or the wording change?
+  The tool names did not change between run 1 and run 2 of any question on either framework (on `levels`, Pydantic AI changed only the search text, `'homework'` against `'homework level'`). The wording changed in every run, and the quiz term changed because `make_quiz` picks it at random. The small gap in the ending, `(Lecture 1)` once on ADK and `Lecture 02` without brackets once on Pydantic AI, shows that the "(Lecture NN)" format in the instructions is followed most of the time but not always.
 
 ### Comparing the code
 
@@ -137,7 +179,7 @@ These differences are about the code and the requests, and I checked each one in
   secret works for both agents.
 - **What the course's `--trace` does not give for ADK:** the exercise's `--trace`, `--list-tools` and the tests are in `app/agent.py` and
   only work for the Pydantic AI agent, as the slide says ("not needed"). `app/compare.py` is my replacement for the trace on the ADK side.
-- **Which I would use:** TODO(adk-choice): your own conclusion after the runs, in two or three sentences, using only what the tables show.
+- **Which I would use:** On these runs I would build a small agent like this with ADK: it gave the same correct answers, used 20 requests against 30, and followed the "not in the glossary" rule more strictly. My evidence is thin, though: 2 runs per question, and most of the difference comes from one question where Pydantic AI took a path I could not explain. For learning and testing I would still pick Pydantic AI, because the exercise's `--trace`, `--list-tools` and `TestModel` come with it, while for ADK I had to write my own fake model and my own event reader. So: Pydantic AI for building and checking an agent, and ADK worth a second look when token cost per question matters.
 
 ### Notes
 
@@ -149,5 +191,5 @@ These differences are about the code and the requests, and I checked each one in
   about what Gemini does with these prompts; only the live runs do.
 - The comparison is small: 5 questions, 2 runs each, one model, one day. Model answers change between runs, so a difference of one tool call
   or one request between the two frameworks is not evidence of a framework difference.
-- TODO(notes-live): say when you ran the live runs and with which model (`AIE_MODEL` or the default), and if any run failed with 429 or 503.
-- AI tools helped me write the code, the tests and the first draft of this file; the live runs, the reading of the answers and the conclusions are my own.
+- The live runs were on November 3, 2026 (the 30 comparison runs between about 09:35 and 09:40 UTC), with the default model `gemini-3.5-flash-lite` and `AIE_MODEL` not set, on Windows with Python 3.14. All 30 runs succeeded. One run, `adk:lora-qlora:1`, got a 429 (the free tier's limit of 15 requests per minute) and succeeded on its second attempt after the 65 s wait; it is recorded with `attempts: 2`. After each ADK run Windows printed a long `RuntimeError: Event loop is closed` traceback from the Google client library closing its connection; it comes after the answer was saved and did not change any result.
+- I ran every live command myself; the numbers above come from `results/compare/runs.json` and the pasted terminal output. AI tools helped me write the code, the tests and the wording of this file.
