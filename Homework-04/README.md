@@ -26,8 +26,8 @@ The research was done on November 11, 2026, with no code and no API key:
 2. Read four of its tasks (an astropy, a django, a sympy and a pylint task) and noted what each asks and what would be hard.
 3. Looked up the creation and validation procedure in the SWE-bench paper, OpenAI's "Introducing SWE-bench Verified" post and annotation
    instructions, and OpenAI's February 2026 post on why it stopped using the benchmark.
-4. Read the exercise's own files in the course repo (the 10 cases, `rubric.md`, the instructor's labels) and compared the two sets on scale,
-   number of people validating and scoring method.
+4. Read the exercise's own files in the course repo (the 10 cases, `rubric.md`, the instructor's labels, the grader `app/judge.py`, the Lecture 04
+   key points and glossary entries) and compared the two sets on scale, number of people validating and scoring method.
 
 ## Before you submit
 

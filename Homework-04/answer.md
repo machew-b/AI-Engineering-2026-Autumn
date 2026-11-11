@@ -38,8 +38,9 @@ course's `answer.md` template; each `TODO(exercise)` is replaced after the run.
   wrong with their tests. I picked the first two as ordinary tasks and the last two because OpenAI uses them as examples of test problems.
 - **Creation and validation:** read the SWE-bench paper (2023), OpenAI's "Introducing SWE-bench Verified" (August 2024) with its annotation
   instructions, and OpenAI's "Why SWE-bench Verified no longer measures frontier coding capabilities" (February 2026).
-- **Today's set:** read the course files `data/eval/lec04_cases.jsonl`, `data/eval/rubric.md` and `lectures/04/reference/labels_instructor.jsonl`
-  in the course repo, and used them for the comparison.
+- **Today's set:** read the course files `data/eval/lec04_cases.jsonl`, `data/eval/rubric.md` and `lectures/04/reference/labels_instructor.jsonl`,
+  the grader `app/judge.py` (to see exactly how the code check and the overall result work), the Lecture 04 key points (`data/lectures/04.md`) and
+  the evaluation entries of the course glossary, and used them for the comparison.
 - **Summaries, not copies:** following the slide, the problem texts are summarized in my own words; none is pasted here.
 
 ### Results
@@ -106,6 +107,10 @@ From the course files: 10 question-and-answer items (4 normal cases and 6 edge c
 advance by the Lecture 3 agent, and some failures were put in on purpose. Each item has a reference (glossary entries and the expected behavior).
 The criteria come from the Lecture 3 `INSTRUCTIONS`: Grounding, Scope, Hint and Clarity are judged by a human and an LLM (each T, F or unsure),
 and the "Lecture N" marker is judged by code. Overall passes when Grounding, Scope, Hint and the marker are all T; Clarity is informational.
+
+How the grader works (read from `app/judge.py`): the LLM is called once per item with the rubric as its instructions, at temperature 0, and must
+write a reason before each verdict. The code check is a regular expression that looks for "Lecture" followed by a number in the **last line**
+of the answer, so it checks format only. If any required criterion is `unsure`, the overall result is `unsure` and the item goes to a human.
 The instructor's own labels (read from `labels_instructor.jsonl`, not mine):
 
 | # | Category | Failed criteria (instructor) | Marked unsure | Overall by the rule |
@@ -144,8 +149,13 @@ the code check for "Lecture N", while the instructor's notes call the answers a 
   good answers that fail because a code rule demands "Lecture N" even when no lecture applies, and #05 shows a rubric that does not say what to do.
   In each case the problem is in the check, not in the answer. This matches the lecture's point that the rubric wording has to be fixed by the designer.
 - **Code is not automatically the safer judge.** SWE-bench needs no LLM judge, but its tests were the main source of unfair results. Code is
-  exact and repeatable, but it only checks what its author thought of. In the exercise, the code check is the one criterion that is never ambiguous,
-  and it still gives the two most questionable failures. The LLM handles the subjective criteria better, but its agreement with humans has to be measured, which is today's exercise.
+  exact and repeatable, but it only checks what its author thought of. The exercise's code check only looks for "Lecture" and a number in the last
+  line, so it fails the correct refusal in #07 and still passes #10, which ends with "Lecture 14", a lecture that does not exist. It is exact, but it is about format, not about whether the content is right.
+  The LLM handles the subjective criteria better, but the lecture notes warn that it has its own biases (for example preferring verbose answers),
+  so its agreement with humans has to be measured. That is today's exercise.
+- **Both sets were revised after looking at failures.** OpenAI made a second pass over Verified in 2026. The course's reference notes list four
+  changes to the rubric and the evaluation set after a trial run of the grader with a real model, for example because it passed the verbose answer
+  #04 on Clarity and carried the reason for failing one criterion into another (#06, #08). An evaluation set is not finished when it is written; it is tested against how it actually grades.
 - **Different ways of handling doubt.** SWE-bench Verified drops a task if any one of three annotators flags it: it accepts losing good tasks
   (68.3% removed) to be sure about the rest. The exercise keeps all 10 items and sends doubtful judgments to a human with the `unsure` option.
   The first suits a fixed benchmark that is reused for years; the second suits a small set that a person can read item by item.
@@ -158,8 +168,8 @@ the code check for "Lecture N", while the instructor's notes call the answers a 
 - **An idea for `rubric.md`:** OpenAI's annotation instructions give a worked example for every severity level. Today's `rubric.md` has rules but no
   examples. Adding one passing and one failing example per criterion (for instance from #05 and #06) might reduce the `unsure` cases. I have not tested this.
 - **Questions:**
-  1. Would labels from three people per item, combined by the strictest one, make the exercise's agreement rates more trustworthy than one
-     label from me? What did the instructor's labels and mine have in common, as a ceiling for how well the LLM can agree?
+  1. The course defines agreement rate for two humans as well as for human and LLM. OpenAI's pages describe how the 3 annotators' labels were combined, but
+     I did not find an agreement rate between them. Is the human-versus-human number from `--compare` (me against the instructor) the right ceiling to judge the LLM by?
   2. How many items does an evaluation set need before a difference of one or two points in agreement can be trusted?
   3. Should the "Lecture N" check pass when the answer is a correct refusal, as in #07? Is that a case for changing the code check or the expected behavior?
 
@@ -182,6 +192,10 @@ All pages were opened on November 11, 2026.
 | Course file `data/eval/lec04_cases.jsonl` (git blob 919da9d2) | https://github.com/matsuolab/lecture-ai-engineering-2026-en/blob/main/data/eval/lec04_cases.jsonl | The 10 items |
 | Course file `data/eval/rubric.md` (git blob e8ac5a66) | https://github.com/matsuolab/lecture-ai-engineering-2026-en/blob/main/data/eval/rubric.md | The grading rubric |
 | Course file `lectures/04/reference/labels_instructor.jsonl` (git blob 7cafad68) | https://github.com/matsuolab/lecture-ai-engineering-2026-en/blob/main/lectures/04/reference/labels_instructor.jsonl | The instructor's labels and notes |
+| Course file `lectures/04/reference/README.md` (git blob 0d756d96) | https://github.com/matsuolab/lecture-ai-engineering-2026-en/blob/main/lectures/04/reference/README.md | The four rubric and evaluation-set changes made after a trial run |
+| Course file `app/judge.py` (git blob 9ac6c716) | https://github.com/matsuolab/lecture-ai-engineering-2026-en/blob/main/app/judge.py | How the grader, the code check and the overall result work |
+| Course file `data/lectures/04.md` (git blob 4c6f56f1) | https://github.com/matsuolab/lecture-ai-engineering-2026-en/blob/main/data/lectures/04.md | Lecture 04 key points (judge biases, agreement, code where code can judge) |
+| Course file `data/glossary.json` (git blob f6ef1107) | https://github.com/matsuolab/lecture-ai-engineering-2026-en/blob/main/data/glossary.json | Course definitions of evaluation set, rubric, LLM-as-a-Judge, agreement rate, needs review |
 
 ### Notes
 
