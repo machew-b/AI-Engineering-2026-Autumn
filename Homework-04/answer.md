@@ -153,9 +153,10 @@ the code check for "Lecture N", while the instructor's notes call the answers a 
   line, so it fails the correct refusal in #07 and still passes #10, which ends with "Lecture 14", a lecture that does not exist. It is exact, but it is about format, not about whether the content is right.
   The LLM handles the subjective criteria better, but the lecture notes warn that it has its own biases (for example preferring verbose answers),
   so its agreement with humans has to be measured. That is today's exercise.
-- **Both sets were revised after looking at failures.** OpenAI made a second pass over Verified in 2026. The course's reference notes list four
-  changes to the rubric and the evaluation set after a trial run of the grader with a real model, for example because it passed the verbose answer
-  #04 on Clarity and carried the reason for failing one criterion into another (#06, #08). An evaluation set is not finished when it is written; it is tested against how it actually grades.
+- **Both sets were tested against real failures, with different outcomes.** The course's reference notes list four changes to the rubric and the
+  evaluation set after a trial run of the grader with a real model, for example because it passed the verbose answer #04 on Clarity and carried
+  the reason for failing one criterion into another (#06, #08). OpenAI's 2026 audit of Verified did not lead to a repair: it stopped reporting the
+  benchmark. Either way, an evaluation set is not finished when it is written; it has to be checked against how it actually grades.
 - **Different ways of handling doubt.** SWE-bench Verified drops a task if any one of three annotators flags it: it accepts losing good tasks
   (68.3% removed) to be sure about the rest. The exercise keeps all 10 items and sends doubtful judgments to a human with the `unsure` option.
   The first suits a fixed benchmark that is reused for years; the second suits a small set that a person can read item by item.
