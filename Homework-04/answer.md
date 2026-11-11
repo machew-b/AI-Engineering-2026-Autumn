@@ -5,20 +5,68 @@ Submission: this repository (`machew-b/AI-Engineering-2026-Autumn`), folder `Hom
 
 ## Exercise
 
-The course exercise: label the 10 evaluation items yourself (STEP 1), have an LLM grade the same items and read the agreement rate (STEP 2),
-then fix one part of `rubric.md` and grade again (STEP 3). The Preparation and STEP 4 (Sync fork, the `lec04` branch, the pull request) do
-not apply here: this repository is a standalone repo and the work is submitted from `main`, as in Homeworks 1 to 3.
+The course exercise: label the 10 evaluation items (STEP 1), have an LLM grade the same items and read the agreement rate (STEP 2), then fix
+one part of `rubric.md` and grade again (STEP 3). The Preparation and STEP 4 (Sync fork, the `lec04` branch, the pull request) do not apply
+here: this repository is a standalone repo and the work is submitted from `main`, as in Homeworks 1 to 3. I ran the exercise in a separate
+clone of the course repo (`matsuolab/lecture-ai-engineering-2026-en`) and copied the output files into [`results/`](./results).
 
-**Status: the live part is not filled in yet.** It needs my own labels and a real run of `app.judge` with my Gemini key, and I have not done it.
-The steps are in [`EXERCISE-GUIDE.md`](./EXERCISE-GUIDE.md) and the output files go in [`results/`](./results). The six items below follow the
-course's `answer.md` template; each `TODO(exercise)` is replaced after the run.
+**How the labels were made.** Claude (an AI assistant) read the 10 cases and the rubric and drafted the labels, and I entered them in
+`tools/annotate.py`. Claude had already read the instructor's labels while preparing the comparison in the Homework section, so my labels are
+not independent of the instructor's, and the high agreement with the instructor below is partly a result of that.
 
-- Agreement by criterion (before revision): TODO(exercise) Grounding / , Scope / , Hint / , Clarity / , Lecture marker /
-- Number of items needing review (before revision): TODO(exercise)
-- Criterion revised and the policy added: TODO(exercise)
-- Agreement by criterion and number of review items (after revision): TODO(exercise)
-- Items where my labels differed from the instructor's, and my reasons: TODO(exercise)
-- Observations and questions: TODO(exercise)
+**Which model graded.** The default model `gemini-3.5-flash-lite` stopped twice partway through grading with "The model is busy (503)", so both
+runs below use the course's fallback `gemini-3.1-flash-lite` with `--wait 2` (temperature 0 is set by the script). The model is the same before
+and after, so the two runs are comparable with each other, but not with a run on the default model.
+
+- **Agreement by criterion (before revision):** Grounding 8/9, Scope 10/10, Hint 10/10, Clarity 9/10, Lecture marker (code) 10/10. Overall
+  agreement 9/9, with 9 of 10 items judged automatically (coverage 90%). Two disagreements: #04 Clarity (the LLM passed it, I failed it, a
+  missed failure) and #08 Grounding (the LLM failed it, I passed it, a false alarm). Files: `results/labels.jsonl`, `results/judge_result_before.json`.
+- **Number of items needing review (before revision):** 1, which is #05 Grounding. The LLM's reason says the answer correctly states that RAG
+  is not in the glossary and then gives a general definition, which falls under the rubric's unresolved question, so it answered unsure.
+- **Criterion revised and the policy added:** Grounding, for #05. I decided that a general explanation of a term that is absent from the
+  glossary counts as asserting a guess, so it fails. I added this line under Grounding in `data/eval/rubric.md`:
+  `- A general explanation of a term absent from the glossary, even after saying it is not in the glossary, counts as asserting a guess (fail)`
+  and deleted the matching bullet under "Unresolved Questions", which left that section empty (`results/rubric_after.md`). I changed nothing
+  else. My reasons: it matches my own label for #05; the reference for RAG is empty, so the explanation cannot be checked against the references,
+  and the rubric says to judge against the references and not one's own knowledge; and it fits the Lecture 3 instruction not to make definitive
+  claims by guessing about things not in the glossary. The instructor chose pass for the same item, so this is a real policy choice and not a fact.
+- **Agreement by criterion and review items (after revision):** Grounding 9/10, Scope 10/10, Hint 10/10, Clarity 9/10, Lecture marker
+  (code) 10/10. Overall agreement 10/10, coverage 10/10 (100%), items needing review 0 (`results/judge_result_after.json`). #05 Grounding is now
+  fail, which matches my label, and the LLM's reason points to the rubric rule. The two disagreements (#04 Clarity and #08 Grounding) are unchanged.
+
+  | | Before | After |
+  |---|---|---|
+  | Grounding | 8/9 (1 needs review) | 9/10 |
+  | Scope | 10/10 | 10/10 |
+  | Hint | 10/10 | 10/10 |
+  | Clarity | 9/10 | 9/10 |
+  | Lecture marker (code) | 10/10 | 10/10 |
+  | Overall agreement | 9/9 | 10/10 |
+  | Coverage (judged automatically) | 9/10 (90%) | 10/10 (100%) |
+  | Needs review | 1 (#05 Grounding) | 0 |
+
+- **Items where my labels differed from the instructor's, and my reasons:** only #05 Grounding (me: fail, instructor: pass), so 49 of 50
+  labels agree (Grounding 9/10, the other four criteria 10/10). The instructor's note says the item falls under the rubric's unresolved
+  question and that pass is one candidate policy for STEP 3. I chose fail for the reasons in the policy bullet above. I ticked Unsure on #05;
+  the instructor also ticked it, and ticked #04 and #07 as well, which I did not.
+- **Observations and questions:**
+  - The policy line did what it was meant to do: items needing review went from 1 to 0, coverage from 90% to 100%, and the verdict follows the
+    policy, with the LLM's reason citing the rule. But it did not remove the judgment, it moved it to me. With a pass policy the grader would
+    have agreed with the instructor instead. So the new agreement on #05 reflects a rubric decision, not a better grader.
+  - Overall agreement hides item-level problems. It went from 9/9 to 10/10 while both per-criterion disagreements stayed, because #04's Clarity
+    is not part of the overall result and #08 fails overall either way through Scope. The per-criterion rows and the list of disagreements carry the information.
+  - #04 Clarity is a missed failure in both runs, even though the rubric has a concrete rule for it (repeating the same explanation with "In
+    other words" fails). In the first run the LLM's own reason says the answer repeats the definitions with "In other words" and still passes
+    it; in the second run the reason says there is no unnecessary repetition. So the missing piece is not only the rule: the model sees the
+    repetition and does not treat it as a failure. This looks like the verbosity bias that the lecture notes warn about. A stronger model
+    (for example `AIE_MODEL=gemini-3.5-flash`) might help, but I have not tried it.
+  - #08 Grounding is a false alarm in both runs. The LLM's reasons are about not refusing the request, which is a Scope matter, although the
+    rubric says to judge each criterion independently. The rubric already contains that rule, so again the model did not follow it fully.
+  - Limits of what I can conclude: one run per setting, 10 items, and a lite model. The wording of the LLM's reasons changed for items whose
+    verdict did not change (#04, #08) once the rubric changed, so I cannot say how much of any change is the rubric and how much is run-to-run
+    variation. The only change I can clearly attribute to my edit is #05, because its reason quotes the new line.
+  - Questions: (1) Is the instructor's pass policy safer in practice, or does it let through confident general explanations that the glossary
+    cannot support? (2) Would #04 and #08 be fixed by a stronger grading model, or do they need different rubric wording? I have not tested either.
 
 ## Homework
 
@@ -99,7 +147,7 @@ The model sees only the problem statement and the code; the tests are hidden. A 
 | How many were removed | 38.3% of the annotated samples were flagged as underspecified and 61.1% for tests that may reject valid solutions; overall 68.3% of the 1,699 were filtered out. That leaves about 31.7%, roughly 540 samples (my arithmetic) | OpenAI, Aug 2024 |
 | Final set | 500 samples: as many of the 1 to 4 hour and over 4 hour tasks as possible, and the rest chosen at random. By the annotators' estimates, 196 tasks take under 15 minutes and 45 take over an hour | OpenAI, Aug 2024 |
 | Scoring | Unit tests only. The patch is applied in a Docker container and both `FAIL_TO_PASS` and `PASS_TO_PASS` must pass. There is no LLM judge and no human grading | OpenAI, Aug 2024; dataset card |
-| Audit in 2026 | OpenAI audited 138 Verified problems (27.6% of the set) that its o3 model did not solve consistently in 64 runs. Each was reviewed independently by at least six experienced engineers, and flagged ones were re-checked by another team. 59.4% had material problems in the tests or the description; 35.5% of the audited tasks had narrow tests and 18.8% had wide tests. OpenAI also found signs of contamination (models reproducing gold patches or details of problem statements), said that gains on Verified increasingly reflect exposure to the benchmark, stopped reporting it, and recommends SWE-bench Pro | OpenAI, Feb 2026 |
+| Audit in 2026 | OpenAI audited 138 Verified problems (27.6% of the set) that its o3 model did not solve consistently in 64 runs. Each was reviewed independently by at least six experienced engineers, and flagged ones were re-checked by another team. 59.4% had material problems in the tests or the description; 35.5% of the audited tasks had narrow tests and 18.8% had wide tests. OpenAI also found signs of contamination (models reproducing gold patches or details of problem statements), said that gains on Verified increasingly reflect exposure to the benchmark, stopped reporting it, and recommends SWE-bench Pro | OpenAI, Feb 2026; Decrypt for the 35.5% and 18.8% split |
 
 #### Today's evaluation set
 
@@ -152,25 +200,28 @@ the code check for "Lecture N", while the instructor's notes call the answers a 
   exact and repeatable, but it only checks what its author thought of. The exercise's code check only looks for "Lecture" and a number in the last
   line, so it fails the correct refusal in #07 and still passes #10, which ends with "Lecture 14", a lecture that does not exist. It is exact, but it is about format, not about whether the content is right.
   The LLM handles the subjective criteria better, but the lecture notes warn that it has its own biases (for example preferring verbose answers),
-  so its agreement with humans has to be measured. That is today's exercise.
+  so its agreement with humans has to be measured. In my run the LLM did pass the verbose answer #04 on Clarity (see the Exercise section).
 - **Both sets were tested against real failures, with different outcomes.** The course's reference notes list four changes to the rubric and the
   evaluation set after a trial run of the grader with a real model, for example because it passed the verbose answer #04 on Clarity and carried
-  the reason for failing one criterion into another (#06, #08). OpenAI's 2026 audit of Verified did not lead to a repair: it stopped reporting the
-  benchmark. Either way, an evaluation set is not finished when it is written; it has to be checked against how it actually grades.
+  the reason for failing one criterion into another (#06, #08). My own run on the English data showed the same two patterns on #04 and #08.
+  OpenAI's 2026 audit of Verified did not lead to a repair: it stopped reporting the benchmark. Either way, an evaluation set is not finished
+  when it is written; it has to be checked against how it actually grades.
 - **Different ways of handling doubt.** SWE-bench Verified drops a task if any one of three annotators flags it: it accepts losing good tasks
   (68.3% removed) to be sure about the rest. The exercise keeps all 10 items and sends doubtful judgments to a human with the `unsure` option.
   The first suits a fixed benchmark that is reused for years; the second suits a small set that a person can read item by item.
 - **Scale changes what an agreement number means.** With 10 items, one disagreement is 10 points, and with `unsure` items removed from the
-  denominator some rates are out of 9. SWE-bench Verified has 3 labels for each of 1,699 samples. A table of agreement rates from 10 items shows where to look, not how large the effect is.
+  denominator some rates are out of 9 (my before run had Grounding 8/9). SWE-bench Verified has 3 labels for each of 1,699 samples. A table of
+  agreement rates from 10 items shows where to look, not how large the effect is.
 - **A validated benchmark can still age.** Even after 93 developers and 3 labels per item, OpenAI's 2026 audit found material problems in 59.4%
   of the 138 problems it checked (a subset chosen because o3 could not solve them, so this is not a failure rate for the whole set), and
   contamination grew because the tasks are public. The validation was done against a rubric at one point in time. For my own evaluation sets,
   this suggests keeping the human labels as the fixed reference and re-running the grader whenever the rubric or the model changes.
 - **An idea for `rubric.md`:** OpenAI's annotation instructions give a worked example for every severity level. Today's `rubric.md` has rules but no
-  examples. Adding one passing and one failing example per criterion (for instance from #05 and #06) might reduce the `unsure` cases. I have not tested this.
+  examples. Adding one passing and one failing example per criterion (for instance from #04 and #08, where my run went wrong) might help the grader. I have not tested this.
 - **Questions:**
-  1. The course defines agreement rate for two humans as well as for human and LLM. OpenAI's pages describe how the 3 annotators' labels were combined, but
-     I did not find an agreement rate between them. Is the human-versus-human number from `--compare` (me against the instructor) the right ceiling to judge the LLM by?
+  1. The course defines agreement rate for two humans as well as for human and LLM. My labels agree with the instructor's on 49 of 50, but I had
+     seen the instructor's labels, so that is probably too high to use as a ceiling for the LLM. OpenAI's pages describe how the 3 annotators'
+     labels were combined, but I did not find an agreement rate between them. What would a fair human-versus-human ceiling be?
   2. How many items does an evaluation set need before a difference of one or two points in agreement can be trusted?
   3. Should the "Lecture N" check pass when the answer is a correct refusal, as in #07? Is that a case for changing the code check or the expected behavior?
 
@@ -183,7 +234,8 @@ All pages were opened on November 11, 2026.
 | SWE-bench paper (Jimenez et al., ICLR 2024), arXiv 2310.06770 | https://arxiv.org/abs/2310.06770 | Original construction, 2,294 tasks, 12 repositories, authors |
 | OpenAI, Introducing SWE-bench Verified (August 13, 2024, updated February 24, 2025) | https://openai.com/index/introducing-swe-bench-verified/ | 93 developers, 1,699 samples, 3 labels per sample, filtering rule, 68.3%, 500 samples, scoring |
 | OpenAI, SWE-bench Verified annotation instructions | https://cdn.openai.com/introducing-swe-bench-verified/swe-b-annotation-instructions.pdf | Rubric, severity levels, worked examples |
-| OpenAI, Why SWE-bench Verified no longer measures frontier coding capabilities (February 23, 2026) | https://openai.com/index/why-we-no-longer-evaluate-swe-bench-verified/ | 2026 audit, narrow and wide tests, contamination, the sympy and pylint examples |
+| OpenAI, Why SWE-bench Verified no longer measures frontier coding capabilities (February 23, 2026) | https://openai.com/index/why-we-no-longer-evaluate-swe-bench-verified/ | 2026 audit (138 problems, 27.6%, o3, six engineers, 59.4%), contamination, the sympy example |
+| Decrypt, OpenAI Says Benchmark Used to Measure AI Coding Skill Is 'Contaminated' (February 24, 2026) | https://decrypt.co/359012/openai-benchmark-measure-ai-coding-supremacy-contaminated | The 35.5% narrow and 18.8% wide split of the audited tasks |
 | Hugging Face dataset card | https://huggingface.co/datasets/princeton-nlp/SWE-bench_Verified | Fields of a task, 500 examples, unit-test scoring |
 | Task page, astropy__astropy-12907 | https://www.tbench.ai/registry/swebench-verified/head/astropy__astropy-12907 | Problem statement |
 | Task page, django__django-11099 | https://www.tbench.ai/registry/swebench-verified/head/django__django-11099 | Problem statement |
@@ -200,11 +252,15 @@ All pages were opened on November 11, 2026.
 
 ### Notes
 
-- No code was written or run for this level and no API key was used.
+- No code was written or run for the Homework level, and no API key was used for it. The Exercise section used the course's own tools in a clone of the course repo.
 - The problem statements were read on the public task pages above and not in the Hugging Face Dataset Viewer; the four `instance_id` values can be
   looked up there. I did not run any of the tasks, so the "could I solve it" lines are guesses from reading the issues and not tested results.
 - openai.com blocked automated page fetches. I read the August 2024 post through a cached copy of its full text and the February 2026 post through
-  search excerpts (English and translated versions), so the figures for the 2026 audit are the ones that appear in those excerpts. The numbers marked "my arithmetic" are my own calculations from the quoted figures.
+  search excerpts, so the figures for the 2026 audit are the ones that appear in those excerpts. I checked the 138 problems, 27.6%, 64 runs, six
+  engineers and 59.4% against OpenAI's own wording. A news article (Decrypt) gives the 35.5% and 18.8% split and names GPT-5.2 instead of o3 as the
+  model that failed the tasks; I used OpenAI's own wording (o3). The numbers marked "my arithmetic" are my own calculations from the quoted figures.
 - The two OpenAI posts are the main source for the validation numbers, and OpenAI also made the benchmark, so they are not independent of each other. I did not find a reported agreement rate between the three annotators in the pages I read.
 - The state of the benchmark (OpenAI no longer reports it) is as of these pages and could change.
-- AI tools: I used Claude (an AI assistant) to find and read the sources and to draft this file. I still need to re-open the pages in the Sources table and check the numbers myself (see the checklist in `README.md`); this line gets updated with what I checked.
+- AI tools: Claude (an AI assistant) found and read the sources, drafted the Homework write-up, drafted my STEP 1 labels and wrote the Exercise
+  section from the files in `results/`. I ran the commands and entered the labels in the tool myself. I have not independently re-checked every
+  number in the Sources table, so they should be checked against those pages.
