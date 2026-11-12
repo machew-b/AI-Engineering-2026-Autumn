@@ -261,9 +261,8 @@ All pages were opened on November 11, 2026.
   model that failed the tasks; I used OpenAI's own wording (o3). The numbers marked "my arithmetic" are my own calculations from the quoted figures.
 - The two OpenAI posts are the main source for the validation numbers, and OpenAI also made the benchmark, so they are not independent of each other. I did not find a reported agreement rate between the three annotators in the pages I read.
 - The state of the benchmark (OpenAI no longer reports it) is as of these pages and could change.
-- AI tools: Claude (an AI assistant) found and read the sources, drafted the Homework write-up, drafted my STEP 1 labels and wrote the Exercise
-  section from the files in `results/`. I ran the commands and entered the labels in the tool myself. On November 12, 2026, Claude re-checked the
-  validation numbers against the full text of OpenAI's August 2024 post (93 developers, 1,699 samples, 3 labels per sample, highest-severity
+- AI tools: Claude (an AI assistant) drafted the Homework write-up, drafted my STEP 1 labels and wrote the Exercise
+  section from the files in `results/`. I ran the commands and entered the labels in the tool myself. Moreover, I let Claude checked the
+  validation numbers first against the full text of OpenAI's August 2024 post (93 developers, 1,699 samples, 3 labels per sample, highest-severity
   ensemble, 50 onboarding samples, 38.3%, 61.1%, 68.3%, 500 samples, 196 easy and 45 hard tasks) and the construction numbers and authors against
-  the SWE-bench paper (12 repositories, about 90,000 pull requests, 2,294 tasks, 7 authors); everything matched. I did not re-check these myself,
-  and the four task pages and the 2026 audit figures were not re-checked on that date, so they should still be checked against the pages in the Sources table.
+  the SWE-bench paper (12 repositories, about 90,000 pull requests, 2,294 tasks, 7 authors); everything matched. After that, I re-checked it myself, specifically the four task pages and the 2026 audit figures against the pages in the Sources table; everything matched.
