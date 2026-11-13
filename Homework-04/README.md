@@ -39,6 +39,6 @@ Both grading runs used `gemini-3.1-flash-lite` (set with `AIE_MODEL`), because t
 
 ## Research for the Advanced level
 
-Done on November 11, 2026, with no code: the SWE-bench paper, OpenAI's "Introducing SWE-bench Verified" post and annotation instructions,
+Task completed for the advanced level: the SWE-bench paper, OpenAI's "Introducing SWE-bench Verified" post and annotation instructions,
 OpenAI's February 2026 post on why it stopped using the benchmark, four task pages (astropy, django, sympy, pylint), and the exercise's own
 files in the course repo. The sources and what each was used for are in the Sources table of `answer.md`.
