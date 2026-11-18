@@ -1,0 +1,15 @@
+.venv/
+__pycache__/
+.pytest_cache/
+*.pyc
+
+# Never commit keys
+.env
+.env.*
+
+# Course materials are not for sharing (see README). Fetch them with scripts/fetch_course_data.py
+data/rag_data/
+.cache/
+
+# macOS
+.DS_Store
