@@ -1,0 +1,962 @@
+{
+ "settings": {
+  "full": 4,
+  "previews": 5,
+  "v1_max_results": 10
+ },
+ "runs": [
+  {
+   "case": "q1-single",
+   "start": "lec02-main-p052",
+   "seeds": [
+    "lec02-main-p052",
+    "lec02-main-p051",
+    "lec02-main-p060"
+   ],
+   "returned": {
+    "vector-5": {
+     "full": [
+      "lec02-main-p052",
+      "lec02-main-p051",
+      "lec02-main-p060",
+      "lec02-main-p061",
+      "lec02-main-p058"
+     ],
+     "more": []
+    },
+    "knn-7": {
+     "full": [
+      "lec02-main-p052",
+      "lec02-main-p051",
+      "lec02-main-p060",
+      "lec02-main-p061",
+      "lec02-main-p058",
+      "lec02-main-p059",
+      "lec02-main-p054"
+     ],
+     "more": []
+    },
+    "knn-10": {
+     "full": [
+      "lec02-main-p052",
+      "lec02-main-p051",
+      "lec02-main-p060",
+      "lec02-main-p061",
+      "lec02-main-p058",
+      "lec02-main-p059",
+      "lec02-main-p054",
+      "lec02-main-p046",
+      "lec02-main-p050",
+      "lec02-main-p045"
+     ],
+     "more": []
+    },
+    "graph-v1": {
+     "full": [
+      "lec02-main-p052",
+      "lec02-main-p051",
+      "lec02-main-p060",
+      "lec02-main-p053",
+      "lec02-main-p050",
+      "lec02-main-p059",
+      "lec02-main-p061",
+      "lec02-main-p049",
+      "lec02-main-p062",
+      "lec02-main-p047"
+     ],
+     "more": []
+    },
+    "graph-v2": {
+     "full": [
+      "lec02-main-p052",
+      "lec02-main-p051",
+      "lec02-main-p060",
+      "lec02-main-p061",
+      "lec02-main-p058",
+      "lec02-main-p059",
+      "lec02-main-p054"
+     ],
+     "more": [
+      "lec02-main-p046",
+      "lec02-main-p050",
+      "lec02-main-p045",
+      "lec02-main-p023",
+      "lec02-main-p053"
+     ]
+    }
+   },
+   "scores": {
+    "vector-5": {
+     "others_total": 0,
+     "others_in_full": 0,
+     "others_in_previews": 0,
+     "full_pages": 5,
+     "full_chars": 2865,
+     "off_topic_full": 2
+    },
+    "knn-7": {
+     "others_total": 0,
+     "others_in_full": 0,
+     "others_in_previews": 0,
+     "full_pages": 7,
+     "full_chars": 4073,
+     "off_topic_full": 4
+    },
+    "knn-10": {
+     "others_total": 0,
+     "others_in_full": 0,
+     "others_in_previews": 0,
+     "full_pages": 10,
+     "full_chars": 4782,
+     "off_topic_full": 7
+    },
+    "graph-v1": {
+     "others_total": 0,
+     "others_in_full": 0,
+     "others_in_previews": 0,
+     "full_pages": 10,
+     "full_chars": 5382,
+     "off_topic_full": 7
+    },
+    "graph-v2": {
+     "others_total": 0,
+     "others_in_full": 0,
+     "others_in_previews": 0,
+     "full_pages": 7,
+     "full_chars": 4073,
+     "off_topic_full": 4
+    }
+   }
+  },
+  {
+   "case": "q2-multi",
+   "start": "lec03-main-p013",
+   "seeds": [
+    "lec03-main-p013",
+    "lec03-main-p008",
+    "lec03-main-p039"
+   ],
+   "returned": {
+    "vector-5": {
+     "full": [
+      "lec03-main-p013",
+      "lec03-main-p008",
+      "lec03-main-p039",
+      "lec03-main-p038",
+      "lec03-main-p040"
+     ],
+     "more": []
+    },
+    "knn-7": {
+     "full": [
+      "lec03-main-p013",
+      "lec03-main-p008",
+      "lec03-main-p039",
+      "lec03-main-p038",
+      "lec03-main-p040",
+      "lec03-main-p004",
+      "lec03-main-p065"
+     ],
+     "more": []
+    },
+    "knn-10": {
+     "full": [
+      "lec03-main-p013",
+      "lec03-main-p008",
+      "lec03-main-p039",
+      "lec03-main-p038",
+      "lec03-main-p040",
+      "lec03-main-p004",
+      "lec03-main-p065",
+      "lec03-main-p041",
+      "lec03-main-p009",
+      "lec03-main-p003"
+     ],
+     "more": []
+    },
+    "graph-v1": {
+     "full": [
+      "lec03-main-p013",
+      "lec03-main-p008",
+      "lec03-main-p039",
+      "lec03-main-p012",
+      "lec03-main-p014",
+      "lec03-main-p007",
+      "lec03-main-p009",
+      "lec03-main-p038",
+      "lec03-main-p040",
+      "lec03-main-p011"
+     ],
+     "more": []
+    },
+    "graph-v2": {
+     "full": [
+      "lec03-main-p013",
+      "lec03-main-p008",
+      "lec03-main-p039",
+      "lec03-main-p038",
+      "lec03-main-p040",
+      "lec03-main-p004",
+      "lec03-main-p065"
+     ],
+     "more": [
+      "lec03-main-p041",
+      "lec03-main-p009",
+      "lec03-main-p003",
+      "lec03-main-p014",
+      "lec03-main-p010"
+     ]
+    }
+   },
+   "scores": {
+    "vector-5": {
+     "others_total": 2,
+     "others_in_full": 2,
+     "others_in_previews": 0,
+     "full_pages": 5,
+     "full_chars": 1984,
+     "off_topic_full": 1
+    },
+    "knn-7": {
+     "others_total": 2,
+     "others_in_full": 2,
+     "others_in_previews": 0,
+     "full_pages": 7,
+     "full_chars": 3041,
+     "off_topic_full": 3
+    },
+    "knn-10": {
+     "others_total": 2,
+     "others_in_full": 2,
+     "others_in_previews": 0,
+     "full_pages": 10,
+     "full_chars": 4531,
+     "off_topic_full": 6
+    },
+    "graph-v1": {
+     "others_total": 2,
+     "others_in_full": 2,
+     "others_in_previews": 0,
+     "full_pages": 10,
+     "full_chars": 3827,
+     "off_topic_full": 6
+    },
+    "graph-v2": {
+     "others_total": 2,
+     "others_in_full": 2,
+     "others_in_previews": 0,
+     "full_pages": 7,
+     "full_chars": 3041,
+     "off_topic_full": 3
+    }
+   }
+  },
+  {
+   "case": "q2-multi",
+   "start": "lec03-main-p039",
+   "seeds": [
+    "lec03-main-p039",
+    "lec03-main-p040",
+    "lec03-main-p038"
+   ],
+   "returned": {
+    "vector-5": {
+     "full": [
+      "lec03-main-p039",
+      "lec03-main-p040",
+      "lec03-main-p038",
+      "lec03-main-p013",
+      "lec03-main-p041"
+     ],
+     "more": []
+    },
+    "knn-7": {
+     "full": [
+      "lec03-main-p039",
+      "lec03-main-p040",
+      "lec03-main-p038",
+      "lec03-main-p013",
+      "lec03-main-p041",
+      "lec03-main-p065",
+      "lec03-main-p037"
+     ],
+     "more": []
+    },
+    "knn-10": {
+     "full": [
+      "lec03-main-p039",
+      "lec03-main-p040",
+      "lec03-main-p038",
+      "lec03-main-p013",
+      "lec03-main-p041",
+      "lec03-main-p065",
+      "lec03-main-p037",
+      "lec03-main-p003",
+      "lec03-main-p004",
+      "lec03-main-p016"
+     ],
+     "more": []
+    },
+    "graph-v1": {
+     "full": [
+      "lec03-main-p039",
+      "lec03-main-p040",
+      "lec03-main-p038",
+      "lec03-main-p041",
+      "lec03-main-p037",
+      "lec03-main-p042",
+      "lec03-main-p036",
+      "lec01-main-p019",
+      "lec01-main-p058",
+      "lec02-main-p051"
+     ],
+     "more": []
+    },
+    "graph-v2": {
+     "full": [
+      "lec03-main-p039",
+      "lec03-main-p040",
+      "lec03-main-p038",
+      "lec03-main-p013",
+      "lec03-main-p041",
+      "lec03-main-p065",
+      "lec03-main-p037"
+     ],
+     "more": [
+      "lec03-main-p003",
+      "lec03-main-p004",
+      "lec03-main-p016",
+      "lec03-main-p009",
+      "lec03-main-p015"
+     ]
+    }
+   },
+   "scores": {
+    "vector-5": {
+     "others_total": 2,
+     "others_in_full": 2,
+     "others_in_previews": 0,
+     "full_pages": 5,
+     "full_chars": 2255,
+     "off_topic_full": 1
+    },
+    "knn-7": {
+     "others_total": 2,
+     "others_in_full": 2,
+     "others_in_previews": 0,
+     "full_pages": 7,
+     "full_chars": 2954,
+     "off_topic_full": 3
+    },
+    "knn-10": {
+     "others_total": 2,
+     "others_in_full": 2,
+     "others_in_previews": 0,
+     "full_pages": 10,
+     "full_chars": 4629,
+     "off_topic_full": 6
+    },
+    "graph-v1": {
+     "others_total": 2,
+     "others_in_full": 1,
+     "others_in_previews": 0,
+     "full_pages": 10,
+     "full_chars": 5227,
+     "off_topic_full": 7
+    },
+    "graph-v2": {
+     "others_total": 2,
+     "others_in_full": 2,
+     "others_in_previews": 0,
+     "full_pages": 7,
+     "full_chars": 2954,
+     "off_topic_full": 3
+    }
+   }
+  },
+  {
+   "case": "q2-multi",
+   "start": "lec03-main-p040",
+   "seeds": [
+    "lec03-main-p040",
+    "lec03-main-p039",
+    "lec03-main-p038"
+   ],
+   "returned": {
+    "vector-5": {
+     "full": [
+      "lec03-main-p039",
+      "lec03-main-p040",
+      "lec03-main-p038",
+      "lec03-main-p013",
+      "lec03-main-p041"
+     ],
+     "more": []
+    },
+    "knn-7": {
+     "full": [
+      "lec03-main-p039",
+      "lec03-main-p040",
+      "lec03-main-p038",
+      "lec03-main-p013",
+      "lec03-main-p041",
+      "lec03-main-p065",
+      "lec03-main-p037"
+     ],
+     "more": []
+    },
+    "knn-10": {
+     "full": [
+      "lec03-main-p039",
+      "lec03-main-p040",
+      "lec03-main-p038",
+      "lec03-main-p013",
+      "lec03-main-p041",
+      "lec03-main-p065",
+      "lec03-main-p037",
+      "lec03-main-p003",
+      "lec03-main-p004",
+      "lec03-main-p016"
+     ],
+     "more": []
+    },
+    "graph-v1": {
+     "full": [
+      "lec03-main-p040",
+      "lec03-main-p039",
+      "lec03-main-p038",
+      "lec03-main-p041",
+      "lec03-main-p037",
+      "lec03-main-p042",
+      "lec03-main-p036",
+      "lec01-main-p019",
+      "lec01-main-p058",
+      "lec02-main-p051"
+     ],
+     "more": []
+    },
+    "graph-v2": {
+     "full": [
+      "lec03-main-p040",
+      "lec03-main-p039",
+      "lec03-main-p038",
+      "lec03-main-p013",
+      "lec03-main-p041",
+      "lec03-main-p065",
+      "lec03-main-p037"
+     ],
+     "more": [
+      "lec03-main-p003",
+      "lec03-main-p004",
+      "lec03-main-p016",
+      "lec03-main-p009",
+      "lec03-main-p015"
+     ]
+    }
+   },
+   "scores": {
+    "vector-5": {
+     "others_total": 2,
+     "others_in_full": 2,
+     "others_in_previews": 0,
+     "full_pages": 5,
+     "full_chars": 2255,
+     "off_topic_full": 1
+    },
+    "knn-7": {
+     "others_total": 2,
+     "others_in_full": 2,
+     "others_in_previews": 0,
+     "full_pages": 7,
+     "full_chars": 2954,
+     "off_topic_full": 3
+    },
+    "knn-10": {
+     "others_total": 2,
+     "others_in_full": 2,
+     "others_in_previews": 0,
+     "full_pages": 10,
+     "full_chars": 4629,
+     "off_topic_full": 6
+    },
+    "graph-v1": {
+     "others_total": 2,
+     "others_in_full": 1,
+     "others_in_previews": 0,
+     "full_pages": 10,
+     "full_chars": 5227,
+     "off_topic_full": 7
+    },
+    "graph-v2": {
+     "others_total": 2,
+     "others_in_full": 2,
+     "others_in_previews": 0,
+     "full_pages": 7,
+     "full_chars": 2954,
+     "off_topic_full": 3
+    }
+   }
+  },
+  {
+   "case": "q4-cross-lecture",
+   "start": "lec01-main-p049",
+   "seeds": [
+    "lec01-main-p049",
+    "lec01-main-p019",
+    "lec01-main-p036"
+   ],
+   "returned": {
+    "vector-5": {
+     "full": [
+      "lec01-main-p019",
+      "lec01-main-p049",
+      "lec01-main-p036",
+      "lec01-main-p039",
+      "lec01-main-p038"
+     ],
+     "more": []
+    },
+    "knn-7": {
+     "full": [
+      "lec01-main-p019",
+      "lec01-main-p049",
+      "lec01-main-p036",
+      "lec01-main-p039",
+      "lec01-main-p038",
+      "lec01-main-p029",
+      "lec01-main-p003"
+     ],
+     "more": []
+    },
+    "knn-10": {
+     "full": [
+      "lec01-main-p019",
+      "lec01-main-p049",
+      "lec01-main-p036",
+      "lec01-main-p039",
+      "lec01-main-p038",
+      "lec01-main-p029",
+      "lec01-main-p003",
+      "lec01-main-p062",
+      "lec01-main-p040",
+      "lec01-main-p008"
+     ],
+     "more": []
+    },
+    "graph-v1": {
+     "full": [
+      "lec01-main-p049",
+      "lec01-main-p019",
+      "lec01-main-p036",
+      "lec01-main-p048",
+      "lec01-main-p050",
+      "lec01-main-p018",
+      "lec01-main-p020",
+      "lec01-main-p035",
+      "lec01-main-p037",
+      "lec01-main-p047"
+     ],
+     "more": []
+    },
+    "graph-v2": {
+     "full": [
+      "lec01-main-p049",
+      "lec01-main-p019",
+      "lec01-main-p036",
+      "lec01-main-p038",
+      "lec01-main-p040",
+      "lec01-main-p007",
+      "lec01-main-p059"
+     ],
+     "more": [
+      "lec01-main-p021",
+      "lec01-main-p056",
+      "lec01-main-p004",
+      "lec01-main-p037",
+      "lec01-main-p018"
+     ]
+    }
+   },
+   "scores": {
+    "vector-5": {
+     "others_total": 2,
+     "others_in_full": 0,
+     "others_in_previews": 0,
+     "full_pages": 5,
+     "full_chars": 2005,
+     "off_topic_full": 2
+    },
+    "knn-7": {
+     "others_total": 2,
+     "others_in_full": 0,
+     "others_in_previews": 0,
+     "full_pages": 7,
+     "full_chars": 2332,
+     "off_topic_full": 4
+    },
+    "knn-10": {
+     "others_total": 2,
+     "others_in_full": 0,
+     "others_in_previews": 0,
+     "full_pages": 10,
+     "full_chars": 3345,
+     "off_topic_full": 7
+    },
+    "graph-v1": {
+     "others_total": 2,
+     "others_in_full": 0,
+     "others_in_previews": 0,
+     "full_pages": 10,
+     "full_chars": 4179,
+     "off_topic_full": 7
+    },
+    "graph-v2": {
+     "others_total": 2,
+     "others_in_full": 0,
+     "others_in_previews": 0,
+     "full_pages": 7,
+     "full_chars": 2874,
+     "off_topic_full": 4
+    }
+   }
+  },
+  {
+   "case": "q4-cross-lecture",
+   "start": "lec02-main-p046",
+   "seeds": [
+    "lec02-main-p046",
+    "lec02-main-p050",
+    "lec02-main-p053"
+   ],
+   "returned": {
+    "vector-5": {
+     "full": [
+      "lec02-main-p046",
+      "lec02-main-p050",
+      "lec02-main-p053",
+      "lec02-main-p058",
+      "lec02-main-p057"
+     ],
+     "more": []
+    },
+    "knn-7": {
+     "full": [
+      "lec02-main-p046",
+      "lec02-main-p050",
+      "lec02-main-p053",
+      "lec02-main-p058",
+      "lec02-main-p057",
+      "lec02-main-p020",
+      "lec02-main-p028"
+     ],
+     "more": []
+    },
+    "knn-10": {
+     "full": [
+      "lec02-main-p046",
+      "lec02-main-p050",
+      "lec02-main-p053",
+      "lec02-main-p058",
+      "lec02-main-p057",
+      "lec02-main-p020",
+      "lec02-main-p028",
+      "lec02-main-p059",
+      "lec02-main-p029",
+      "lec02-main-p045"
+     ],
+     "more": []
+    },
+    "graph-v1": {
+     "full": [
+      "lec02-main-p046",
+      "lec02-main-p050",
+      "lec02-main-p053",
+      "lec02-main-p045",
+      "lec02-main-p047",
+      "lec02-main-p049",
+      "lec02-main-p051",
+      "lec02-main-p052",
+      "lec02-main-p054",
+      "lec02-main-p044"
+     ],
+     "more": []
+    },
+    "graph-v2": {
+     "full": [
+      "lec02-main-p046",
+      "lec02-main-p050",
+      "lec02-main-p053",
+      "lec02-main-p058",
+      "lec02-main-p057",
+      "lec02-main-p020",
+      "lec02-main-p028"
+     ],
+     "more": [
+      "lec02-main-p059",
+      "lec02-main-p029",
+      "lec02-main-p045",
+      "lec02-main-p047",
+      "lec02-main-p055"
+     ]
+    }
+   },
+   "scores": {
+    "vector-5": {
+     "others_total": 2,
+     "others_in_full": 0,
+     "others_in_previews": 0,
+     "full_pages": 5,
+     "full_chars": 1953,
+     "off_topic_full": 2
+    },
+    "knn-7": {
+     "others_total": 2,
+     "others_in_full": 0,
+     "others_in_previews": 0,
+     "full_pages": 7,
+     "full_chars": 3021,
+     "off_topic_full": 4
+    },
+    "knn-10": {
+     "others_total": 2,
+     "others_in_full": 0,
+     "others_in_previews": 0,
+     "full_pages": 10,
+     "full_chars": 3995,
+     "off_topic_full": 7
+    },
+    "graph-v1": {
+     "others_total": 2,
+     "others_in_full": 1,
+     "others_in_previews": 0,
+     "full_pages": 10,
+     "full_chars": 5187,
+     "off_topic_full": 6
+    },
+    "graph-v2": {
+     "others_total": 2,
+     "others_in_full": 0,
+     "others_in_previews": 1,
+     "full_pages": 7,
+     "full_chars": 3021,
+     "off_topic_full": 4
+    }
+   }
+  },
+  {
+   "case": "q4-cross-lecture",
+   "start": "lec02-main-p047",
+   "seeds": [
+    "lec02-main-p047",
+    "lec02-main-p046",
+    "lec02-main-p053"
+   ],
+   "returned": {
+    "vector-5": {
+     "full": [
+      "lec02-main-p046",
+      "lec02-main-p053",
+      "lec02-main-p047",
+      "lec02-main-p050",
+      "lec02-main-p057"
+     ],
+     "more": []
+    },
+    "knn-7": {
+     "full": [
+      "lec02-main-p046",
+      "lec02-main-p053",
+      "lec02-main-p047",
+      "lec02-main-p050",
+      "lec02-main-p057",
+      "lec02-main-p020",
+      "lec02-main-p058"
+     ],
+     "more": []
+    },
+    "knn-10": {
+     "full": [
+      "lec02-main-p046",
+      "lec02-main-p053",
+      "lec02-main-p047",
+      "lec02-main-p050",
+      "lec02-main-p057",
+      "lec02-main-p020",
+      "lec02-main-p058",
+      "lec02-main-p028",
+      "lec02-main-p059",
+      "lec02-main-p055"
+     ],
+     "more": []
+    },
+    "graph-v1": {
+     "full": [
+      "lec02-main-p047",
+      "lec02-main-p046",
+      "lec02-main-p053",
+      "lec02-main-p048",
+      "lec02-main-p045",
+      "lec02-main-p052",
+      "lec02-main-p054",
+      "lec02-main-p049",
+      "lec02-main-p044",
+      "lec02-main-p051"
+     ],
+     "more": []
+    },
+    "graph-v2": {
+     "full": [
+      "lec02-main-p047",
+      "lec02-main-p046",
+      "lec02-main-p053",
+      "lec02-main-p050",
+      "lec02-main-p057",
+      "lec02-main-p020",
+      "lec02-main-p058"
+     ],
+     "more": [
+      "lec02-main-p028",
+      "lec02-main-p059",
+      "lec02-main-p055",
+      "lec02-main-p023",
+      "lec02-main-p045"
+     ]
+    }
+   },
+   "scores": {
+    "vector-5": {
+     "others_total": 2,
+     "others_in_full": 1,
+     "others_in_previews": 0,
+     "full_pages": 5,
+     "full_chars": 2044,
+     "off_topic_full": 2
+    },
+    "knn-7": {
+     "others_total": 2,
+     "others_in_full": 1,
+     "others_in_previews": 0,
+     "full_pages": 7,
+     "full_chars": 3139,
+     "off_topic_full": 4
+    },
+    "knn-10": {
+     "others_total": 2,
+     "others_in_full": 1,
+     "others_in_previews": 0,
+     "full_pages": 10,
+     "full_chars": 4532,
+     "off_topic_full": 7
+    },
+    "graph-v1": {
+     "others_total": 2,
+     "others_in_full": 1,
+     "others_in_previews": 0,
+     "full_pages": 10,
+     "full_chars": 5424,
+     "off_topic_full": 7
+    },
+    "graph-v2": {
+     "others_total": 2,
+     "others_in_full": 1,
+     "others_in_previews": 0,
+     "full_pages": 7,
+     "full_chars": 3139,
+     "off_topic_full": 4
+    }
+   }
+  }
+ ],
+ "summary": [
+  {
+   "method": "vector-5",
+   "starts": 6,
+   "others_total": 12,
+   "others_in_full": 7,
+   "others_in_previews": 0,
+   "mean_full_pages": 5.0,
+   "mean_full_chars": 2083,
+   "mean_off_topic_full": 1.5
+  },
+  {
+   "method": "knn-7",
+   "starts": 6,
+   "others_total": 12,
+   "others_in_full": 7,
+   "others_in_previews": 0,
+   "mean_full_pages": 7.0,
+   "mean_full_chars": 2907,
+   "mean_off_topic_full": 3.5
+  },
+  {
+   "method": "knn-10",
+   "starts": 6,
+   "others_total": 12,
+   "others_in_full": 7,
+   "others_in_previews": 0,
+   "mean_full_pages": 10.0,
+   "mean_full_chars": 4277,
+   "mean_off_topic_full": 6.5
+  },
+  {
+   "method": "graph-v1",
+   "starts": 6,
+   "others_total": 12,
+   "others_in_full": 6,
+   "others_in_previews": 0,
+   "mean_full_pages": 10.0,
+   "mean_full_chars": 4845,
+   "mean_off_topic_full": 6.7
+  },
+  {
+   "method": "graph-v2",
+   "starts": 6,
+   "others_total": 12,
+   "others_in_full": 7,
+   "others_in_previews": 1,
+   "mean_full_pages": 7.0,
+   "mean_full_chars": 2997,
+   "mean_off_topic_full": 3.5
+  }
+ ],
+ "tree_previews": {
+  "pages": 214,
+  "course_preview_is_slide_header": 45,
+  "course_preview_equals_title": 62,
+  "course_preview_repeated_in_section": 125,
+  "v2_preview_empty": 0,
+  "v2_preview_is_slide_header": 0
+ },
+ "sensitivity": {
+  "full=2": {
+   "method": "graph-v2",
+   "starts": 6,
+   "others_total": 12,
+   "others_in_full": 7,
+   "others_in_previews": 0,
+   "mean_full_pages": 5.0,
+   "mean_full_chars": 2099,
+   "mean_off_topic_full": 1.5
+  },
+  "full=4": {
+   "method": "graph-v2",
+   "starts": 6,
+   "others_total": 12,
+   "others_in_full": 7,
+   "others_in_previews": 1,
+   "mean_full_pages": 7.0,
+   "mean_full_chars": 2997,
+   "mean_off_topic_full": 3.5
+  },
+  "full=6": {
+   "method": "graph-v2",
+   "starts": 6,
+   "others_total": 12,
+   "others_in_full": 7,
+   "others_in_previews": 1,
+   "mean_full_pages": 9.0,
+   "mean_full_chars": 3873,
+   "mean_off_topic_full": 5.5
+  }
+ }
+}
