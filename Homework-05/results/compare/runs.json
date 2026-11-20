@@ -1,0 +1,3509 @@
+{
+ "full-context:q1-single:1": {
+  "answer": "教材の記述によると、LoRA および QLoRA について以下の説明があります。\n\n- **LoRAが固定するもの（freezeする）**: \n  モデルの元の重み（事前学習済みの重み）を固定して学習しないようにします。（Document: `lec02-main / 基盤モデルの仕組み`, Section: 選んだモデルを、いつ・どう直すか, PDF p.52）\n- **LoRAが学習するもの**: \n  追加した小さな「差分」（細長い2つの小さな行列の積である低ランクの行列）だけを学習します。（Document: `lec02-main / 基盤モデルの仕組み`, Section: 選んだモデルを、いつ・どう直すか, PDF p.52）\n- **QLoRAが追加・変更するもの**: \n  LoRAの手法に加えて、元の重みをさらに `4bit`（数値を粗く保存）に圧縮してメモリを節約します。（Document: `lec02-main / 基盤モデルの仕組み`, Section: 選んだモデルを、いつ・どう直すか, PDF p.51, 52）\n\nまずは、大きなモデル全体をそのまま学習させるのではなく、「何を残して何を動かすのか」という視点でそれぞれの仕組みを見比べてみましょう。",
+  "attempts": 1,
+  "cited": [],
+  "cost_usd": 0.0357981,
+  "error": null,
+  "input_tokens": 117027,
+  "method": "full-context",
+  "model": "gemini-3.5-flash-lite",
+  "output_tokens": 276,
+  "question_id": "q1-single",
+  "requests": 1,
+  "retrieved": {
+   "full": [],
+   "listed": []
+  },
+  "seconds": 8.92,
+  "time_utc": "2026-11-20T12:39:23+00:00",
+  "tool_calls": []
+ },
+ "full-context:q2-multi:1": {
+  "answer": "学習サポートエージェントです。質問にお答えするヒントを案内しますね！\n\n資料の中では、第3回（AIエージェント）の「Part 6 メモリ」において、セッション内の要約（コンパクション）とセッションをまたぐ長期記録・メモリ、および日々のメモの扱いについて解説されています。\n\n以下のページを確認してみましょう：\n- **コンパクションとセッションをまたぐメモリの違い**: PDF p.39（Document: `lec03-main / AIエージェント`）\n- **日々のメモと長期メモリ（MEMORY.md）の関係**: PDF p.40（Document: `lec03-main / AIエージェント`）\n\nこれらのページを読むと、以下のような点が分かります。\n1. **コンパクション**は同じセッション内の古い履歴を要約して詰めるものであるのに対し、**メモリ**（またはメモリツール・自動メモリ）はセッションをまたいで外の保存先に記録を保持する仕組みです。\n2. 日々のメモ（例：`memory/日付.md`）のすべてがそのまま長期メモリにいくわけではなく、毎晩の見直し（dreaming）などによって基準を超えたものだけが残される仕組みになっています（「全部は残さない」）。\n\nそれぞれの定義や保存先の違いに注目して、詳しくテキストを確認してみましょう！",
+  "attempts": 1,
+  "cited": [],
+  "cost_usd": 0.0358368,
+  "error": null,
+  "input_tokens": 117031,
+  "method": "full-context",
+  "model": "gemini-3.5-flash-lite",
+  "output_tokens": 291,
+  "question_id": "q2-multi",
+  "requests": 1,
+  "retrieved": {
+   "full": [],
+   "listed": []
+  },
+  "seconds": 6.74,
+  "time_utc": "2026-11-20T12:39:38+00:00",
+  "tool_calls": []
+ },
+ "full-context:q3-absent:1": {
+  "answer": "Cannot verify. The provided materials do not contain measurements of the average response time and accuracy for the RAG system described in the question.",
+  "attempts": 2,
+  "cited": [],
+  "cost_usd": 0.0351738,
+  "error": null,
+  "input_tokens": 117021,
+  "method": "full-context",
+  "model": "gemini-3.5-flash-lite",
+  "output_tokens": 27,
+  "question_id": "q3-absent",
+  "requests": 1,
+  "retrieved": {
+   "full": [],
+   "listed": []
+  },
+  "seconds": 4.11,
+  "time_utc": "2026-11-20T12:39:51+00:00",
+  "tool_calls": []
+ },
+ "full-context:q4-cross-lecture:1": {
+  "answer": "ご質問ありがとうございます！\n講義資料の該当箇所を確認し、学習のヒントとなるように整理しました。一緒に考えていきましょう。\n\n### 1. なぜ Lecture 02 では知識の追加に Fine-Tuning ではなく RAG を推奨するのか？\nLecture 02 の資料では、モデルの仕組み（知識の土台がどこで作られるか、追加学習の特性）に踏み込んで説明されています。以下のポイントに注目してみましょう。\n* **モデルの仕組みと知識の限界:** 事前学習で決まる「知識」と、事後学習（Fine-Tuning）で決まる「答え方（振る舞い）」の違いについて、どこで解説されていたでしょうか？（参考：Document: `lec02-main / 基盤モデルの仕組み`, PDF p. 20, 23, 46）\n* **新しい知識や事実を覚えさせることの難しさ:** 小規模な Fine-Tuning で新しい事実を追加しようとした場合、学習効率や誤り（ハルシネーション）の傾向についてどのような研究報告があるでしょうか？（参考：Document: `lec02-main / 基盤モデルの仕組み`, PDF p. 47）\n\n### 2. Lecture 01 のチャットボットの例で RAG はどのように適用されているか？\nLecture 01 の例題では、講義中の大量の質問に対応するための仕組みとして RAG が紹介されています。以下の流れを確認してみましょう。\n* **RAG の具体的なプロセス:** 質問に対して、モデルに直接すべてを覚えさせるのではなく、外部の資料（講義資料など）をどのように検索し、回答に利用しているでしょうか？（参考：Document: `lec01-main / AIエンジニアリング概論とAIコーディング`, PDF p. 19, 49）\n\nこの2つの視点をテキストから見つけて結びつけてみると、答えが見えてきますよ！ぜひ資料の該当ページを読み返してみてくださいね。",
+  "attempts": 1,
+  "cited": [],
+  "cost_usd": 0.0361736,
+  "error": null,
+  "input_tokens": 117037,
+  "method": "full-context",
+  "model": "gemini-3.5-flash-lite",
+  "output_tokens": 425,
+  "question_id": "q4-cross-lecture",
+  "requests": 1,
+  "retrieved": {
+   "full": [],
+   "listed": []
+  },
+  "seconds": 4.25,
+  "time_utc": "2026-11-20T12:41:07+00:00",
+  "tool_calls": []
+ },
+ "graph2:q1-single:1": {
+  "answer": "In Lecture 02 (Lecture 02 / PDF p.51–52), **LoRA** and **QLoRA** are introduced under Parameter-Efficient Fine-Tuning (PEFT) methods:\n\n* **What LoRA freezes:** The original model weights ($W$) are **frozen** (kept fixed and not updated).\n* **What LoRA trains:** It introduces and trains small, low-rank matrices (represented as matrices $A$ and $B$) that capture the \"difference\" or change needed for the adaptation.\n* **What QLoRA adds:** QLoRA takes LoRA a step further by **compressing the original model's weights into 4-bit precision** (making the base model even smaller in memory), while still training the small LoRA adapters.\n\nThink about how keeping the massive pre-trained backbone frozen while only training a tiny fraction of additional parameters (or quantizing the backbone) drastically reduces memory usage on a single GPU!",
+  "attempts": 1,
+  "cited": [
+   [
+    2,
+    51
+   ]
+  ],
+  "cost_usd": 0.00180421,
+  "error": null,
+  "input_tokens": 5880,
+  "method": "graph2",
+  "model": "gemini-3.5-flash-lite",
+  "output_tokens": 235,
+  "question_id": "q1-single",
+  "requests": 2,
+  "retrieved": {
+   "full": [
+    [
+     2,
+     47
+    ],
+    [
+     2,
+     51
+    ],
+    [
+     2,
+     52
+    ],
+    [
+     2,
+     54
+    ],
+    [
+     2,
+     58
+    ],
+    [
+     2,
+     60
+    ],
+    [
+     2,
+     61
+    ]
+   ],
+   "listed": [
+    [
+     2,
+     6
+    ],
+    [
+     2,
+     23
+    ],
+    [
+     2,
+     45
+    ],
+    [
+     2,
+     46
+    ],
+    [
+     2,
+     48
+    ]
+   ]
+  },
+  "seconds": 6.43,
+  "time_utc": "2026-11-20T11:24:33+00:00",
+  "tool_calls": [
+   {
+    "args": {
+     "query": "LoRA freeze train QLoRA add Lecture 02"
+    },
+    "name": "search_graph_v2"
+   }
+  ]
+ },
+ "graph2:q1-single:2": {
+  "answer": "In Lecture 02 (PDF pp. 51–52), the materials explain LoRA (Low-Rank Adaptation) and QLoRA in the context of Parameter-Efficient Fine-Tuning (PEFT):\n\n* **What LoRA freezes:** The original model weights ($W$) are kept fixed (frozen) and are not updated during training (Lecture 02 / PDF p. 52).\n* **What LoRA trains:** It introduces and trains small additional matrices (represented as low-rank matrices $A$ and $B$), acting like a thin \"sticky note\" added to the original model, which represent the change/difference in weights (Lecture 02 / PDF p. 52).\n* **What QLoRA adds:** QLoRA takes LoRA a step further by compressing the original model's weights into **4-bit precision** (storing values roughly, which reduces memory usage to about 1/4), allowing even larger models to be fine-tuned with minimal GPU memory (Lecture 02 / PDF pp. 51–52).\n\nTo help you connect these concepts: think about how freezing the massive base model parameters and only training a tiny fraction of newly added parameters (or compressing the base weights) makes it feasible to fine-tune large models on a single GPU (Lecture 02 / PDF p. 52).",
+  "attempts": 1,
+  "cited": [
+   [
+    2,
+    52
+   ]
+  ],
+  "cost_usd": 0.00201421,
+  "error": null,
+  "input_tokens": 5880,
+  "method": "graph2",
+  "model": "gemini-3.5-flash-lite",
+  "output_tokens": 319,
+  "question_id": "q1-single",
+  "requests": 2,
+  "retrieved": {
+   "full": [
+    [
+     2,
+     47
+    ],
+    [
+     2,
+     51
+    ],
+    [
+     2,
+     52
+    ],
+    [
+     2,
+     54
+    ],
+    [
+     2,
+     58
+    ],
+    [
+     2,
+     60
+    ],
+    [
+     2,
+     61
+    ]
+   ],
+   "listed": [
+    [
+     2,
+     6
+    ],
+    [
+     2,
+     23
+    ],
+    [
+     2,
+     45
+    ],
+    [
+     2,
+     46
+    ],
+    [
+     2,
+     48
+    ]
+   ]
+  },
+  "seconds": 11.14,
+  "time_utc": "2026-11-20T11:24:45+00:00",
+  "tool_calls": [
+   {
+    "args": {
+     "query": "LoRA freeze train QLoRA add Lecture 02"
+    },
+    "name": "search_graph_v2"
+   }
+  ]
+ },
+ "graph2:q2-multi:1": {
+  "answer": "Lecture 03 explains memory and context management by distinguishing between what happens *within* a single session versus *across* sessions (Lecture 3 / PDF pp. 39, 40). \n\nTo help you think about these concepts:\n\n1. **Compaction vs. Memory across Sessions:**\n   * **Compaction** takes place *within* the context of a single session (or loop). When the conversation history gets too long, older history is replaced with a summary to fit within limits (Lecture 3 / PDF pp. 39, 65).\n   * **Memory across sessions** (such as external save locations, memory tools, or automatic memories) persists information *beyond* a single session so that the agent does not start from zero in the next conversation (Lecture 3 / PDF pp. 38, 39).\n\n2. **Do all daily notes go into long-term memory?**\n   * Look at how OpenClaw processes daily notes (`memory/日付.md`) in its nightly review/dreaming step (Lecture 3 / PDF p. 40). \n   * Notice whether every single detail is copied over to `MEMORY.md`, or if there is a filtering/selection criterion used (e.g., removing duplicates, looking for recurring themes, and only transferring items that meet a certain threshold).",
+  "attempts": 1,
+  "cited": [
+   [
+    3,
+    40
+   ]
+  ],
+  "cost_usd": 0.0021957,
+  "error": null,
+  "input_tokens": 4669,
+  "method": "graph2",
+  "model": "gemini-3.5-flash-lite",
+  "output_tokens": 318,
+  "question_id": "q2-multi",
+  "requests": 2,
+  "retrieved": {
+   "full": [
+    [
+     3,
+     13
+    ],
+    [
+     3,
+     37
+    ],
+    [
+     3,
+     38
+    ],
+    [
+     3,
+     39
+    ],
+    [
+     3,
+     40
+    ],
+    [
+     3,
+     41
+    ],
+    [
+     3,
+     65
+    ]
+   ],
+   "listed": [
+    [
+     2,
+     62
+    ],
+    [
+     3,
+     3
+    ],
+    [
+     3,
+     4
+    ],
+    [
+     3,
+     16
+    ],
+    [
+     3,
+     64
+    ]
+   ]
+  },
+  "seconds": 16.87,
+  "time_utc": "2026-11-20T11:28:21+00:00",
+  "tool_calls": [
+   {
+    "args": {
+     "query": "compaction memory across sessions daily notes long-term memory Lecture 03"
+    },
+    "name": "search_graph_v2"
+   }
+  ]
+ },
+ "graph2:q2-multi:2": {
+  "answer": "講義資料におけるコンパクション（Compaction）とセッションをまたぐメモリの違い、および日々のメモの長期メモリへの移行について確認してみましょう。\n\n### 1. コンパクションとセッションをまたぐメモリの違い\n* **コンパクション（履歴の要約）**\n  * **動作範囲**: 「コンテキストの中（同じセッション）」で機能します (Lecture 3 / PDF p. 39)。\n  * **仕組み**: セッション内の古い履歴をコンパクトな要約に置き換えることで、コンテキストの圧迫を防ぎます (Lecture 3 / PDF p. 39)。\n* **セッションをまたぐメモリ**\n  * **動作範囲**: セッションを超えて情報を引き継ぐための「外の保存先」に働きかけます (Lecture 3 / PDF p. 39)。\n  * **仕組み**: ファイルやデータベースなどの外部ストレージに重要な情報を書き出し、新しいセッションや次回の会話の最初に読み戻して活用します (Lecture 3 / PDF p. 13, 39)。\n\n### 2. すべての日付ノートが長期メモリに入るか？\n* **OpenClawの実装例（Lecture 3 / PDF p. 40）**を見ると、毎晩過去のやり取りを見直す自動処理（dreaming）が行われますが、すべての情報が無条件に長期メモリ（`MEMORY.md`）へ移されるわけではありません。\n* 「集める」「見比べる」「移す」といった手順の中で基準を超えたものだけが残され、一度きりの調べものなどは日々のメモに残るだけに留められます (Lecture 3 / PDF p. 40)。\n* 資料でも「すべてを蓄積すると、古い情報や誤りも一緒に戻ってくる。何を残し、何を消すかを設計する」と解説されています (Lecture 3 / PDF p. 38)。\n\n情報の選別や「何を残すべきか」という点について、どのような基準が考えられそうか少し考えてみると理解が深まりそうです。",
+  "attempts": 1,
+  "cited": [
+   [
+    3,
+    39
+   ],
+   [
+    3,
+    13
+   ],
+   [
+    3,
+    40
+   ],
+   [
+    3,
+    38
+   ]
+  ],
+  "cost_usd": 0.00343565,
+  "error": null,
+  "input_tokens": 12687,
+  "method": "graph2",
+  "model": "gemini-3.5-flash-lite",
+  "output_tokens": 509,
+  "question_id": "q2-multi",
+  "requests": 3,
+  "retrieved": {
+   "full": [
+    [
+     3,
+     13
+    ],
+    [
+     3,
+     37
+    ],
+    [
+     3,
+     38
+    ],
+    [
+     3,
+     39
+    ],
+    [
+     3,
+     40
+    ],
+    [
+     3,
+     41
+    ],
+    [
+     3,
+     65
+    ]
+   ],
+   "listed": [
+    [
+     2,
+     25
+    ],
+    [
+     2,
+     33
+    ],
+    [
+     2,
+     38
+    ],
+    [
+     2,
+     62
+    ],
+    [
+     2,
+     63
+    ],
+    [
+     3,
+     3
+    ],
+    [
+     3,
+     4
+    ],
+    [
+     3,
+     16
+    ],
+    [
+     3,
+     64
+    ]
+   ]
+  },
+  "seconds": 27.14,
+  "time_utc": "2026-11-20T11:28:44+00:00",
+  "tool_calls": [
+   {
+    "args": {
+     "query": "compaction memory across sessions daily notes long-term memory Lecture 03"
+    },
+    "name": "search_graph_v2"
+   },
+   {
+    "args": {
+     "query": "dreaming 選択 criteria OpenClaw long-term memory Lecture 03"
+    },
+    "name": "search_graph_v2"
+   }
+  ]
+ },
+ "graph2:q3-absent:1": {
+  "answer": "講義資料（Lecture 01〜03）を確認しましたが、実際に構築したRAGシステムの**「測定された平均応答時間」や「具体的な正答率（精度）の数値」を示すデータは記載されていません**。\n\n代わりに、講義資料では以下の重要なポイントが強調されています。\n\n- **1回の正解を信じない**: LLMは確率で次の言葉を選ぶため、同じ質問でも答えが毎回変わります。そのため、「1回試して動いた」では実際の正答率は分からず、同じ質問を複数回（例: 5回など）聞いて平均とばらつきを見る必要があります（Lecture 2 / PDF p.13, p.18）。\n- **体感と実測のずれ**: AIツールやシステムの効果について、人は「速くなった」と感じていても、実測すると異なっている場合があります（Lecture 1 / PDF p.27）。そのため、「良くなったかどうかは、測らなければわからない」とされています。\n\nご自身で評価スクリプトや実験を行われた場合は、その実測データ（テストセットに対する正答率や、各リクエストの処理時間の平均など）を確認してみてください。",
+  "attempts": 1,
+  "cited": [
+   [
+    2,
+    13
+   ],
+   [
+    1,
+    27
+   ]
+  ],
+  "cost_usd": 0.0054267,
+  "error": null,
+  "input_tokens": 15614,
+  "method": "graph2",
+  "model": "gemini-3.5-flash-lite",
+  "output_tokens": 297,
+  "question_id": "q3-absent",
+  "requests": 3,
+  "retrieved": {
+   "full": [
+    [
+     1,
+     27
+    ],
+    [
+     2,
+     3
+    ],
+    [
+     2,
+     13
+    ],
+    [
+     2,
+     15
+    ],
+    [
+     2,
+     18
+    ],
+    [
+     3,
+     19
+    ],
+    [
+     3,
+     46
+    ],
+    [
+     3,
+     64
+    ]
+   ],
+   "listed": [
+    [
+     1,
+     19
+    ],
+    [
+     1,
+     49
+    ],
+    [
+     2,
+     27
+    ],
+    [
+     2,
+     28
+    ],
+    [
+     2,
+     42
+    ],
+    [
+     2,
+     43
+    ],
+    [
+     3,
+     7
+    ],
+    [
+     3,
+     20
+    ],
+    [
+     3,
+     56
+    ]
+   ]
+  },
+  "seconds": 44.62,
+  "time_utc": "2026-11-20T11:33:40+00:00",
+  "tool_calls": [
+   {
+    "args": {
+     "query": "average response time accuracy RAG system"
+    },
+    "name": "search_graph_v2"
+   },
+   {
+    "args": {
+     "query": "measured average response time accuracy RAG"
+    },
+    "name": "search_graph_v2"
+   }
+  ]
+ },
+ "graph2:q3-absent:2": {
+  "answer": "The provided lecture materials (Lectures 01–03) do not contain specific benchmark numbers or metrics for the \"measured average response time and accuracy\" of a newly built RAG system. \n\nInstead, the lectures emphasize the principles of how to evaluate RAG and LLM systems properly:\n- **1回の正解を信じない:** Because LLMs are probabilistic, the same question should be asked multiple times (e.g., 5 times) to measure both the average performance and the variance/fluctuation rather than relying on a single successful run (Lecture 2 / PDF p. 13, 18).\n- **Comprehensive Evaluation:** Evaluation should include edge cases, such as questions that the system does not have in its reference documents, to check whether it can correctly say \"I don't know\" instead of confidently hallucinating (Lecture 2 / PDF p. 3, 18).\n\nIf you are following a hands-on exercise or coding tutorial from a specific part of the course not detailed in these lecture slides, check your local execution logs, test outputs, or terminal/notebook cells to find your specific measured response times and accuracy scores!",
+  "attempts": 1,
+  "cited": [
+   [
+    2,
+    13
+   ],
+   [
+    2,
+    3
+   ]
+  ],
+  "cost_usd": 0.0023745,
+  "error": null,
+  "input_tokens": 5665,
+  "method": "graph2",
+  "model": "gemini-3.5-flash-lite",
+  "output_tokens": 270,
+  "question_id": "q3-absent",
+  "requests": 2,
+  "retrieved": {
+   "full": [
+    [
+     2,
+     3
+    ],
+    [
+     2,
+     13
+    ],
+    [
+     2,
+     15
+    ],
+    [
+     2,
+     18
+    ],
+    [
+     3,
+     19
+    ],
+    [
+     3,
+     46
+    ],
+    [
+     3,
+     64
+    ]
+   ],
+   "listed": [
+    [
+     1,
+     19
+    ],
+    [
+     1,
+     49
+    ],
+    [
+     2,
+     27
+    ],
+    [
+     2,
+     42
+    ],
+    [
+     2,
+     43
+    ]
+   ]
+  },
+  "seconds": 17.06,
+  "time_utc": "2026-11-20T11:34:31+00:00",
+  "tool_calls": [
+   {
+    "args": {
+     "query": "average response time accuracy RAG system"
+    },
+    "name": "search_graph_v2"
+   }
+  ]
+ },
+ "graph2:q4-cross-lecture:1": {
+  "answer": "According to the lecture materials, here are the concepts explaining why RAG is recommended over fine-tuning for adding knowledge, and how the course chatbot example applies it:\n\n### Why Lecture 02 Recommends RAG Instead of Fine-Tuning for Knowledge\n* **Behavior vs. Knowledge:** Lecture 02 distinguishes between \"behaviors\" (such as output format, tone, or following specific steps) and \"knowledge\" (such as new facts, deadlines, or latest documents). Small-scale Fine-Tuning (FT) is strong for changing *behaviors*, but very poor and inefficient for adding *knowledge* (Lecture 02 / PDF p. 46).\n* **Inefficiency and Errors:** Research shows that trying to teach new facts through fine-tuning is slow, and doing so often increases errors or hallucinations, whereas RAG consistently outperforms FT on tasks requiring factual knowledge (Lecture 02 / PDF p. 47).\n* **The Core Rule:** When dealing with missing facts or information cutoffs, the standard approach is to pass new information via **RAG** (or choose a newer model), reserving fine-tuning primarily for behavior adjustments (Lecture 02 / PDF p. 27, 46).\n\n---\n\n### How the Lecture 01 Chatbot Example Applies RAG\nIn Lecture 01, the course chatbot example demonstrates RAG by combining retrieval and generation in the following workflow:\n1. **Preparation:** It collects course materials, filters out unnecessary documents, splits them into smaller chunks, and builds a searchable index (Lecture 01 / PDF p. 49).\n2. **Generation:** When a student asks a question, a **Retriever** searches the index to find the relevant source documents. The **LLM** then generates an answer based on those retrieved documents, and even cites the source material (Lecture 01 / PDF p. 49).",
+  "attempts": 1,
+  "cited": [
+   [
+    2,
+    46
+   ],
+   [
+    2,
+    47
+   ],
+   [
+    2,
+    27
+   ],
+   [
+    1,
+    49
+   ]
+  ],
+  "cost_usd": 0.0026606,
+  "error": null,
+  "input_tokens": 5252,
+  "method": "graph2",
+  "model": "gemini-3.5-flash-lite",
+  "output_tokens": 434,
+  "question_id": "q4-cross-lecture",
+  "requests": 2,
+  "retrieved": {
+   "full": [
+    [
+     1,
+     49
+    ],
+    [
+     2,
+     24
+    ],
+    [
+     2,
+     27
+    ],
+    [
+     2,
+     46
+    ],
+    [
+     2,
+     47
+    ],
+    [
+     2,
+     53
+    ],
+    [
+     2,
+     57
+    ]
+   ],
+   "listed": [
+    [
+     1,
+     19
+    ],
+    [
+     2,
+     3
+    ],
+    [
+     2,
+     20
+    ],
+    [
+     2,
+     23
+    ],
+    [
+     2,
+     50
+    ]
+   ]
+  },
+  "seconds": 13.56,
+  "time_utc": "2026-11-20T11:40:31+00:00",
+  "tool_calls": [
+   {
+    "args": {
+     "query": "RAG versus fine tuning Lecture 02 chatbot Lecture 01"
+    },
+    "name": "search_graph_v2"
+   }
+  ]
+ },
+ "graph2:q4-cross-lecture:2": {
+  "answer": "講義資料によると、知識の追加においてファインチューニング（FT）ではなくRAGが推奨される理由と、講義チャットボットでの具体的な適用方法は以下のように説明されています。\n\n### 1. なぜ Lecture 02 では知識の追加に RAG を推奨するのか？\n* **役割の違い（知識 vs 振る舞い）**: \n  * 小規模な FT は出力形式や口調、手順の守り方といった**「振る舞い」**を変えるのには強力ですが、新しい事実や最新資料といった**「知識」**の追加には向いていません（Lecture 02 / PDF p.46）。\n* **非効率さと誤りの増加**: \n  * 新しい知識を FT で覚えさせるのは非効率であり、覚えさせようとするほどハルシネーション（誤り）が増える傾向があることが研究等でも報告されています（Lecture 02 / PDF p.47）。\n* **基本線**: \n  * そのため、新しい情報や資料の中身など「知識」が不足している場合の最初の打ち手は、FTではなく資料を検索して渡す **RAG** が基本となります（Lecture 02 / PDF p.27, p.46）。\n\n---\n\n### 2. Lecture 01 のチャットボット例ではどのように RAG を適用しているか？\n* **RAG（検索拡張生成）の仕組み**: \n  * 講義資料などをあらかじめ収集・処理しておき、受講生からの質問に関係する資料を検索して、その内容を基にLLMに回答させる仕組みです（Lecture 01 / PDF p.49）。\n* **具体的なプロセス（準備と回答の流れ）**:\n  1. **データ準備**: 講義資料などを集めてフィルタリングし、小さな断片（チャンク）に分けたうえで検索用の索引（インデックス）を作ります（Lecture 01 / PDF p.49）。\n  2. **検索と生成**: 受講生から質問があると、Retriever（検索器）が索引から関連資料を探し出し、LLMがその資料を基に回答を生成して根拠となる資料も一緒に提示します（Lecture 01 / PDF p.49）。\n\nまずはご自身で「知識不足（最新情報や資料の内容）にはどの手法が適しているか」という視点から整理し、チャットボットの処理の流れを確認してみてください。",
+  "attempts": 1,
+  "cited": [
+   [
+    2,
+    46
+   ],
+   [
+    2,
+    47
+   ],
+   [
+    2,
+    27
+   ],
+   [
+    1,
+    49
+   ]
+  ],
+  "cost_usd": 0.00482261,
+  "error": null,
+  "input_tokens": 14644,
+  "method": "graph2",
+  "model": "gemini-3.5-flash-lite",
+  "output_tokens": 611,
+  "question_id": "q4-cross-lecture",
+  "requests": 3,
+  "retrieved": {
+   "full": [
+    [
+     1,
+     19
+    ],
+    [
+     1,
+     49
+    ],
+    [
+     2,
+     3
+    ],
+    [
+     2,
+     6
+    ],
+    [
+     2,
+     24
+    ],
+    [
+     2,
+     27
+    ],
+    [
+     2,
+     28
+    ],
+    [
+     2,
+     46
+    ],
+    [
+     2,
+     47
+    ],
+    [
+     2,
+     53
+    ],
+    [
+     2,
+     57
+    ]
+   ],
+   "listed": [
+    [
+     2,
+     13
+    ],
+    [
+     2,
+     20
+    ],
+    [
+     2,
+     23
+    ],
+    [
+     2,
+     50
+    ],
+    [
+     2,
+     58
+    ]
+   ]
+  },
+  "seconds": 19.14,
+  "time_utc": "2026-11-20T11:40:50+00:00",
+  "tool_calls": [
+   {
+    "args": {
+     "query": "RAG fine-tuning lecture 02 chatbot lecture 01"
+    },
+    "name": "search_graph_v2"
+   },
+   {
+    "args": {
+     "query": "Lecture 02 Fine-Tuning knowledge RAG lec02-main-p046 lec02-main-p047"
+    },
+    "name": "search_graph_v2"
+   }
+  ]
+ },
+ "graph:q1-single:1": {
+  "answer": "Lecture 02の資料に基づくと、LoRAおよびQLoRAの仕組みについて以下のように説明されています（Lecture 02 / PDF p.51-52）。\n\n* **LoRAが凍結（固定）するもの**\n  * モデルの元の重み（本体）は固定し、学習は行いません（Lecture 02 / PDF p.52）。\n* **LoRAが学習するもの**\n  * 変化分を表す小さな行列 $A$・$B$（細長い2つの小さな行列の積、低ランク）だけを学習します（Lecture 02 / PDF p.51-52）。\n* **QLoRAが追加すること**\n  * 基本的なLoRAの仕組みに加えて、**元の重みを4bit（数値を粗く保存）に圧縮する**ことを追加しています（Lecture 02 / PDF p.51-52）。これにより、さらに少ないメモリ（大きなモデルでもGPU1台など）で調整できるようになります。",
+  "attempts": 1,
+  "cited": [
+   [
+    2,
+    51
+   ],
+   [
+    2,
+    52
+   ]
+  ],
+  "cost_usd": 0.002336,
+  "error": null,
+  "input_tokens": 5770,
+  "method": "graph",
+  "model": "gemini-3.5-flash-lite",
+  "output_tokens": 242,
+  "question_id": "q1-single",
+  "requests": 2,
+  "retrieved": {
+   "full": [
+    [
+     2,
+     47
+    ],
+    [
+     2,
+     49
+    ],
+    [
+     2,
+     50
+    ],
+    [
+     2,
+     51
+    ],
+    [
+     2,
+     52
+    ],
+    [
+     2,
+     53
+    ],
+    [
+     2,
+     59
+    ],
+    [
+     2,
+     60
+    ],
+    [
+     2,
+     61
+    ],
+    [
+     2,
+     62
+    ]
+   ],
+   "listed": []
+  },
+  "seconds": 4.24,
+  "time_utc": "2026-11-20T11:24:05+00:00",
+  "tool_calls": [
+   {
+    "args": {
+     "query": "LoRA freeze train QLoRA add Lecture 02"
+    },
+    "name": "search_graph"
+   }
+  ]
+ },
+ "graph:q1-single:2": {
+  "answer": "Lecture 02 の資料では、LoRA（Low-Rank Adaptation）および QLoRA について以下のように説明されています。\n\n* **LoRA が凍結（freeze）するもの**：\n  * 元の重み（Pretrained Weights）は固定し、学習は行いません（Lecture 2 / PDF p. 52）［注：本体はそのまま固定］。\n* **LoRA が学習（train）するもの**：\n  * 変化分を表す小さな行列（細長い2つの行列の積で表される低ランクの追加部分、スライドでは行列 A・B）だけを学習します（Lecture 2 / PDF p. 51, 52）。\n* **QLoRA が追加するもの**：\n  * LoRA の手法に加えて、**元の重みを 4bit（数値を粗く保存）に圧縮する**処理を追加します。これにより、さらに少ないメモリ（GPU 1台）で大きなモデルの調整が可能になります（Lecture 2 / PDF p. 51, 52）。\n\nモデルの本体や重みをそのまま保持・圧縮しながら、ごく一部の小さな差分（付箋のように書き足すイメージの行列）だけを効率よく学習する仕組みについて、スライドの図や解説（PDF p. 51〜52）も併せて見直してみましょう。",
+  "attempts": 1,
+  "cited": [
+   [
+    2,
+    52
+   ],
+   [
+    2,
+    51
+   ]
+  ],
+  "cost_usd": 0.0025229,
+  "error": null,
+  "input_tokens": 5768,
+  "method": "graph",
+  "model": "gemini-3.5-flash-lite",
+  "output_tokens": 317,
+  "question_id": "q1-single",
+  "requests": 2,
+  "retrieved": {
+   "full": [
+    [
+     2,
+     47
+    ],
+    [
+     2,
+     49
+    ],
+    [
+     2,
+     50
+    ],
+    [
+     2,
+     51
+    ],
+    [
+     2,
+     52
+    ],
+    [
+     2,
+     53
+    ],
+    [
+     2,
+     59
+    ],
+    [
+     2,
+     60
+    ],
+    [
+     2,
+     61
+    ],
+    [
+     2,
+     62
+    ]
+   ],
+   "listed": []
+  },
+  "seconds": 11.9,
+  "time_utc": "2026-11-20T11:24:15+00:00",
+  "tool_calls": [
+   {
+    "args": {
+     "query": "Lecture 02 LoRA freeze train QLoRA"
+    },
+    "name": "search_graph"
+   }
+  ]
+ },
+ "graph:q2-multi:1": {
+  "answer": "Lecture 03の資料をもとに、それぞれの疑問について考えてみましょう。\n\n### 1. コンパクションとメモリ（セッションをまたぐ仕組み）の違い\n* **コンパクション（Compaction）**\n  * **範囲：** 「同じセッション（コンテキストの中）」で働きます（Lecture 3 / PDF p.39）。\n  * **動作：** 会話が長くなりコンテキストの上限に近づいたとき、古い履歴を要約して置き換えることでトークンを圧縮します（Lecture 3 / PDF p.38, p.39）。\n* **メモリ（セッションをまたぐ記録）**\n  * **範囲：** セッションをまたいで外の保存先（ファイルなど）に情報を保持します（Lecture 3 / PDF p.39）。\n  * **動作：** 次回の会話や別のセッションでも前回の重要な学びや文脈を引き継げるようにします（Lecture 3 / PDF p.38, p.39, p.40）。\n\n---\n\n### 2. すべての日付ノートが長期メモリに入りますか？\n* **いいえ、すべては入りません。**\n  * 講義内のOpenClawの例では、日々のメモ（`memory/日付.md`）として一度記録されたもののうち、毎晩の見直し（dreaming）の過程で「重複を除いて候補を並べる」「何度も出てくるテーマを探す」といった基準に照らし、**基準を超えたものだけ**が長期メモリ（`MEMORY.md`）に移されます（Lecture 3 / PDF p.40）。\n  * そのため、一度きりの調べものなどは日々のメモに残るだけで、長期メモリが膨らまないような工夫がされています（Lecture 3 / PDF p.40）。\n\n「すべてを蓄積すると、古い情報や誤りも一緒に戻ってくる。何を残し、何を消すかを設計する」という視点を意識しながら、教材の図解や仕組みを見直してみましょう（Lecture 3 / PDF p.38, p.40）。",
+  "attempts": 1,
+  "cited": [
+   [
+    3,
+    39
+   ],
+   [
+    3,
+    38
+   ],
+   [
+    3,
+    40
+   ]
+  ],
+  "cost_usd": 0.0027957,
+  "error": null,
+  "input_tokens": 5294,
+  "method": "graph",
+  "model": "gemini-3.5-flash-lite",
+  "output_tokens": 483,
+  "question_id": "q2-multi",
+  "requests": 2,
+  "retrieved": {
+   "full": [
+    [
+     3,
+     37
+    ],
+    [
+     3,
+     38
+    ],
+    [
+     3,
+     39
+    ],
+    [
+     3,
+     40
+    ],
+    [
+     3,
+     41
+    ],
+    [
+     3,
+     63
+    ],
+    [
+     3,
+     64
+    ],
+    [
+     3,
+     65
+    ],
+    [
+     3,
+     66
+    ],
+    [
+     3,
+     67
+    ]
+   ],
+   "listed": []
+  },
+  "seconds": 14.18,
+  "time_utc": "2026-11-20T11:27:07+00:00",
+  "tool_calls": [
+   {
+    "args": {
+     "query": "compaction memory across sessions daily notes long-term memory Lecture 03"
+    },
+    "name": "search_graph"
+   }
+  ]
+ },
+ "graph:q2-multi:2": {
+  "answer": "Lecture 03の資料をもとに、それぞれの仕組みについて考えてみましょう。\n\n### 1. コンパクションとメモリ（セッションをまたぐかどうかの違い）\n* **コンパクション（履歴の要約）：**\n  * 主に同じセッションのコンテキスト（ループの中の履歴）内で行われる仕組みです。古い履歴を要約に置き換えることでコンテキストの圧迫を防ぎます（Lecture 03 / PDF p.39, 65）。\n* **メモリ（セッションをまたぐ記録）：**\n  * セッションを超えて情報を引き継ぐための外の保存先（ファイルやメモリツールなど）です（Lecture 03 / PDF p.39）。\n\n### 2. すべての日付メモが長期メモリに入るのか？\n* OpenClawの例では、日々のメモ（`memory/日付.md`）が毎晩自動で見直され（dreaming）、重複の除外やテーマの比較が行われます（Lecture 03 / PDF p.40）。\n* すべての情報がそのまま長期メモリに移行するわけではなく、**基準を超えたものだけ**が長期メモリ（`MEMORY.md`）に残り、一度きりの調べものなどは日々のメモに残るだけで長期メモリが膨らまない仕組みになっています（Lecture 03 / PDF p.40）。\n\n情報がすべて蓄積されるとどのようなメリット・デメリットがあるか、ぜひ「何を残し、何を消すか」という視点から設計を考えてみてください（Lecture 03 / PDF p.38）。",
+  "attempts": 2,
+  "cited": [
+   [
+    3,
+    39
+   ],
+   [
+    3,
+    40
+   ],
+   [
+    3,
+    38
+   ]
+  ],
+  "cost_usd": 0.0025386,
+  "error": null,
+  "input_tokens": 5387,
+  "method": "graph",
+  "model": "gemini-3.5-flash-lite",
+  "output_tokens": 369,
+  "question_id": "q2-multi",
+  "requests": 2,
+  "retrieved": {
+   "full": [
+    [
+     3,
+     36
+    ],
+    [
+     3,
+     37
+    ],
+    [
+     3,
+     38
+    ],
+    [
+     3,
+     39
+    ],
+    [
+     3,
+     40
+    ],
+    [
+     3,
+     63
+    ],
+    [
+     3,
+     64
+    ],
+    [
+     3,
+     65
+    ],
+    [
+     3,
+     66
+    ],
+    [
+     3,
+     67
+    ]
+   ],
+   "listed": []
+  },
+  "seconds": 14.83,
+  "time_utc": "2026-11-20T11:27:27+00:00",
+  "tool_calls": [
+   {
+    "args": {
+     "query": "compaction memory long-term memory daily notes Lecture 03"
+    },
+    "name": "search_graph"
+   }
+  ]
+ },
+ "graph:q3-absent:1": {
+  "answer": "講義資料（Lecture 01～03）を確認したところ、現時点の教材では「RAGシステムを実際に構築して平均応答時間や精度を測定した具体的な数値」は記載されていません。\n\nそのため、その質問に対する答えは教材からは確認できません。\n\n---\n\n### ヒント・考え方\nLLMやRAGのシステムを評価する際には、以下のような点に注意する必要があります：\n1. **ばらつきの確認**: LLMは確率的に言葉を選ぶため、1回試しただけでは正確な性能は分かりません。同じ質問を複数回行い、その平均やばらつきを見る必要があります（Lecture 02 / PDF p.13）。\n2. **評価の実装**: 実際のシステム開発では、特定の評価セットを用いて正答率や応答時間を測定・検証することが重要になります。",
+  "attempts": 2,
+  "cited": [
+   [
+    2,
+    13
+   ]
+  ],
+  "cost_usd": 0.00384637,
+  "error": null,
+  "input_tokens": 14650,
+  "method": "graph",
+  "model": "gemini-3.5-flash-lite",
+  "output_tokens": 220,
+  "question_id": "q3-absent",
+  "requests": 3,
+  "retrieved": {
+   "full": [
+    [
+     1,
+     18
+    ],
+    [
+     1,
+     19
+    ],
+    [
+     1,
+     20
+    ],
+    [
+     1,
+     47
+    ],
+    [
+     1,
+     48
+    ],
+    [
+     1,
+     49
+    ],
+    [
+     1,
+     50
+    ],
+    [
+     2,
+     12
+    ],
+    [
+     2,
+     13
+    ],
+    [
+     2,
+     14
+    ],
+    [
+     3,
+     18
+    ],
+    [
+     3,
+     19
+    ],
+    [
+     3,
+     20
+    ],
+    [
+     3,
+     62
+    ],
+    [
+     3,
+     63
+    ],
+    [
+     3,
+     64
+    ],
+    [
+     3,
+     65
+    ]
+   ],
+   "listed": []
+  },
+  "seconds": 29.46,
+  "time_utc": "2026-11-20T11:31:28+00:00",
+  "tool_calls": [
+   {
+    "args": {
+     "query": "RAG system average response time accuracy measured"
+    },
+    "name": "search_graph"
+   },
+   {
+    "args": {
+     "query": "RAG システム lecture"
+    },
+    "name": "search_graph"
+   }
+  ]
+ },
+ "graph:q3-absent:2": {
+  "answer": "講義（講義01〜03）のメイン資料内では、実際に構築したRAGシステムの具体的な平均応答時間や精度についての測定値は記載されていません。\n\nヒントとして、講義資料（例：講義2）では以下のように解説されています：\n- LLMは確率で次の言葉を選ぶため、同じ質問でも答えは毎回変わり、1回試しただけでは実際の正答率は分かりません（Lecture 2 / PDF p.13）。\n- そのため、評価を行う際には同じ質問を複数回行い、その平均やばらつき（揺れ）を確認することが重要であるとされています（Lecture 2 / PDF p.12-13）。",
+  "attempts": 2,
+  "cited": [
+   [
+    2,
+    13
+   ],
+   [
+    2,
+    12
+   ]
+  ],
+  "cost_usd": 0.00392773,
+  "error": null,
+  "input_tokens": 15173,
+  "method": "graph",
+  "model": "gemini-3.5-flash-lite",
+  "output_tokens": 190,
+  "question_id": "q3-absent",
+  "requests": 3,
+  "retrieved": {
+   "full": [
+    [
+     2,
+     11
+    ],
+    [
+     2,
+     12
+    ],
+    [
+     2,
+     13
+    ],
+    [
+     2,
+     14
+    ],
+    [
+     3,
+     18
+    ],
+    [
+     3,
+     19
+    ],
+    [
+     3,
+     20
+    ],
+    [
+     3,
+     62
+    ],
+    [
+     3,
+     63
+    ],
+    [
+     3,
+     64
+    ],
+    [
+     3,
+     65
+    ]
+   ],
+   "listed": []
+  },
+  "seconds": 31.61,
+  "time_utc": "2026-11-20T11:32:31+00:00",
+  "tool_calls": [
+   {
+    "args": {
+     "query": "average response time accuracy RAG system"
+    },
+    "name": "search_graph"
+   },
+   {
+    "args": {
+     "query": "RAG system response time accuracy"
+    },
+    "name": "search_graph"
+   }
+  ]
+ },
+ "graph:q4-cross-lecture:1": {
+  "answer": "Lecture 02 and Lecture 1 provide specific guidance on why RAG is recommended over fine-tuning for knowledge, as well as how RAG is applied in the lecture chatbot example:\n\n### 1. Why Lecture 02 Recommends RAG Instead of Fine-Tuning for Adding Knowledge\n* **FT vs. RAG Roles:** Lecture 02 distinguishes between \"behaviors\" (output formats, tone, procedures) and \"knowledge\" (new facts, latest documents). It notes that Fine-Tuning (FT) is effective for changing a model's *behavior* with a small amount of examples, but it is inefficient and poorly suited for adding *knowledge* (Lecture 2 / PDF p. 46).\n* **Research Evidence:** Research studies cited in Lecture 02 show that trying to teach new facts via fine-tuning often leads to increased errors or hallucinations (e.g., Gekhman et al., 2024), whereas RAG consistently outperforms FT when answering knowledge-dependent questions (e.g., Ovadia et al., 2024) (Lecture 2 / PDF p. 47).\n* **Practical Fit for Chatbots:** For a chatbot addressing specific factual queries from course materials, facts cannot easily be instilled through fine-tuning alone. Instead, retrieving the information and providing it dynamically via RAG is the appropriate approach (Lecture 2 / PDF p. 53).\n\n### 2. How the Lecture 01 Chatbot Example Applies RAG\n* **Core Mechanism:** The lecture chatbot example (such as the large-scale lecture QA chatbot used in the research lab) applies RAG by **searching through collected lecture materials before generating an answer** (Lecture 1 / PDF p. 19, 49).\n* **Preparation Phase:** \n  1. *Data Collection:* Gathers lecture materials and documents (Lecture 1 / PDF p. 49).\n  2. *Filtering & Chunking:* Removes unnecessary text and breaks documents down into smaller pieces (Lecture 1 / PDF p. 49).\n  3. *Indexing:* Creates a searchable index/retrieval index from these chunks (Lecture 1 / PDF p. 49).\n* **Response Phase:** When a student asks a question, a retriever searches the index for relevant document chunks, which are then fed alongside the user's query into the Large Language Model (LLM) so it can generate an accurate response complete with source citations and references (Lecture 1 / PDF p. 19, 49).",
+  "attempts": 1,
+  "cited": [
+   [
+    2,
+    46
+   ],
+   [
+    2,
+    47
+   ],
+   [
+    2,
+    53
+   ],
+   [
+    1,
+    19
+   ],
+   [
+    1,
+    49
+   ]
+  ],
+  "cost_usd": 0.0049613,
+  "error": null,
+  "input_tokens": 15284,
+  "method": "graph",
+  "model": "gemini-3.5-flash-lite",
+  "output_tokens": 590,
+  "question_id": "q4-cross-lecture",
+  "requests": 3,
+  "retrieved": {
+   "full": [
+    [
+     1,
+     18
+    ],
+    [
+     1,
+     19
+    ],
+    [
+     1,
+     20
+    ],
+    [
+     1,
+     47
+    ],
+    [
+     1,
+     48
+    ],
+    [
+     1,
+     49
+    ],
+    [
+     1,
+     50
+    ],
+    [
+     2,
+     2
+    ],
+    [
+     2,
+     3
+    ],
+    [
+     2,
+     4
+    ],
+    [
+     2,
+     44
+    ],
+    [
+     2,
+     45
+    ],
+    [
+     2,
+     46
+    ],
+    [
+     2,
+     47
+    ],
+    [
+     2,
+     48
+    ],
+    [
+     2,
+     49
+    ],
+    [
+     2,
+     51
+    ],
+    [
+     2,
+     52
+    ],
+    [
+     2,
+     53
+    ],
+    [
+     2,
+     54
+    ]
+   ],
+   "listed": []
+  },
+  "seconds": 21.67,
+  "time_utc": "2026-11-20T11:39:36+00:00",
+  "tool_calls": [
+   {
+    "args": {
+     "query": "Lecture 02 RAG fine tuning knowledge"
+    },
+    "name": "search_graph"
+   },
+   {
+    "args": {
+     "query": "Lecture 01 chatbot RAG example"
+    },
+    "name": "search_graph"
+   }
+  ]
+ },
+ "graph:q4-cross-lecture:2": {
+  "answer": "Lecture 02 and Lecture 1 provide clear guidance on why RAG (Retrieval-Augmented Generation) is recommended over fine-tuning for adding knowledge, and how the course chatbot applies it. Here is how you can think about both parts:\n\n### 1. Why Lecture 02 Recommends RAG Instead of Fine-Tuning for Adding Knowledge\n* **Nature of the Task:** Lecture 02 distinguishes between \"behavior\" (output format, tone, and following instructions) and \"knowledge\" (new facts or up-to-date documents). Small-scale Fine-Tuning (FT) is effective for shaping behavior using a small amount of examples, but it is inefficient and poorly suited for injecting new knowledge (Lecture 02 / PDF p. 46).\n* **Research Evidence:** Research studies cited in Lecture 02 (such as Ovadia et al., 2024 and Gekhman et al., 2024) show that RAG consistently outperforms FT on knowledge-based tasks, and trying to teach new facts through FT can actually increase errors and hallucinations as the model struggles to memorize them (Lecture 02 / PDF p. 47). \n* **Core Rule of Thumb:** The basic rule taught is: *\"If it's behavior, use Fine-Tuning (if prompts aren't enough); if it's knowledge, search first (RAG)\"* (Lecture 02 / PDF p. 46).\n\n### 2. How the Course Chatbot Example in Lecture 01 Applies RAG\n* **The Use Case:** The example chatbot in Lecture 01 is designed to answer questions about a large-scale lecture (e.g., answering student queries based on lecture materials) (Lecture 01 / PDF p. 19).\n* **The Two-Step RAG Process:**\n  1. **Preparation (Indexing):** Lecture materials are collected, filtered, split into small chunks, and indexed to make them searchable (Lecture 01 / PDF p. 49).\n  2. **Generation (Retrieval + LLM):** When a student asks a question, a retriever searches the index for relevant document chunks. These retrieved documents are then passed into the LLM along with the user's question so the model can generate an accurate answer grounded in the actual course materials, while also providing sources/citations (Lecture 01 / PDF p. 19, 49).",
+  "attempts": 1,
+  "cited": [
+   [
+    2,
+    46
+   ],
+   [
+    2,
+    47
+   ],
+   [
+    1,
+    19
+   ],
+   [
+    1,
+    49
+   ]
+  ],
+  "cost_usd": 0.00436401,
+  "error": null,
+  "input_tokens": 13482,
+  "method": "graph",
+  "model": "gemini-3.5-flash-lite",
+  "output_tokens": 567,
+  "question_id": "q4-cross-lecture",
+  "requests": 3,
+  "retrieved": {
+   "full": [
+    [
+     1,
+     18
+    ],
+    [
+     1,
+     19
+    ],
+    [
+     1,
+     20
+    ],
+    [
+     1,
+     47
+    ],
+    [
+     1,
+     48
+    ],
+    [
+     1,
+     49
+    ],
+    [
+     1,
+     50
+    ],
+    [
+     2,
+     2
+    ],
+    [
+     2,
+     3
+    ],
+    [
+     2,
+     4
+    ],
+    [
+     2,
+     5
+    ],
+    [
+     2,
+     6
+    ],
+    [
+     2,
+     7
+    ],
+    [
+     2,
+     44
+    ],
+    [
+     2,
+     45
+    ],
+    [
+     2,
+     46
+    ],
+    [
+     2,
+     47
+    ],
+    [
+     2,
+     48
+    ],
+    [
+     2,
+     49
+    ]
+   ],
+   "listed": []
+  },
+  "seconds": 21.44,
+  "time_utc": "2026-11-20T11:40:03+00:00",
+  "tool_calls": [
+   {
+    "args": {
+     "query": "RAG fine tuning knowledge Lecture 02"
+    },
+    "name": "search_graph"
+   },
+   {
+    "args": {
+     "query": "Lecture 01 chatbot RAG"
+    },
+    "name": "search_graph"
+   }
+  ]
+ },
+ "tree:q1-single:1": {
+  "answer": "Lecture 02の資料（PDF p.51–52）によると、LoRAとQLoRAの仕組みは以下のようになっています。\n\n* **LoRA（Low-Rank Adaptation）が凍結（Freeze）するものと訓練するもの：**\n  * **凍結するもの：** 元のモデルの重み（$W$）はそのまま固定（Freeze）し、学習させません。\n  * **訓練するもの：** 本体の代わりに、変化分を表す小さな行列（低ランクの行列 $A$ と $B$）のパラメータだけを訓練します（本体に薄い付箋を書き足すようなイメージです）。\n\n* **QLoRA（Quantized LoRA）が追加するもの：**\n  * LoRAの手法に加えて、**元の重みを4bitに量子化（圧縮）する**というアプローチを追加しています（Lecture 02 / PDF p.51–52）。これにより、モデル本体のメモリ消費をさらに大幅に抑え、GPU 1台（Google Colabなど）でもより大きなモデルを効率よく微調整できるようにしています。\n\n**学習のヒント：**\n「なぜすべてを更新するFull Fine-Tuningではなく、一部の差分や圧縮を組み合わせる必要があるのか？」というGPUメモリや計算コストの観点から考えると、PEFT（Parameter-Efficient Fine-Tuning）の位置づけがよりクリアになりますよ。",
+  "attempts": 1,
+  "cited": [
+   [
+    2,
+    51
+   ]
+  ],
+  "cost_usd": 0.0051447,
+  "error": null,
+  "input_tokens": 13699,
+  "method": "tree",
+  "model": "gemini-3.5-flash-lite",
+  "output_tokens": 414,
+  "question_id": "q1-single",
+  "requests": 6,
+  "retrieved": {
+   "full": [
+    [
+     2,
+     51
+    ],
+    [
+     2,
+     52
+    ]
+   ],
+   "listed": [
+    [
+     2,
+     1
+    ],
+    [
+     2,
+     2
+    ],
+    [
+     2,
+     3
+    ],
+    [
+     2,
+     4
+    ],
+    [
+     2,
+     5
+    ],
+    [
+     2,
+     6
+    ],
+    [
+     2,
+     45
+    ],
+    [
+     2,
+     46
+    ],
+    [
+     2,
+     47
+    ],
+    [
+     2,
+     48
+    ],
+    [
+     2,
+     49
+    ],
+    [
+     2,
+     50
+    ],
+    [
+     2,
+     53
+    ],
+    [
+     2,
+     54
+    ],
+    [
+     2,
+     55
+    ],
+    [
+     2,
+     56
+    ],
+    [
+     2,
+     57
+    ],
+    [
+     2,
+     58
+    ],
+    [
+     2,
+     59
+    ],
+    [
+     2,
+     60
+    ],
+    [
+     2,
+     61
+    ],
+    [
+     2,
+     62
+    ]
+   ]
+  },
+  "seconds": 14.65,
+  "time_utc": "2026-11-20T11:23:21+00:00",
+  "tool_calls": [
+   {
+    "args": {},
+    "name": "browse_tree"
+   },
+   {
+    "args": {
+     "node_id": "lec02-main"
+    },
+    "name": "browse_tree"
+   },
+   {
+    "args": {
+     "node_id": "lec02-main-s045"
+    },
+    "name": "browse_tree"
+   },
+   {
+    "args": {
+     "node_id": "lec02-main-p052"
+    },
+    "name": "browse_tree"
+   },
+   {
+    "args": {
+     "node_id": "lec02-main-p051"
+    },
+    "name": "browse_tree"
+   }
+  ]
+ },
+ "tree:q1-single:2": {
+  "answer": "Lecture 02の資料（PDF p.51–52）によると、LoRAとQLoRAの仕組みは以下のようになっています。\n\n* **LoRAが「凍結（Freeze）」するもの**：\n  * モデルの**元の重み（Pretrained Weights $W$）**をそのまま固定し、学習しません（Lecture 02 / PDF p.52）。\n* **LoRAが「学習（Train）」するもの**：\n  * 元の重みとは別に、変化分を表す小さな「追加の行列（低ランクの行列 $A$ と $B$）」だけを学習します（Lecture 02 / PDF p.52）。\n* **QLoRAが「追加」するもの**：\n  * LoRAの仕組みに加えて、**元の重みを4bitに量子化（圧縮）**することを追加しています（Lecture 02 / PDF p.51–52）。これにより、大きなモデルでもさらに少ないGPUメモリ（例：16GBのColab環境など）で微調整（Fine-Tuning）できるようになります。\n\n本体のモデル全体をフルで更新するのではなく、このように薄い「付箋」のような部分だけを効率よく学習させる仕組み（PEFT）がどのようにメモリを節約しているか、スライドの図（PDF p.51–52の「青：元の重み」と「橙：小さな行列」の対比）を合わせて確認してみましょう。",
+  "attempts": 1,
+  "cited": [
+   [
+    2,
+    52
+   ],
+   [
+    2,
+    51
+   ]
+  ],
+  "cost_usd": 0.00462781,
+  "error": null,
+  "input_tokens": 13699,
+  "method": "tree",
+  "model": "gemini-3.5-flash-lite",
+  "output_tokens": 424,
+  "question_id": "q1-single",
+  "requests": 6,
+  "retrieved": {
+   "full": [
+    [
+     2,
+     51
+    ],
+    [
+     2,
+     52
+    ]
+   ],
+   "listed": [
+    [
+     2,
+     1
+    ],
+    [
+     2,
+     2
+    ],
+    [
+     2,
+     3
+    ],
+    [
+     2,
+     4
+    ],
+    [
+     2,
+     5
+    ],
+    [
+     2,
+     6
+    ],
+    [
+     2,
+     45
+    ],
+    [
+     2,
+     46
+    ],
+    [
+     2,
+     47
+    ],
+    [
+     2,
+     48
+    ],
+    [
+     2,
+     49
+    ],
+    [
+     2,
+     50
+    ],
+    [
+     2,
+     53
+    ],
+    [
+     2,
+     54
+    ],
+    [
+     2,
+     55
+    ],
+    [
+     2,
+     56
+    ],
+    [
+     2,
+     57
+    ],
+    [
+     2,
+     58
+    ],
+    [
+     2,
+     59
+    ],
+    [
+     2,
+     60
+    ],
+    [
+     2,
+     61
+    ],
+    [
+     2,
+     62
+    ]
+   ]
+  },
+  "seconds": 16.95,
+  "time_utc": "2026-11-20T11:23:42+00:00",
+  "tool_calls": [
+   {
+    "args": {},
+    "name": "browse_tree"
+   },
+   {
+    "args": {
+     "node_id": "lec02-main"
+    },
+    "name": "browse_tree"
+   },
+   {
+    "args": {
+     "node_id": "lec02-main-s045"
+    },
+    "name": "browse_tree"
+   },
+   {
+    "args": {
+     "node_id": "lec02-main-p052"
+    },
+    "name": "browse_tree"
+   },
+   {
+    "args": {
+     "node_id": "lec02-main-p051"
+    },
+    "name": "browse_tree"
+   }
+  ]
+ },
+ "tree:q2-multi:1": {
+  "answer": "To answer your questions about compaction and memory across sessions, let's look at how Lecture 3 structures these concepts:\n\n1. **Compaction vs. Memory across sessions:**\n   - **Compaction** happens **within the same session** (inside the context). It takes older conversation history and condenses it into a summary to keep the context from overflowing (Lecture 3 / PDF p. 39).\n   - **Memory across sessions** uses external storage (like files or database tools) to preserve information and state *between* different sessions so the agent doesn't have to start from scratch every time (Lecture 3 / PDF pp. 39–40).\n\n2. **Do all daily notes go into long-term memory?**\n   - Look at the OpenClaw example on PDF page 40. When the system reviews daily notes (e.g., `memory/日付.md`) through its nightly \"dreaming\" process, does it copy *everything* into `MEMORY.md` (long-term memory), or does it apply a filter? \n   - Check the notes at the bottom of that page regarding \"一度きりの調べものは...\" (one-off searches...) to see what happens to information that doesn't meet the criteria.\n\nThink about how filtering out one-off details prevents long-term memory from bloating!",
+  "attempts": 1,
+  "cited": [
+   [
+    3,
+    39
+   ]
+  ],
+  "cost_usd": 0.0062483,
+  "error": null,
+  "input_tokens": 16836,
+  "method": "tree",
+  "model": "gemini-3.5-flash-lite",
+  "output_tokens": 479,
+  "question_id": "q2-multi",
+  "requests": 9,
+  "retrieved": {
+   "full": [
+    [
+     3,
+     37
+    ],
+    [
+     3,
+     38
+    ],
+    [
+     3,
+     39
+    ],
+    [
+     3,
+     40
+    ],
+    [
+     3,
+     41
+    ]
+   ],
+   "listed": [
+    [
+     3,
+     1
+    ],
+    [
+     3,
+     2
+    ],
+    [
+     3,
+     3
+    ],
+    [
+     3,
+     4
+    ]
+   ]
+  },
+  "seconds": 35.44,
+  "time_utc": "2026-11-20T11:25:49+00:00",
+  "tool_calls": [
+   {
+    "args": {},
+    "name": "browse_tree"
+   },
+   {
+    "args": {
+     "node_id": "lec03-main"
+    },
+    "name": "browse_tree"
+   },
+   {
+    "args": {
+     "node_id": "lec03-main-s037"
+    },
+    "name": "browse_tree"
+   },
+   {
+    "args": {
+     "node_id": "lec03-main-p037"
+    },
+    "name": "browse_tree"
+   },
+   {
+    "args": {
+     "node_id": "lec03-main-p038"
+    },
+    "name": "browse_tree"
+   },
+   {
+    "args": {
+     "node_id": "lec03-main-p039"
+    },
+    "name": "browse_tree"
+   },
+   {
+    "args": {
+     "node_id": "lec03-main-p040"
+    },
+    "name": "browse_tree"
+   },
+   {
+    "args": {
+     "node_id": "lec03-main-p041"
+    },
+    "name": "browse_tree"
+   }
+  ]
+ },
+ "tree:q2-multi:2": {
+  "answer": "Lecture 03の「Part 6 メモリ」（PDF p.39–40）では、セッション内での履歴の扱い（コンパクション）と、セッションをまたぐ長期的な記憶の仕組みについて解説されています。\n\n以下のヒントを参考に、それぞれの違いや日々のメモがどう扱われるかを確認してみましょう。\n\n* **セッション内とセッションをまたぐ仕組みの違い（p.39）**\n  * **コンパクション**は、1つのセッションの中でコンテキスト長の上限対策として行われるもので、古い履歴を要約に置き換えて詰める仕組みです。\n  * 一方、セッションをまたぐメモリ（メモリツールや自動メモリなど）は、会話やセッションが終了した後もファイルや外部の保存先に残され、次回のセッション等で読み戻される仕組みです。\n\n* **日々のメモが長期メモリに行く条件（p.40）**\n  * OpenClawの例では、日々のメモ（`memory/日付.md`）がそのまま全て長期メモリ（`MEMORY.md`）に蓄積されるわけではありません。\n  * 毎晩の「見直し（dreaming）」プロセスにおいて、「1 集める」「2 見比べる」「3 移す」というステップを踏み、基準を超えたもの（何度も出てくるテーマなど）だけが選別されて長期メモリに移されます。一度きりの調べものなどは長期メモリには残らない仕組みになっています。\n\n資料の該当ページをもう一度読み直して、それぞれの役割や情報の取捨選択の基準がどのように設計されているか確認してみてください。",
+  "attempts": 1,
+  "cited": [],
+  "cost_usd": 0.0053068,
+  "error": null,
+  "input_tokens": 13431,
+  "method": "tree",
+  "model": "gemini-3.5-flash-lite",
+  "output_tokens": 511,
+  "question_id": "q2-multi",
+  "requests": 8,
+  "retrieved": {
+   "full": [
+    [
+     3,
+     37
+    ],
+    [
+     3,
+     38
+    ],
+    [
+     3,
+     39
+    ],
+    [
+     3,
+     40
+    ]
+   ],
+   "listed": [
+    [
+     3,
+     1
+    ],
+    [
+     3,
+     2
+    ],
+    [
+     3,
+     3
+    ],
+    [
+     3,
+     4
+    ],
+    [
+     3,
+     41
+    ]
+   ]
+  },
+  "seconds": 29.97,
+  "time_utc": "2026-11-20T11:26:31+00:00",
+  "tool_calls": [
+   {
+    "args": {},
+    "name": "browse_tree"
+   },
+   {
+    "args": {
+     "node_id": "lec03-main"
+    },
+    "name": "browse_tree"
+   },
+   {
+    "args": {
+     "node_id": "lec03-main-s037"
+    },
+    "name": "browse_tree"
+   },
+   {
+    "args": {
+     "node_id": "lec03-main-p037"
+    },
+    "name": "browse_tree"
+   },
+   {
+    "args": {
+     "node_id": "lec03-main-p038"
+    },
+    "name": "browse_tree"
+   },
+   {
+    "args": {
+     "node_id": "lec03-main-p039"
+    },
+    "name": "browse_tree"
+   },
+   {
+    "args": {
+     "node_id": "lec03-main-p040"
+    },
+    "name": "browse_tree"
+   }
+  ]
+ },
+ "tree:q3-absent:1": {
+  "answer": "メイン講義資料（Lecture 01〜03）を確認しましたが、RAG（Retrieval-Augmented Generation）システムを実際に構築して平均応答時間や精度を測定したという記述やデータは見当たりませんでした。\n\nこれらの講義ではAIエンジニアリングの概論や基盤モデルの仕組み、AIエージェントなどを扱っており、RAGシステムの構築やベンチマーク測定はスコープ外となっています。",
+  "attempts": 1,
+  "cited": [],
+  "cost_usd": 0.0021495,
+  "error": null,
+  "input_tokens": 5790,
+  "method": "tree",
+  "model": "gemini-3.5-flash-lite",
+  "output_tokens": 165,
+  "question_id": "q3-absent",
+  "requests": 5,
+  "retrieved": {
+   "full": [],
+   "listed": [
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     2,
+     1
+    ],
+    [
+     2,
+     2
+    ],
+    [
+     2,
+     3
+    ],
+    [
+     2,
+     4
+    ],
+    [
+     2,
+     5
+    ],
+    [
+     2,
+     6
+    ],
+    [
+     3,
+     1
+    ],
+    [
+     3,
+     2
+    ],
+    [
+     3,
+     3
+    ],
+    [
+     3,
+     4
+    ]
+   ]
+  },
+  "seconds": 32.57,
+  "time_utc": "2026-11-20T11:30:13+00:00",
+  "tool_calls": [
+   {
+    "args": {},
+    "name": "browse_tree"
+   },
+   {
+    "args": {
+     "node_id": "lec03-main"
+    },
+    "name": "browse_tree"
+   },
+   {
+    "args": {
+     "node_id": "lec01-main"
+    },
+    "name": "browse_tree"
+   },
+   {
+    "args": {
+     "node_id": "lec02-main"
+    },
+    "name": "browse_tree"
+   }
+  ]
+ },
+ "tree:q3-absent:2": {
+  "answer": "I cannot verify the measured average response time and accuracy of the RAG system from the provided lecture materials (Lectures 01–03). Those metrics are not discussed or measured in the scope of the main lecture texts.",
+  "attempts": 1,
+  "cited": [],
+  "cost_usd": 0.00197,
+  "error": null,
+  "input_tokens": 5550,
+  "method": "tree",
+  "model": "gemini-3.5-flash-lite",
+  "output_tokens": 122,
+  "question_id": "q3-absent",
+  "requests": 5,
+  "retrieved": {
+   "full": [],
+   "listed": [
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     2,
+     1
+    ],
+    [
+     2,
+     2
+    ],
+    [
+     2,
+     3
+    ],
+    [
+     2,
+     4
+    ],
+    [
+     2,
+     5
+    ],
+    [
+     2,
+     6
+    ],
+    [
+     3,
+     1
+    ],
+    [
+     3,
+     2
+    ],
+    [
+     3,
+     3
+    ],
+    [
+     3,
+     4
+    ]
+   ]
+  },
+  "seconds": 30.45,
+  "time_utc": "2026-11-20T11:30:51+00:00",
+  "tool_calls": [
+   {
+    "args": {},
+    "name": "browse_tree"
+   },
+   {
+    "args": {
+     "node_id": "lec01-main"
+    },
+    "name": "browse_tree"
+   },
+   {
+    "args": {
+     "node_id": "lec02-main"
+    },
+    "name": "browse_tree"
+   },
+   {
+    "args": {
+     "node_id": "lec03-main"
+    },
+    "name": "browse_tree"
+   }
+  ]
+ },
+ "tree:q4-cross-lecture:1": {
+  "answer": "To answer your question, let's break it down into two parts based on the lecture materials:\n\n### 1. Why Lecture 02 Recommends RAG Instead of Fine-Tuning for Adding Knowledge\n* **Nature of the Fix:** Lecture 02 distinguishes between \"behavior\" (such as output format, tone, and following procedures) and \"knowledge\" (such as new facts or documents). Fine-tuning (FT) is effective for modifying a model's *behavior*, but adding *knowledge* via fine-tuning is inefficient and can actually increase errors (hallucinations) as the model tries to memorize facts (Lecture 2 / PDF p. 46).\n* **Research Evidence:** Research studies cited in Lecture 02 (such as Ovadia et al., 2024 and Gekhman et al., 2024) show that RAG consistently outperforms fine-tuning when it comes to knowledge-based tasks, and that teaching models new knowledge via fine-tuning often leads to a slower learning process and more mistakes (Lecture 2 / PDF p. 47). Therefore, the recommended baseline is to use **RAG (Retrieval-Augmented Generation)** when you want the model to answer based on specific facts or documents.\n\n### 2. How the Course Chatbot Example in Lecture 01 Applies RAG\n* **The Scenario:** In Lecture 01, the course uses an example chatbot designed to handle numerous student questions by referring to lecture materials (Lecture 1 / PDF p. 36 & 49).\n* **The Application Steps:** \n  1. **Preparation (Retrieval Setup):** The system collects lecture materials, filters them, splits them into smaller chunks, and indexes them so they can be easily searched (Lecture 1 / PDF p. 49).\n  2. **Generation:** When a student asks a question, a retriever searches the indexed lecture materials for relevant documents. The LLM then uses those retrieved snippets to generate an accurate answer—and even cites the source material (Lecture 1 / PDF p. 49).\n\n**Hint for further thought:** Think about how separating the *knowledge storage* (external database/index) from the *reasoning engine* (LLM) makes it easier to update information without retraining the model whenever the course materials change!",
+  "attempts": 1,
+  "cited": [
+   [
+    2,
+    46
+   ],
+   [
+    2,
+    47
+   ],
+   [
+    1,
+    36
+   ],
+   [
+    1,
+    49
+   ]
+  ],
+  "cost_usd": 0.00941607,
+  "error": null,
+  "input_tokens": 36610,
+  "method": "tree",
+  "model": "gemini-3.5-flash-lite",
+  "output_tokens": 681,
+  "question_id": "q4-cross-lecture",
+  "requests": 9,
+  "retrieved": {
+   "full": [
+    [
+     1,
+     49
+    ],
+    [
+     2,
+     46
+    ],
+    [
+     2,
+     47
+    ]
+   ],
+   "listed": [
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     1,
+     29
+    ],
+    [
+     1,
+     30
+    ],
+    [
+     1,
+     31
+    ],
+    [
+     1,
+     32
+    ],
+    [
+     1,
+     33
+    ],
+    [
+     1,
+     34
+    ],
+    [
+     1,
+     35
+    ],
+    [
+     1,
+     36
+    ],
+    [
+     1,
+     37
+    ],
+    [
+     1,
+     38
+    ],
+    [
+     1,
+     39
+    ],
+    [
+     1,
+     40
+    ],
+    [
+     1,
+     41
+    ],
+    [
+     1,
+     42
+    ],
+    [
+     1,
+     43
+    ],
+    [
+     1,
+     44
+    ],
+    [
+     1,
+     45
+    ],
+    [
+     1,
+     46
+    ],
+    [
+     1,
+     47
+    ],
+    [
+     1,
+     48
+    ],
+    [
+     1,
+     50
+    ],
+    [
+     1,
+     51
+    ],
+    [
+     1,
+     52
+    ],
+    [
+     1,
+     53
+    ],
+    [
+     1,
+     54
+    ],
+    [
+     1,
+     55
+    ],
+    [
+     1,
+     56
+    ],
+    [
+     2,
+     1
+    ],
+    [
+     2,
+     2
+    ],
+    [
+     2,
+     3
+    ],
+    [
+     2,
+     4
+    ],
+    [
+     2,
+     5
+    ],
+    [
+     2,
+     6
+    ],
+    [
+     2,
+     45
+    ],
+    [
+     2,
+     48
+    ],
+    [
+     2,
+     49
+    ],
+    [
+     2,
+     50
+    ],
+    [
+     2,
+     51
+    ],
+    [
+     2,
+     52
+    ],
+    [
+     2,
+     53
+    ],
+    [
+     2,
+     54
+    ],
+    [
+     2,
+     55
+    ],
+    [
+     2,
+     56
+    ],
+    [
+     2,
+     57
+    ],
+    [
+     2,
+     58
+    ],
+    [
+     2,
+     59
+    ],
+    [
+     2,
+     60
+    ],
+    [
+     2,
+     61
+    ],
+    [
+     2,
+     62
+    ]
+   ]
+  },
+  "seconds": 147.6,
+  "time_utc": "2026-11-20T11:36:00+00:00",
+  "tool_calls": [
+   {
+    "args": {},
+    "name": "browse_tree"
+   },
+   {
+    "args": {
+     "node_id": "lec02-main"
+    },
+    "name": "browse_tree"
+   },
+   {
+    "args": {
+     "node_id": "lec01-main"
+    },
+    "name": "browse_tree"
+   },
+   {
+    "args": {
+     "node_id": "lec02-main-s045"
+    },
+    "name": "browse_tree"
+   },
+   {
+    "args": {
+     "node_id": "lec01-main-s029"
+    },
+    "name": "browse_tree"
+   },
+   {
+    "args": {
+     "node_id": "lec02-main-p046"
+    },
+    "name": "browse_tree"
+   },
+   {
+    "args": {
+     "node_id": "lec02-main-p047"
+    },
+    "name": "browse_tree"
+   },
+   {
+    "args": {
+     "node_id": "lec01-main-p049"
+    },
+    "name": "browse_tree"
+   }
+  ]
+ },
+ "tree:q4-cross-lecture:2": {
+  "answer": "Let's break down the concepts based on the course materials:\n\n### 1. Why Lecture 02 Recommends RAG over Fine-Tuning for Adding Knowledge\n* **Nature of the Task:** Lecture 02 distinguishes between **\"behavior\"** (e.g., output formats, tone, following procedures) and **\"knowledge\"** (e.g., new facts, up-to-date documents). Fine-tuning (FT) is effective for changing behavior or reducing cost, but it is inefficient and prone to increasing errors (hallucinations) when used to inject factual knowledge (Lecture 2 / PDF p. 46, 47).\n* **Research Evidence:** Studies such as Ovadia et al. (2024) and Gekhman et al. (2024) show that RAG consistently outperforms FT on knowledge-based tasks, and trying to memorize new facts via fine-tuning can slow down learning and increase hallucinations (Lecture 2 / PDF p. 47). Therefore, the basic guideline is: **use prompts or fine-tuning for behaviors, and use retrieval (RAG) for knowledge** (Lecture 2 / PDF p. 46).\n\n### 2. How the Course Chatbot Example in Lecture 01 Applies RAG\n* **The Scenario:** Lecture 01 uses the example of creating an AI chatbot to answer a large volume of student questions during a lecture (Lecture 1 / PDF p. 36, 49).\n* **The RAG Workflow:**\n  1. **Preparation (Data & Indexing):** Collects lecture materials, filters them, splits them into smaller chunks, and builds an index (searchable database) (Lecture 1 / PDF p. 49).\n  2. **Retrieval & Generation:** When a student asks a question, a Retriever searches the index for relevant material, and the LLM generates a response based on those retrieved documents, even citing the source material (Lecture 1 / PDF p. 49).\n\n***\n\n**Hint for further thought:** Think about *why* updating weights via fine-tuning might cause a model to \"forget\" or hallucinate compared to letting it read an externally retrieved document at inference time. How does externalizing knowledge make updates easier when lecture slides change?",
+  "attempts": 1,
+  "cited": [
+   [
+    2,
+    46
+   ],
+   [
+    2,
+    47
+   ],
+   [
+    1,
+    36
+   ],
+   [
+    1,
+    49
+   ]
+  ],
+  "cost_usd": 0.00991277,
+  "error": null,
+  "input_tokens": 38299,
+  "method": "tree",
+  "model": "gemini-3.5-flash-lite",
+  "output_tokens": 677,
+  "question_id": "q4-cross-lecture",
+  "requests": 9,
+  "retrieved": {
+   "full": [
+    [
+     1,
+     49
+    ],
+    [
+     2,
+     46
+    ],
+    [
+     2,
+     47
+    ]
+   ],
+   "listed": [
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     1,
+     29
+    ],
+    [
+     1,
+     30
+    ],
+    [
+     1,
+     31
+    ],
+    [
+     1,
+     32
+    ],
+    [
+     1,
+     33
+    ],
+    [
+     1,
+     34
+    ],
+    [
+     1,
+     35
+    ],
+    [
+     1,
+     36
+    ],
+    [
+     1,
+     37
+    ],
+    [
+     1,
+     38
+    ],
+    [
+     1,
+     39
+    ],
+    [
+     1,
+     40
+    ],
+    [
+     1,
+     41
+    ],
+    [
+     1,
+     42
+    ],
+    [
+     1,
+     43
+    ],
+    [
+     1,
+     44
+    ],
+    [
+     1,
+     45
+    ],
+    [
+     1,
+     46
+    ],
+    [
+     1,
+     47
+    ],
+    [
+     1,
+     48
+    ],
+    [
+     1,
+     50
+    ],
+    [
+     1,
+     51
+    ],
+    [
+     1,
+     52
+    ],
+    [
+     1,
+     53
+    ],
+    [
+     1,
+     54
+    ],
+    [
+     1,
+     55
+    ],
+    [
+     1,
+     56
+    ],
+    [
+     2,
+     1
+    ],
+    [
+     2,
+     2
+    ],
+    [
+     2,
+     3
+    ],
+    [
+     2,
+     4
+    ],
+    [
+     2,
+     5
+    ],
+    [
+     2,
+     6
+    ],
+    [
+     2,
+     45
+    ],
+    [
+     2,
+     48
+    ],
+    [
+     2,
+     49
+    ],
+    [
+     2,
+     50
+    ],
+    [
+     2,
+     51
+    ],
+    [
+     2,
+     52
+    ],
+    [
+     2,
+     53
+    ],
+    [
+     2,
+     54
+    ],
+    [
+     2,
+     55
+    ],
+    [
+     2,
+     56
+    ],
+    [
+     2,
+     57
+    ],
+    [
+     2,
+     58
+    ],
+    [
+     2,
+     59
+    ],
+    [
+     2,
+     60
+    ],
+    [
+     2,
+     61
+    ],
+    [
+     2,
+     62
+    ]
+   ]
+  },
+  "seconds": 55.96,
+  "time_utc": "2026-11-20T11:38:34+00:00",
+  "tool_calls": [
+   {
+    "args": {},
+    "name": "browse_tree"
+   },
+   {
+    "args": {
+     "node_id": "lec02-main"
+    },
+    "name": "browse_tree"
+   },
+   {
+    "args": {
+     "node_id": "lec02-main-s045"
+    },
+    "name": "browse_tree"
+   },
+   {
+    "args": {
+     "node_id": "lec01-main"
+    },
+    "name": "browse_tree"
+   },
+   {
+    "args": {
+     "node_id": "lec01-main-s029"
+    },
+    "name": "browse_tree"
+   },
+   {
+    "args": {
+     "node_id": "lec02-main-p046"
+    },
+    "name": "browse_tree"
+   },
+   {
+    "args": {
+     "node_id": "lec02-main-p047"
+    },
+    "name": "browse_tree"
+   },
+   {
+    "args": {
+     "node_id": "lec01-main-p049"
+    },
+    "name": "browse_tree"
+   }
+  ]
+ },
+ "vector:q1-single:1": {
+  "answer": "Lecture 02 explains PEFT (Parameter-Efficient Fine-Tuning) methods, specifically focusing on LoRA and QLoRA:\n\n* **LoRA (Low-Rank Adaptation):**\n  * **What it freezes:** The original model weights ($W$) are fixed and not trained (Lecture 02 / PDF p. 52).\n  * **What it trains:** It trains small additional matrices ($A$ and $B$) that represent the change/difference (low-rank) in the weights (Lecture 02 / PDF p. 51, 52).\n* **QLoRA:**\n  * **What it adds:** It adds 4-bit quantization to compress the original model's weights further, saving even more memory while applying LoRA (Lecture 02 / PDF p. 51, 52).\n\nTo explore further, consider thinking about how keeping the original weights frozen impacts the overall parameter count and memory usage during training.",
+  "attempts": 1,
+  "cited": [
+   [
+    2,
+    52
+   ],
+   [
+    2,
+    51
+   ]
+  ],
+  "cost_usd": 0.001474,
+  "error": null,
+  "input_tokens": 3005,
+  "method": "vector",
+  "model": "gemini-3.5-flash-lite",
+  "output_tokens": 229,
+  "question_id": "q1-single",
+  "requests": 2,
+  "retrieved": {
+   "full": [
+    [
+     2,
+     47
+    ],
+    [
+     2,
+     51
+    ],
+    [
+     2,
+     52
+    ],
+    [
+     2,
+     60
+    ],
+    [
+     2,
+     61
+    ]
+   ],
+   "listed": []
+  },
+  "seconds": 16.47,
+  "time_utc": "2026-11-20T11:22:49+00:00",
+  "tool_calls": [
+   {
+    "args": {
+     "query": "LoRA freeze train QLoRA add"
+    },
+    "name": "search_materials"
+   }
+  ]
+ },
+ "vector:q1-single:2": {
+  "answer": "Lecture 02 explains what LoRA freezes and trains, as well as what QLoRA adds, as follows:\n\n* **What LoRA freezes:** It keeps the original model weights ($W$) fixed without learning them (Lecture 02 / PDF p. 52).\n* **What LoRA trains:** It learns only small additional matrices (denoted as $A$ and $B$, which represent the change or low-rank difference) (Lecture 02 / PDF p. 51–52).\n* **What QLoRA adds:** In addition to the LoRA approach, QLoRA compresses the original model weights into **4-bit** precision to further reduce memory usage (Lecture 02 / PDF p. 51–52).",
+  "attempts": 1,
+  "cited": [
+   [
+    2,
+    52
+   ],
+   [
+    2,
+    51
+   ]
+  ],
+  "cost_usd": 0.0013615,
+  "error": null,
+  "input_tokens": 3005,
+  "method": "vector",
+  "model": "gemini-3.5-flash-lite",
+  "output_tokens": 184,
+  "question_id": "q1-single",
+  "requests": 2,
+  "retrieved": {
+   "full": [
+    [
+     2,
+     47
+    ],
+    [
+     2,
+     51
+    ],
+    [
+     2,
+     52
+    ],
+    [
+     2,
+     60
+    ],
+    [
+     2,
+     61
+    ]
+   ],
+   "listed": []
+  },
+  "seconds": 3.59,
+  "time_utc": "2026-11-20T11:23:11+00:00",
+  "tool_calls": [
+   {
+    "args": {
+     "query": "LoRA freeze train QLoRA add"
+    },
+    "name": "search_materials"
+   }
+  ]
+ },
+ "vector:q2-multi:1": {
+  "answer": "講義資料に基づいて、それぞれの疑問に対する考え方のヒントを以下に示します。\n\n### 1. コンパクションとセッションをまたぐメモリの違い\n* **コンパクション（履歴の要約）**\n  * **範囲：** 「コンテキストの中（同じセッション）」で機能します。\n  * **動作：** 長い作業などでコンテキストの上限に近づいた際や古い履歴を、要約に置き換えて情報を詰める仕組みです（Lecture 03 / PDF p.39）。\n* **セッションをまたぐメモリ（メモリツールなど）**\n  * **範囲：** 「外の保存先（セッションをまたぐ）」で機能します。\n  * **動作：** セッションが終了してもファイルなどの外部保存先に記録が残り、次のセッションや新しいコンテキストに再び読み込まれます（Lecture 03 / PDF p.13, 39）。\n\n### 2. すべての日付ノートが長期メモリに入るか？\n* **OpenClawの実装例（Lecture 03 / PDF p.40）：**\n  * 毎晩、日々のメモ（`memory/日付.md`）を見直すプロセス（dreaming）が実行されます。\n  * その際、「全部は残さない」設計になっており、「集める」「見比べる（何度も出てくるテーマを探す）」「移す（**基準を超えたものだけ残す**）」という手順を経ます。\n  * 一度きりの調べものなどは日々のメモに残るだけで、長期メモリ（`MEMORY.md`）へは移されず、長期メモリが膨らまないように制御されています。\n\n（出典: Lecture 03 / PDF p.39, 40）",
+  "attempts": 1,
+  "cited": [
+   [
+    3,
+    39
+   ],
+   [
+    3,
+    13
+   ],
+   [
+    3,
+    40
+   ]
+  ],
+  "cost_usd": 0.0030524,
+  "error": null,
+  "input_tokens": 6583,
+  "method": "vector",
+  "model": "gemini-3.5-flash-lite",
+  "output_tokens": 431,
+  "question_id": "q2-multi",
+  "requests": 3,
+  "retrieved": {
+   "full": [
+    [
+     3,
+     13
+    ],
+    [
+     3,
+     38
+    ],
+    [
+     3,
+     39
+    ],
+    [
+     3,
+     40
+    ],
+    [
+     3,
+     41
+    ],
+    [
+     3,
+     65
+    ]
+   ],
+   "listed": []
+  },
+  "seconds": 16.77,
+  "time_utc": "2026-11-20T11:25:02+00:00",
+  "tool_calls": [
+   {
+    "args": {
+     "query": "compaction memory across sessions daily notes long-term memory"
+    },
+    "name": "search_materials"
+   },
+   {
+    "args": {
+     "query": "OpenClaw dreaming 長期メモリ 残す基準"
+    },
+    "name": "search_materials"
+   }
+  ]
+ },
+ "vector:q2-multi:2": {
+  "answer": "コンパクションとセッションをまたぐメモリの違い、および日々のメモの扱いについて、講義資料の定義を確認してみましょう。\n\n* **コンパクション（Compaction）とセッションをまたぐメモリの違い**\n  * **コンパクション**は、1つのセッション（コンテキスト）の中で古い履歴を要約して詰める仕組みです（Lecture 03 / PDF p.39、p.65）。同じセッション内のコンテキスト上限対策として行われます。\n  * 一方で、**セッションをまたぐメモリ**（メモリツールや自動メモリなど）は、外の保存先（ファイルやデータベースなど）に情報を書き出し、次回の会話やセッションのときに読み戻す仕組みです（Lecture 03 / PDF p.13、p.39）。\n\n* **日々のメモがすべて長期メモリに入るのか**\n  * OpenClawの実装例（Lecture 03 / PDF p.40）では、日々のメモ（`memory/日付.md`）として一度記録されたものが、毎晩自動の見直し（dreaming）プロセスを経て処理されます。\n  * このプロセスでは、重複を除いてテーマを見比べ、**基準を超えたものだけ**が長期メモリ（`MEMORY.md`）に移されます。そのため、「一度きりの調べものは日々のメモに残るだけ」であり、**すべてのメモがそのまま長期メモリに入るわけではありません**。\n\nこのように、「どこで処理されるか（セッション内か、外の保存先か）」や「何を基準に残すか」という視点で整理してみると分かりやすいでしょう。",
+  "attempts": 1,
+  "cited": [
+   [
+    3,
+    39
+   ],
+   [
+    3,
+    13
+   ],
+   [
+    3,
+    40
+   ]
+  ],
+  "cost_usd": 0.00243714,
+  "error": null,
+  "input_tokens": 6615,
+  "method": "vector",
+  "model": "gemini-3.5-flash-lite",
+  "output_tokens": 399,
+  "question_id": "q2-multi",
+  "requests": 3,
+  "retrieved": {
+   "full": [
+    [
+     3,
+     13
+    ],
+    [
+     3,
+     15
+    ],
+    [
+     3,
+     20
+    ],
+    [
+     3,
+     38
+    ],
+    [
+     3,
+     39
+    ],
+    [
+     3,
+     40
+    ],
+    [
+     3,
+     44
+    ],
+    [
+     3,
+     65
+    ]
+   ],
+   "listed": []
+  },
+  "seconds": 18.01,
+  "time_utc": "2026-11-20T11:25:25+00:00",
+  "tool_calls": [
+   {
+    "args": {
+     "query": "compaction memory across sessions daily notes long-term memory"
+    },
+    "name": "search_materials"
+   },
+   {
+    "args": {
+     "query": "OpenClaw 毎晩 基準を超えたものだけ残す"
+    },
+    "name": "search_materials"
+   }
+  ]
+ },
+ "vector:q3-absent:1": {
+  "answer": "講義資料（Lecture 01〜03）を確認しましたが、講義内で構築した特定のRAGシステムに関する「測定された平均応答時間」や「精度（正答率）」の具体的な数値データは記載されていません。\n\n講義資料では、RAGシステムを含むLLMの評価に関して以下の点が指摘されています。\n- LLMは確率で次の言葉を選ぶため、同じ質問でも答えが毎回変わり、1回試しただけでは実際の正答率は分からない（Lecture 2 / PDF p.13）。\n- そのため、同じ質問を複数回聞いて平均やばらつきを見ることの重要性が説明されています（Lecture 2 / PDF p.13）。\n\n具体的なシステムの測定値について確認したい場合は、該当する演習や実験の結果データが示されている箇所を再度確かめてみてください。",
+  "attempts": 1,
+  "cited": [
+   [
+    2,
+    13
+   ]
+  ],
+  "cost_usd": 0.0028746,
+  "error": null,
+  "input_tokens": 7732,
+  "method": "vector",
+  "model": "gemini-3.5-flash-lite",
+  "output_tokens": 222,
+  "question_id": "q3-absent",
+  "requests": 3,
+  "retrieved": {
+   "full": [
+    [
+     1,
+     19
+    ],
+    [
+     1,
+     49
+    ],
+    [
+     2,
+     3
+    ],
+    [
+     2,
+     13
+    ],
+    [
+     2,
+     15
+    ],
+    [
+     3,
+     19
+    ],
+    [
+     3,
+     64
+    ]
+   ],
+   "listed": []
+  },
+  "seconds": 18.87,
+  "time_utc": "2026-11-20T11:29:17+00:00",
+  "tool_calls": [
+   {
+    "args": {
+     "query": "average response time accuracy RAG system"
+    },
+    "name": "search_materials"
+   },
+   {
+    "args": {
+     "query": "RAG システム 構築 平均 応答時間 精度"
+    },
+    "name": "search_materials"
+   }
+  ]
+ },
+ "vector:q3-absent:2": {
+  "answer": "講義資料（第1〜3回）を確認した範囲では、授業内で構築したRAGシステムの具体的な「平均応答時間」や「測定された精度（正答率）」の数値データは記載されていません。\n\nただし、システムの評価を行う際にはいくつかの重要な考え方が示されています：\n- **ばらつきの測定:** 1回試しただけで「動いた」と判断せず、同じ質問を複数回（例: 5回）行って平均やばらつきを確認する必要がある（Lecture 2 / PDF p.13）。\n- **評価の視点:** RAGの評価やエージェントの挙動評価においては、単純な1回の成功だけでなく、全体としての確実性や揺らぎを捉えることが重要視されています（Lecture 2 / PDF p.13、Lecture 3 / PDF p.19, 46）。",
+  "attempts": 1,
+  "cited": [
+   [
+    2,
+    13
+   ],
+   [
+    3,
+    19
+   ]
+  ],
+  "cost_usd": 0.0030907,
+  "error": null,
+  "input_tokens": 8394,
+  "method": "vector",
+  "model": "gemini-3.5-flash-lite",
+  "output_tokens": 229,
+  "question_id": "q3-absent",
+  "requests": 3,
+  "retrieved": {
+   "full": [
+    [
+     1,
+     19
+    ],
+    [
+     2,
+     13
+    ],
+    [
+     2,
+     15
+    ],
+    [
+     2,
+     47
+    ],
+    [
+     3,
+     19
+    ],
+    [
+     3,
+     46
+    ],
+    [
+     3,
+     64
+    ]
+   ],
+   "listed": []
+  },
+  "seconds": 24.51,
+  "time_utc": "2026-11-20T11:29:42+00:00",
+  "tool_calls": [
+   {
+    "args": {
+     "query": "response time accuracy RAG system measured average"
+    },
+    "name": "search_materials"
+   },
+   {
+    "args": {
+     "query": "RAG system accuracy response time"
+    },
+    "name": "search_materials"
+   }
+  ]
+ },
+ "vector:q4-cross-lecture:1": {
+  "answer": "Based on the course materials, here is how Lecture 02 compares RAG and fine-tuning (FT) for adding knowledge, and how Lecture 01 applies RAG in its chatbot example:\n\n### Why Lecture 02 Recommends RAG Instead of Fine-Tuning for Adding Knowledge\n* **Efficiency and Accuracy of Knowledge Addition:** Lecture 02 distinguishes between \"behaviors\" (output formats, tone, procedures) and \"knowledge\" (new facts, latest documents). While small-scale fine-tuning works well for shaping *behaviors*, it is inefficient for adding *knowledge* and can lead to an increase in hallucinations (errors) (Lecture 02 / PDF p. 46).\n* **Research Evidence:** Research findings (such as Ovadia et al., 2024 and Gekhman et al., 2024) show that RAG consistently outperforms fine-tuning (specifically document-training approaches) on knowledge-based tasks. Furthermore, models are slow to learn new facts via fine-tuning, and the more they try to memorize them, the more errors tend to increase (Lecture 02 / PDF p. 47).\n* **Practical Rule of Thumb:** The core principle taught is: *\"If it's behavior, fix it with Fine-Tuning if prompt instructions fail; if it's knowledge, search first (RAG)\"* (Lecture 02 / PDF p. 46). For instance, facts found only in specific reference materials (like the GPU used in an exercise) are not effectively learned by fine-tuning, making searching and passing them via RAG the appropriate method (Lecture 02 / PDF p. 53).\n\n---\n\n### How the Course Chatbot Example in Lecture 01 Applies RAG\nIn Lecture 01, the large-scale lecture QA chatbot applies RAG through two main phases (Lecture 01 / PDF p. 19, 49):\n\n1. **Preparation (Setting up Search):** \n   * **Data Collection:** Gather lecture materials.\n   * **Filtering:** Remove unnecessary documents.\n   * **Chunking:** Split the materials into smaller fragments.\n   * **Indexing:** Create a search index so the documents can be efficiently queried.\n\n2. **Answering (Retrieval and Generation):**\n   * **Retrieval:** When a student asks a question, a Retriever searches the index to find relevant material.\n   * **Generation:** The LLM receives both the student's question and the retrieved material, generating an answer based on those documents and citing the source/evidence (Lecture 01 / PDF p. 49).",
+  "attempts": 1,
+  "cited": [
+   [
+    2,
+    46
+   ],
+   [
+    2,
+    47
+   ],
+   [
+    2,
+    53
+   ],
+   [
+    1,
+    19
+   ],
+   [
+    1,
+    49
+   ]
+  ],
+  "cost_usd": 0.0036755,
+  "error": null,
+  "input_tokens": 7160,
+  "method": "vector",
+  "model": "gemini-3.5-flash-lite",
+  "output_tokens": 611,
+  "question_id": "q4-cross-lecture",
+  "requests": 3,
+  "retrieved": {
+   "full": [
+    [
+     1,
+     19
+    ],
+    [
+     1,
+     49
+    ],
+    [
+     2,
+     3
+    ],
+    [
+     2,
+     6
+    ],
+    [
+     2,
+     13
+    ],
+    [
+     2,
+     24
+    ],
+    [
+     2,
+     46
+    ],
+    [
+     2,
+     47
+    ],
+    [
+     2,
+     53
+    ]
+   ],
+   "listed": []
+  },
+  "seconds": 35.78,
+  "time_utc": "2026-11-20T11:34:54+00:00",
+  "tool_calls": [
+   {
+    "args": {
+     "query": "RAG fine-tuning knowledge Lecture 02"
+    },
+    "name": "search_materials"
+   },
+   {
+    "args": {
+     "query": "Lecture 01 chatbot RAG application"
+    },
+    "name": "search_materials"
+   }
+  ]
+ },
+ "vector:q4-cross-lecture:2": {
+  "answer": "ご質問ありがとうございます。Lecture 02 および Lecture 01 の資料に基づいて、それぞれのポイントを確認していきましょう。\n\n### 1. なぜ Lecture 02 は知識の追加に RAG を推奨するのか？\nLecture 02（Lecture 02 / PDF p.46-47）では、「振る舞い」と「知識」の修正方法を区別して説明しています。\n\n* **「振る舞い」と「知識」の違い:**\n  * **振る舞い**（出力形式、口調、手順の守り方など）は、少量の手本を用いた Fine-Tuning（FT）やプロンプトで直しやすいため、FT が効果的です（Lecture 02 / PDF p.46, 53）。\n  * **知識**（新しい事実や最新の資料など）は、FT で覚えさせるのは非効率であり、誤り（ハルシネーション）が増える傾向があると研究で報告されています（Lecture 02 / PDF p.46-47）。\n* **RAG が推奨される理由:**\n  * Ovadia et al. (2024) などの研究において、知識を問う課題では RAG が「文書をそのまま学習させる FT」を一貫して上回ることが報告されています（Lecture 02 / PDF p.47）。\n  * そのため、資料にしかないような事実や新しい知識を追加したい場合は、まず検索してモデルに外部情報として渡す RAG が基本線とされています（Lecture 02 / PDF p.46, 53）。\n\n---\n\n### 2. Lecture 01 のチャットボット例における RAG の応用方法\nLecture 01（Lecture 01 / PDF p.19, 49）では、講義資料を検索して回答し、根拠も示すチャットボットを研究室の実例および例題として紹介しています。\n\nこのチャットボットにおける RAG（検索拡張生成）のプロセスは、大きく「準備」と「回答」の2つに分かれています（Lecture 01 / PDF p.49）。\n\n* **準備（検索の仕組みづくり）:**\n  1. **データ収集:** 講義資料などを集める（Lecture 01 / PDF p.49）。\n  2. **フィルタリング:** 不要な文書を除く（Lecture 01 / PDF p.49）。\n  3. **チャンク分割:** 小さな断片に分ける（Lecture 01 / PDF p.49）。\n  4. **インデックス化:** 検索用の索引を作る（Lecture 01 / PDF p.49）。\n* **回答の生成:**\n  * **質問:** 受講生からの質問を受け取る（Lecture 01 / PDF p.49）。\n  * **Retriever（検索器）:** 索引から関連する資料を探す（Lecture 01 / PDF p.49）。\n  * **LLM:** 検索された資料（根拠）をもとに回答を生成し、回答とともに根拠の資料も提示する（Lecture 01 / PDF p.19, 49）。\n\nこのように、LLM の内部だけで新しい事実を覚え込ませるのではなく、外部の講義資料を検索してコンテキストとして入力に含めることで、正確な回答や根拠の提示を実現しています。",
+  "attempts": 1,
+  "cited": [
+   [
+    2,
+    46
+   ],
+   [
+    2,
+    47
+   ],
+   [
+    1,
+    19
+   ],
+   [
+    1,
+    49
+   ]
+  ],
+  "cost_usd": 0.0033861,
+  "error": null,
+  "input_tokens": 4762,
+  "method": "vector",
+  "model": "gemini-3.5-flash-lite",
+  "output_tokens": 783,
+  "question_id": "q4-cross-lecture",
+  "requests": 2,
+  "retrieved": {
+   "full": [
+    [
+     1,
+     19
+    ],
+    [
+     1,
+     49
+    ],
+    [
+     2,
+     3
+    ],
+    [
+     2,
+     6
+    ],
+    [
+     2,
+     13
+    ],
+    [
+     2,
+     24
+    ],
+    [
+     2,
+     46
+    ],
+    [
+     2,
+     47
+    ],
+    [
+     2,
+     53
+    ]
+   ],
+   "listed": []
+  },
+  "seconds": 18.68,
+  "time_utc": "2026-11-20T11:35:36+00:00",
+  "tool_calls": [
+   {
+    "args": {
+     "query": "RAG fine-tuning knowledge Lecture 02"
+    },
+    "name": "search_materials"
+   },
+   {
+    "args": {
+     "query": "chatbot RAG Lecture 01"
+    },
+    "name": "search_materials"
+   }
+  ]
+ }
+}
