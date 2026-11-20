@@ -123,8 +123,10 @@ Plain counts from the runs above (what they mean is written under "Observations 
 - q4-cross-lecture: evidence pages received with text, summed over runs: Not recorded
 <!-- /AUTO:findings -->
 
-- **Pages found by running search alone (STEP 2, `uv run python -m app.retrieval "LoRA QLoRA difference"`):** Not recorded. This needs the
-  query embedding, so it needs my key. The expected evidence is Lecture 2, PDF p.52.
+- **Pages found by running search alone (STEP 2, `uv run python -m app.retrieval "LoRA QLoRA difference"`):** five pages, all from Lecture 2, in this order: p.52, p.51, p.60, p.47, p.61.
+  The expected evidence page (p.52, LoRA and QLoRA) came first, and p.51 (the PEFT page that introduces both) came second, so the supporting evidence was present. The other three are pages on nearby
+  topics: p.47 is about RAG versus fine-tuning, and p.60 and p.61 are the exercise pages. Only p.52 is needed for the answer, so this is a case where search returns the evidence plus three
+  pages of similar topics.
 - **Tool calls shown by `--trace`:** in the "Tool calls (run 1)" column above, names and arguments; the full list for every run is in `runs.json`.
 - **Examples where retrieved information was insufficient or was retrieved but not used:** the offline check gives one clear example of
   each kind, in the Homework section (the course Graph never returns Lecture 3 p.13 from p.39, and Graph v2 demotes the adjacent
