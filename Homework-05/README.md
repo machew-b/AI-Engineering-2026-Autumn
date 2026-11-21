@@ -17,7 +17,7 @@ that the model can open with a `read_page` tool (a Graph and Tree combination). 
 | `app/compare.py` | Live comparison: 4 questions, 5 methods, saved run by run to `results/compare/runs.json`. |
 | `app/report.py` | Writes the tables in `answer.md` from `runs.json`, and lists what is unfinished (`--check`). |
 | `scripts/fetch_course_data.py` | Downloads the course data and checks it by SHA-256. |
-| `tests/` | 26 offline tests (no key, no network once the data is fetched). |
+| `tests/` | 35 offline tests (no key, no network once the data is fetched). |
 | `results/offline/` | `offline_eval.json` (every run) and `offline_summary.md`. |
 
 Not copied from the course, on purpose: the MCP code (Lecture 6), the Lecture 3 glossary tools (this lecture's agent does not register them), `uv.lock`
@@ -33,46 +33,28 @@ cd Homework-05
 uv sync
 uv run python -m scripts.fetch_course_data      # downloads 4 files (about 2 MB) and checks them
 export GEMINI_API_KEY=...                       # the same variable as Lecture 1 (in Codespaces: add the secret, then restart)
-uv run pytest -q                                # 26 passed
+uv run pytest -q                                # 35 passed
 uv run python -m app.agent --graph2 --list-tools
 ```
 
-## What I ran without a key, and what still needs the key
+## Status and how to reproduce
 
-Already done (no key needed, repeatable with the commands below): the tests, the data check, and
+The homework is complete: the offline check, STEP 2, and the 36 live runs are done and written into `answer.md`.
+`results/compare/runs.json` holds every live run (answers, tool calls, tokens, cost), and `results/compare/judgement.json` holds the Judgement column (written by Claude, see
+"Use of AI tools" in `answer.md`).
+
+To reproduce:
 
 ```bash
-uv run python -m app.offline_eval               # rewrites results/offline/ (about 1 minute of pure Python)
+uv run python -m app.offline_eval               # no key: rewrites results/offline/
+uv run python -m app.compare --dry-run          # shows the 36 runs (needs no key); without --dry-run it needs GEMINI_API_KEY
+uv run python -m app.compare                    # skips runs already in runs.json; add --redo to run them again
+uv run python -m app.report --write             # rewrites the tables in answer.md from runs.json and judgement.json
+uv run python -m app.report --check             # prints "nothing unfinished" when answer.md has no placeholder left
 ```
 
-Needs `GEMINI_API_KEY`. These are the cells of `answer.md` that say **Not recorded** until you run them:
-
-1. STEP 2, search alone (fill in the "Pages found by running search alone" bullet by hand):
-   `uv run python -m app.retrieval "LoRA QLoRA difference"`
-2. The live comparison. See the plan first, then run it. It is 36 runs (roughly 80 to 100 model requests): one full-context run per question (about 117,000 input tokens
-   each) and two runs of every other method. By the slide's numbers it costs about 20 cents in total. It pauses between runs and waits and retries on 429
-   and 503, and it saves after every run, so running the same command again continues where it stopped:
-   ```bash
-   uv run python -m app.compare --dry-run
-   uv run python -m app.compare
-   ```
-   If full context hits the input limit or a rate limit, the run is saved with its error. Keep that apart from the methods that worked (slide 23).
-   Use `--methods vector graph graph2` to skip full context.
-3. Put the numbers into `answer.md`, then check what is left:
-   ```bash
-   uv run python -m app.report --write
-   uv run python -m app.report --check
-   ```
-4. Read the answers in `results/compare/runs.json` yourself. Correctness is a human judgement, so the script never guesses it. If you want it in the
-   tables, create `results/compare/judgement.json`, for example `{"graph2:q2-multi:1": "correct", "vector:q2-multi:1": "partial"}` (`correct`, `partial` or `wrong`),
-   and run `--write` again.
-5. Write by hand what `--check` lists as "lines ... still say Not recorded": the answering model line, the STEP 2 bullet (use the output of step 1 above),
-   "Live examples" under "Improved and failed examples", and the "Observations on the live runs" bullet. In the last one say whether the adoption rule in the
-   Exercise section (Graph v2 receives at least as many evidence pages as vector search on q2 and q4, with under 2 times the input tokens) held. If the live runs
-   contradict a sentence in the Homework section, change the sentence, not the numbers.
-6. Commit and push `Homework-05/` (`runs.json` has answers and token counts, no keys; `.env` is ignored).
-
-`--check` exits with 1 while anything is unfinished (it names the line numbers) and prints "nothing unfinished" when all is filled in.
+Notes: `runs.json` is the raw measurement and is never edited by hand. `report.py` re-reads the cited pages from each saved answer with the current citation parser, so a parser fix changes
+the tables and not the saved runs. Set `PYTHONUTF8=1` on Windows (the materials are Japanese). The whole live comparison cost about $0.26.
 
 ## Where the pieces are, if you want to read the method
 

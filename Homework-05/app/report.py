@@ -14,23 +14,25 @@ import re
 import sys
 from pathlib import Path
 
-from app.compare import METHODS, QUESTIONS, load, plan, run_id
+from app.compare import METHODS, QUESTIONS, cited_pages, load, plan, run_id
 
 ROOT = Path(__file__).resolve().parents[1]
 ANSWER = ROOT / "answer.md"
 JUDGEMENT = ROOT / "results" / "compare" / "judgement.json"
 LABEL = {"full-context": "Full context", "vector": "Vector search", "tree": "Tree", "graph": "Graph (course)", "graph2": "Graph v2 (mine)"}
 NONE = "Not recorded"
-UNSURE = re.compile(r"cannot (verify|confirm|find)|can't (verify|confirm|find)|not (contain|include|provide|available)|no (evidence|information|measurement)|unable to (verify|confirm|find)", re.I)
+UNSURE = re.compile(r"cannot (verify|confirm|find)|can't (verify|confirm|find)|not (contain|include|provide|available)|no (evidence|information|measurement)|unable to (verify|confirm|find)"
+                    r"|記載(は|が)?(さ)?れて(い)?ません|記載はありません|確認できません|見当たりません|含まれていません|載っていません|示されていません", re.I)
 
 
 def ok_runs(runs: dict, method: str, qid: str) -> list[dict]:
-    """Saved runs without an error, in run order."""
+    """Saved runs without an error, in run order. "cited" is re-read from the saved answer with the current parser,
+    so a fix to the citation parser applies to runs.json without changing the saved measurements."""
     out = []
     for n in range(1, 10):
         r = runs.get(run_id(method, qid, n))
         if r and not r.get("error"):
-            out.append(r)
+            out.append({**r, "cited": cited_pages(r["answer"])})
     return out
 
 

@@ -31,6 +31,21 @@ def test_listed_only_page_is_reported():
     assert got == {"full": [], "listed": [[3, 40]]}
 
 
+@pytest.mark.parametrize("text, expected", [
+    ("Lecture 3 / PDF pp. 39, 40", [[3, 39], [3, 40]]),
+    ("(Lecture 02 / PDF p.51\u201352)", [[2, 51], [2, 52]]),
+    ("\uff08Lecture 2 / PDF p.13\u3001Lecture 3 / PDF p.19, 46\uff09", [[2, 13], [3, 19], [3, 46]]),
+    ("Lecture 2 / PDF p.13, p.18)", [[2, 13], [2, 18]]),
+    ("(Document: `lec02-main / title`, Section: x, PDF p. 20, 23, 46)", [[2, 20], [2, 23], [2, 46]]),
+    ("PDF p.39\uff08Document: `lec03-main / title`\uff09", [[3, 39]]),
+    ("Lecture 03\u306e\u8cc7\u6599\uff08PDF p.39\u201340\uff09", [[3, 39], [3, 40]]),
+    ("Lecture 3 says see (p.39) and p.40", [[3, 39], [3, 40]]),   # no lecture next to the pages, one lecture named
+    ("In step 2 we use p 5 of it", []),
+])
+def test_cited_pages_formats(text, expected):
+    assert compare.cited_pages(text) == expected
+
+
 def test_plan_counts_runs():
     todo = compare.plan(compare.METHODS, compare.QUESTIONS, runs=2, full_runs=1)
     assert len(todo) == 4 * (1 + 4 * 2)
@@ -62,9 +77,10 @@ def fake_runs():
                 "retrieved": {"full": full, "listed": []}, "seconds": seconds, "input_tokens": 3000, "output_tokens": 200,
                 "requests": 2, "cost_usd": 0.001}
     gold = [[3, 13], [3, 39], [3, 40]]
-    runs = {compare.run_id("graph2", "q2-multi", 1): run("graph2", "q2-multi", 1, gold, gold),
-            compare.run_id("vector", "q2-multi", 1): run("vector", "q2-multi", 1, gold[:2], gold[:2], 3.0)}
+    runs = {compare.run_id("graph2", "q2-multi", 1): {**run("graph2", "q2-multi", 1, gold, gold), "answer": "Yes (Lecture 3 / PDF pp. 13, 39-40)."},
+            compare.run_id("vector", "q2-multi", 1): {**run("vector", "q2-multi", 1, gold[:2], gold[:2], 3.0), "answer": "Yes (Lecture 3 / PDF p.13、p.39)."}}
     runs["vector:q3-absent:1"] = {**run("vector", "q3-absent", 1, [], []), "answer": "I cannot verify this from the materials."}
+    runs["tree:q3-absent:1"] = {**run("tree", "q3-absent", 1, [], []), "answer": "教材には測定値は記載されていません。"}
     return runs
 
 
@@ -76,6 +92,7 @@ def test_tables_show_counts_and_never_invent_missing_runs():
     assert "correct" in text and "not judged" in text
     assert "| Tree | 0 | Not recorded |" in text                      # a run that was not made stays blank
     assert "says it cannot verify" in text                            # q3: the absent-evidence question
+    assert "| Tree | 1 | no evidence page exists | says it cannot verify |" in text   # a Japanese refusal is recognised
     assert "Vector search 2/3; Graph v2 (mine) 3/3" in report.findings_block(runs).replace("Graph (course) 0/0; ", "")
 
 
