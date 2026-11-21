@@ -38,19 +38,43 @@ QUESTIONS = [
      "question": "Why does Lecture 02 recommend RAG instead of fine-tuning for adding knowledge, and how does the course chatbot example in Lecture 01 apply RAG?"},
 ]
 METHODS = ["full-context", "vector", "tree", "graph", "graph2"]
-CITATION = re.compile(r"Lecture\s*0*(\d+)\s*/\s*(?:PDF\s*)?p\.?\s*(\d+)", re.IGNORECASE)
+# Citations come in many shapes: "Lecture 2 / PDF p.52", "PDF pp. 39, 40", "p.51-52", "p.13, p.18", and, in full-context answers,
+# "Document: `lec02-main / title`, ..., PDF p. 20, 23, 46". Both patterns capture a whole page list; page_numbers() expands it.
+_NUM = r"\d+(?:\s*[-\u2013\u2014\u301c~]\s*\d+)?"
+_PAGES = rf"pp?\.?\s*{_NUM}(?:\s*[,\u3001\uff0c]\s*(?:and\s*)?(?:pp?\.?\s*)?{_NUM})*"
+CITATION = re.compile(rf"Lecture\s*0*(\d+)(?:\s*[/,\u3001\uff0c]?\s*|[^\n\d]{{1,10}}?)(?:PDF\s*)?(?P<pages>{_PAGES})", re.IGNORECASE)
+DOC_CITATION = re.compile(rf"lec0*(?P<lec>\d+)-main[^\n]*?PDF\s*(?P<pages>{_PAGES})", re.IGNORECASE)
+DOC_CITATION_PAGES_FIRST = re.compile(rf"PDF\s*(?P<pages>{_PAGES})[^\n]{{0,6}}?Document:\s*`lec0*(?P<lec>\d+)-main", re.IGNORECASE)
 PAGE_ID = re.compile(r"^lec(\d+)-main-p(\d+)$")
 WAITS = {429: 65, 503: 20}
 
 
+def page_numbers(spec: str) -> list[int]:
+    """"p.39, 40" -> [39, 40]; "pp. 51-52" -> [51, 52]; "p.13, p.18" -> [13, 18]. A range longer than 10 pages is not expanded."""
+    out = []
+    for first, last in re.findall(r"(\d+)(?:\s*[-\u2013\u2014\u301c~]\s*(\d+))?", spec):
+        start, end = int(first), int(last) if last else int(first)
+        out += list(range(start, end + 1)) if 0 <= end - start <= 10 else [start, end]
+    return out
+
+
 def cited_pages(answer: str) -> list[list[int]]:
-    """Every "Lecture N / PDF p.N" in the answer, as [lecture, page], without duplicates, in order."""
+    """Every cited [lecture, page] in the answer, without duplicates, in order of appearance."""
+    found = []
+    for pattern in (CITATION, DOC_CITATION, DOC_CITATION_PAGES_FIRST):
+        for m in pattern.finditer(answer or ""):
+            lecture = int(m.group("lec") if "lec" in pattern.groupindex else m.group(1))
+            found += [(m.start(), lecture, page) for page in page_numbers(m.group("pages"))]
+    if not found:  # fallback: pages given without a lecture, in an answer that names exactly one lecture
+        lectures = set(re.findall(r"Lecture\s*0*(\d+)", answer or "", re.IGNORECASE))
+        if len(lectures) == 1:
+            for m in re.finditer(rf"(?<![A-Za-z])(?:PDF\s*)?(?P<pages>{_PAGES})", answer):
+                found += [(m.start(), int(next(iter(lectures))), page) for page in page_numbers(m.group("pages"))]
     seen, out = set(), []
-    for lecture, page in CITATION.findall(answer or ""):
-        key = (int(lecture), int(page))
-        if key not in seen:
-            seen.add(key)
-            out.append(list(key))
+    for _, lecture, page in sorted(found):
+        if (lecture, page) not in seen:
+            seen.add((lecture, page))
+            out.append([lecture, page])
     return out
 
 
