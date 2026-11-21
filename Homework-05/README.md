@@ -20,12 +20,6 @@ that the model can open with a `read_page` tool (a Graph and Tree combination). 
 | `tests/` | 35 offline tests (no key, no network once the data is fetched). |
 | `results/offline/` | `offline_eval.json` (every run) and `offline_summary.md`. |
 
-Not copied from the course, on purpose: the MCP code (Lecture 6), the Lecture 3 glossary tools (this lecture's agent does not register them), `uv.lock`
-(`uv sync` creates it) and the data. The slides mark the materials "no sharing with third parties without permission", so `data/rag_data/` is in
-`.gitignore` and `scripts/fetch_course_data.py` downloads it from the course repository at revision `1ce722c`, the one named in the Lecture 05 problem
-page, and refuses files that differ from the ones I used. The code comes from the Lecture 05 preparation branch
-`feat/lecture05-rag-update-20261115` of `matsuolab/lecture-ai-engineering-2026-en`; the localized materials and index are not published there yet.
-
 ## Setup
 
 ```bash
