@@ -141,8 +141,8 @@ Plain counts from the runs above (what they mean is written under "Observations 
   - Every method answered q1 and q3 correctly in every run, and q3 (not in the materials) was handled correctly by all five methods: all 9 q3 runs said the measured values are not in the
     materials. Six of them (vector search, Graph and Graph v2) then cited pages such as p.13 or p.18 for the general point that one run proves little, which is related text and not evidence for the missing numbers.
   - The runs differ on cost, not on correctness. Mean input tokens per run over the four questions: vector 5,907, Graph v2 8,786, course Graph 10,101, Tree 17,989, full context 117,029.
-    Mean estimated cost per run: $0.0027, $0.0031, $0.0034, $0.0056 and $0.0358. The whole comparison cost $0.26.
-  - Tree is the slowest and the most expensive retrieval method (mean 45 s; one q4 run took 148 s and 36,610 input tokens, listing almost all of Lecture 1). Full context is the fastest
+    Mean estimated cost per run: $0.0027, $0.0031, $0.0034, $0.0056 and $0.0357. The whole comparison cost $0.26.
+  - Tree is the slowest and the most expensive retrieval method (mean 45 s; one q4 run took 148 s and 36,610 input tokens, listing 51 pages, 29 of them from Lecture 1). Full context is the fastest
     (mean 6 s) because it makes one request and no tool calls, and the most expensive.
   - Graph v2 never used its new tool: `read_page` was called in 0 of 8 runs, and no evidence page was ever only in the preview tier, so the preview part of the design was not tested.
     The model searched a second time instead in 3 of 8 runs, and those runs used 12,687 to 15,614 input tokens against 4,669 to 5,880 for a single search. The model's number of searches
@@ -154,6 +154,11 @@ Plain counts from the runs above (what they mean is written under "Observations 
   The Homework 1 to 4 rule applies: Advanced is the level for every homework.
 - **Files:** the retrieval method is in `app/retrieval.py` (Graph v2 section), its tools in `app/tools.py`, its agent mode in `app/agent.py`
   (`--graph2`), settings in `app/config.py` (`GRAPH2_*`). The experiments are `app/offline_eval.py` (no key) and `app/compare.py` (live).
+- **Comparison question and conditions held fixed:** the same four questions (Step 1), the same model (`gemini-3.5-flash-lite`), the same materials for the four retrieval methods (the main lectures of Lectures 1 to 3, 214 pages),
+  and for the two Graph methods the same entry points (top 3), edges and hop limit. The instructions are the course's for each method; the Graph v2 instructions add the rule about `more` and `read_page`. Two runs per method per
+  question (one for full context). What changed between "before" (course Graph) and "after" (Graph v2): the order of the candidates, the text budget and the previews. Vector search is the basic-RAG reference.
+- **Results:** the tables under "Results by method" and Step 3 below. One standalone `--trace` run of Graph v2 on q1, made before the comparison and not one of the 36 runs: `[tool call] search_graph_v2({'query': 'LoRA freeze train QLoRA add Lecture 02'})`,
+  `[time] 5.05 seconds`, `[usage] 5,880 input / 261 output tokens, 2 model responses`, `[cost] $0.002416 USD`; the answer was correct and cited Lecture 2 / PDF p.52 (and p.51 for QLoRA).
 
 ### Step 1. Target questions and evidence
 
@@ -287,7 +292,7 @@ What the live runs say about the offline claims:
 
 ### Whether to adopt it for my use
 
-No. Use vector search as the default. On the questions I tested it returns the same evidence for the least text, and Graph v2 uses 1.3 to 2 times the input tokens per question (about 1.15 times the estimated cost over the whole set) with no gain. Graph v2 is worth keeping
+No. Use vector search as the default. On the questions I tested it returns the same evidence for the least text, and Graph v2 uses 1.3 to 2 times the input tokens per question (about 1.16 times the estimated cost over the whole set) with no gain. Graph v2 is worth keeping
 as a corrected version of the course Graph, which should be used instead of it when a graph method is wanted: it returned p.13 where the course Graph did not, for about the same cost. What would change
 my mind: a question set where vector search's top 5 misses an evidence page (none of my three answerable questions did), or runs where the model uses `read_page` and the preview tier saves tokens.
 The pre-registered rule in the Exercise section was met, but it asked only for a tie on evidence, so I treat it as too weak and did not follow it to adoption.
@@ -303,7 +308,8 @@ The pre-registered rule in the Exercise section was met, but it asked only for a
   the one lecture it names.
 - The Judgement column was written by Claude, not by an independent human, and I skimmed the longer answers (q4) rather than reading every line.
 - Many answers are in Japanese (the materials are Japanese) and the others in English, which does not change which pages were used but makes reading the answers slower.
-- Times are noisy and depend on the network and the API on the day; compare tokens and cost, not seconds.
+- Times are noisy and depend on the network and the API on the day; compare tokens and cost, not seconds. 4 of the 36 runs needed a retry (full context q3 run 1, course Graph q2 run 2, course Graph q3 runs 1 and 2),
+  presumably after a rate-limit or busy-model error; `runs.json` stores the number of attempts but not the error. For those runs the seconds and the cost count only the attempt that succeeded, and the waits are not in the seconds.
 - One data revision (`1ce722c`), Japanese pages only; the English index was not available when this was written.
 - Full context searched 438 pages and the other methods 214, so full context is not a like-for-like row.
 
